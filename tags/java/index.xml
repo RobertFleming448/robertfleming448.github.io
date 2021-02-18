@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on Robert Fleming&#39;s CIT Blog</title>
+    <link>https://example.com/tags/java/</link>
+    <description>Recent content in Java on Robert Fleming&#39;s CIT Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 17 Feb 2021 23:53:52 -0800</lastBuildDate><atom:link href="https://example.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CIT 480 blog 10</title>
+      <link>https://example.com/post/480blog10/</link>
+      <pubDate>Wed, 17 Feb 2021 23:53:52 -0800</pubDate>
+      
+      <guid>https://example.com/post/480blog10/</guid>
+      <description>Introduction For the next few blogs, I will be writing a series showing off bits of code I have written for my Computer Science 484 final group project. This blog will be used to provide a little background and explain a program that I wrote to help us in the future.
+The Project The project is an interactive web application that uses templates to auto-generate hundreds of unique algebra problems focusing on middle-school and high-school students. The application will track user progress by recording how many correct and incorrect answers a user gets on specific subjects. To implement this several systems needed to be made.</description>
+    </item>
+    
+    <item>
+      <title>CIT 480 Blog 0</title>
+      <link>https://example.com/post/480blog0/</link>
+      <pubDate>Wed, 17 Feb 2021 23:26:37 -0800</pubDate>
+      
+      <guid>https://example.com/post/480blog0/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Since this is my first blog post for CIT 480 and I have little to discuss in terms of class content, I think it would be fitting to describe the process I used to enroll in COMP 484 and this class. When I went to enroll in this course&amp;rsquo;s corequisite, COMP 484, it was closed. I&amp;rsquo;ve been through this before and the only solution I&amp;rsquo;ve found is to refresh the page every couple of minutes to wait for availability. This would be no problem since this occurred in midst of Covid stay at home orders. However, I would be unavailable to refresh this during meals, bathing, etc. To solve this, I came up with a system to automize the refresh system.&lt;/p&gt;
+&lt;p&gt;I decided to write this program in Java, as it was the programming language I was most familiar with. First off, I devised a logical breakdown for the program. The required modules were:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A bot that refreshed the page and navigated to the add screen&lt;/li&gt;
+&lt;li&gt;A function that captured the page&lt;/li&gt;
+&lt;li&gt;A function that parsed the image to see if any changes were made to the add screen&lt;/li&gt;
+&lt;li&gt;A function that notifies me when a change occurs, so I can run to my computer&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Next are a few &amp;ldquo;optional&amp;rdquo; components that I included to make the program easier to bug correct&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A logging function that appends whenever a significant action occurs including time and picture&lt;/li&gt;
+&lt;li&gt;Bug correction function that rescues the bot should it get stuck during page navigation&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;the-bot&#34;&gt;The Bot&lt;/h2&gt;
+&lt;p&gt;I first made a bot that would navigate the page by pressing the &lt;code&gt;TAB&lt;/code&gt; key a predetermined amount of times and pressing &lt;code&gt;ENTER&lt;/code&gt; when required. To accomplish this, I used the &lt;code&gt;robot class&lt;/code&gt; located in the &lt;code&gt;java.awt&lt;/code&gt; library. This method encountered far too many infinite &amp;ldquo;death loops&amp;rdquo; when the bot got stuck on an incorrect page so I scrapped it.&lt;/p&gt;
+&lt;p&gt;The second bot while less portable, used the same &lt;code&gt;Robot class&lt;/code&gt; as before. To ensure the bot never fell into an infinite loop, I hardcoded the bot to navigate using the mouse cursor using the measurements of my screen. This was not an elegant solution but for my purposes it functioned. The bot was capable of scrolling through the pages pressing the required radio bubble and waiting at the add screen before restarting the process. The code for this bot is below:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;refreshPageAlt&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;throws&lt;/span&gt; AWTException&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; InterruptedException
+	&lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+		Robot robot &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Robot&lt;span style=&#34;color:#f92672&#34;&gt;();&lt;/span&gt;
+
+		TimeUnit&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;SECONDS&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;sleep&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;2&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+
+		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;keyPress&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;KeyEvent&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;VK_F5&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;keyRelease&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;KeyEvent&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;VK_F5&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+
+		TimeUnit&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;SECONDS&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;sleep&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;8&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+
+		&lt;span style=&#34;color:#75715e&#34;&gt;//first Page
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mouseMove&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;700&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; 200&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		TimeUnit&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;SECONDS&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;sleep&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;1&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mousePress&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;InputEvent&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;BUTTON1_DOWN_MASK&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mouseRelease&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;InputEvent&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;BUTTON1_DOWN_MASK&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		TimeUnit&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;SECONDS&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;sleep&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;1&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mouseMove&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;1910&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; 300&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mousePress&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;InputEvent&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;BUTTON1_DOWN_MASK&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mouseMove&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;1910&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; 1000&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mouseRelease&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;InputEvent&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;BUTTON1_DOWN_MASK&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		TimeUnit&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;SECONDS&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;sleep&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;1&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mouseMove&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;700&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; 940&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		TimeUnit&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;SECONDS&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;sleep&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;1&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mousePress&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;InputEvent&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;BUTTON1_DOWN_MASK&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mouseRelease&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;InputEvent&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;BUTTON1_DOWN_MASK&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+
+		TimeUnit&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;SECONDS&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;sleep&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;8&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+
+		&lt;span style=&#34;color:#75715e&#34;&gt;//Second Page
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mouseMove&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;220&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; 450&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;		&lt;span style=&#34;color:#75715e&#34;&gt;//alt screen size: (220, 450)	//main screen size(220, 470)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mousePress&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;InputEvent&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;BUTTON1_DOWN_MASK&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mouseRelease&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;InputEvent&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;BUTTON1_DOWN_MASK&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		TimeUnit&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;SECONDS&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;sleep&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;1&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mouseMove&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;600&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; 480&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;		&lt;span style=&#34;color:#75715e&#34;&gt;//alt screen size: (600, 480)	//main screen size(600, 500)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mousePress&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;InputEvent&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;BUTTON1_DOWN_MASK&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+		robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mouseRelease&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;InputEvent&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;BUTTON1_DOWN_MASK&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+
+		append&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Page Refreshed&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+	    System&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;out&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;println&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Page Refreshed&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+
+	    TimeUnit&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;SECONDS&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;sleep&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;8&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+	&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;the-captureanalyzer&#34;&gt;The Capture/Analyzer&lt;/h2&gt;
+&lt;p&gt;Next, I had to come up with a function that would take the contents of the screen and determine if a class became available. Luckily CSUN&amp;rsquo;s system color codes classes with the following scheme:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Green=Available&lt;/li&gt;
+&lt;li&gt;Yellow=Waitlisted&lt;/li&gt;
+&lt;li&gt;Blue=Closed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Using these colors, I could easily determine changes in class availability based on color information. Utilizing the &lt;code&gt;Color class&lt;/code&gt; and the &lt;code&gt;Rectangle class&lt;/code&gt; I was able to take a screenshot of the page and get the RGB values of each pixel. By measuring the changes in green pixels on screen from previous measurements I could determine if availability changed. Part of the code is below:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;capture&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;()&lt;/span&gt;
+	&lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;
+        &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+            Robot robot &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Robot&lt;span style=&#34;color:#f92672&#34;&gt;();&lt;/span&gt;
+            &lt;span style=&#34;color:#75715e&#34;&gt;//Fullscreen but cropped around class hardcoded for my screen
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            Rectangle screenSize &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Rectangle&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;Toolkit&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;getDefaultToolkit&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;().&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;getScreenSize&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;());&lt;/span&gt;
+            &lt;span style=&#34;color:#75715e&#34;&gt;//System.out.println(screenSize.width);
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;//System.out.println(screenSize.height);
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            Rectangle captureRect &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Rectangle&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;420&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; 1130 &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; 2&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; 581 &lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; 448&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;		&lt;span style=&#34;color:#75715e&#34;&gt;//alt screen dimensions: (420, 1130 / 2, 581 , 448);	//main screen size (420, 1150 / 2, 581 , 448 );
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            BufferedImage bufferedImage &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; robot&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;createScreenCapture&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;captureRect&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+            File file &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; File&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;screen-capture.png&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;	 
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;boolean&lt;/span&gt; status &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ImageIO&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;write&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;bufferedImage&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;png&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; file&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+            append&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Screen Captured ? &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; status &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; File Path:- &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; file&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;getAbsolutePath&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;());&lt;/span&gt;
+            System&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;out&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;println&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Screen Captured ? &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; status &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; File Path:- &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; file&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;getAbsolutePath&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;());&lt;/span&gt;
+        &lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+	&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;parseImg&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;throws&lt;/span&gt; IOException
+	&lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; greenCount&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;0&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+		&lt;span style=&#34;color:#75715e&#34;&gt;//Reading the image
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	      BufferedImage img &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ImageIO&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;read&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; File&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;screen-capture.png&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;));&lt;/span&gt;
+	      &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; y &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; 0&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt; y &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; img&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;getHeight&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;();&lt;/span&gt; y&lt;span style=&#34;color:#f92672&#34;&gt;++)&lt;/span&gt;
+	      &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+	         &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; 0&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; img&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;getWidth&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;();&lt;/span&gt; x&lt;span style=&#34;color:#f92672&#34;&gt;++)&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+	            &lt;span style=&#34;color:#75715e&#34;&gt;//Retrieving contents of a pixel
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	            &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; pixel &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; img&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;getRGB&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;x&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt;y&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+	            &lt;span style=&#34;color:#75715e&#34;&gt;//Creating a Color object from pixel value
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	            Color color &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Color&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;pixel&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+	            &lt;span style=&#34;color:#75715e&#34;&gt;//Retrieving the R G B values
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	            &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; blue &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; color&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;getBlue&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;();&lt;/span&gt;
+	            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;blue&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;50&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+	            &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+	            	greenCount&lt;span style=&#34;color:#f92672&#34;&gt;++;&lt;/span&gt;
+	            &lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+	         &lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+	      &lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+	      &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; greenCount&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+
+	&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;notification&#34;&gt;Notification&lt;/h2&gt;
+&lt;p&gt;Next, I needed to be able to know if a change had occurred. There were 2 methods I thought of that could accomplish this task:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Using a SMTP server to utilize my cell provider&amp;rsquo;s email to SMS service address&lt;/li&gt;
+&lt;li&gt;Using a third-party service and paying per SMS message&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I had initially started with the email method but after some configuration and thought I determined I didn&amp;rsquo;t have the resources to run a SMTP server on my computer. In the end I used a payed service called &lt;code&gt;Twilio&lt;/code&gt; Twilio provides the libraries required to use their SMS services in dozens of computer languages, Java included. In the end from testing and utilization  the service cost me a little over a dollar, with each text costing a fraction of a cent.&lt;/p&gt;
+&lt;h2 id=&#34;error-correction&#34;&gt;Error Correction&lt;/h2&gt;
+&lt;p&gt;Every so often, the program would get stuck in a loop that I had not accounted for. This was not surprising as many parts of the bot were hardcoded for my environment. To fix this I added the link to the add page to the program. After encountering too many error values, the bot would rescue itself by returning to the starting page. While this solution was not the most elegant, again it worked for my purposes.&lt;/p&gt;
+&lt;h2 id=&#34;logging&#34;&gt;Logging&lt;/h2&gt;
+&lt;p&gt;This was by far the easiest function to implement. The method would just append the programs current status and time to a text document. Additionally, it would save a screenshot titled the current time. If an error were to occur, I could read the log and look at the corresponding image to try and determine the cause.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In the end the program was a rousing success. I had turned the program on while I was eating lunch and low and behold a notification. I ran to my computer and found the class space open. Without this notification there is no doubt this availability would have been snatched up before I noticed. For this reason, I think the time and money I invested in this program was well worth it.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

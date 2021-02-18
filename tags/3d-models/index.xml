@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>3d-Models on Robert Fleming&#39;s CIT Blog</title>
+    <link>https://example.com/tags/3d-models/</link>
+    <description>Recent content in 3d-Models on Robert Fleming&#39;s CIT Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 17 Feb 2021 23:53:35 -0800</lastBuildDate><atom:link href="https://example.com/tags/3d-models/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CIT 480 blog 5</title>
+      <link>https://example.com/post/480blog5/</link>
+      <pubDate>Wed, 17 Feb 2021 23:53:35 -0800</pubDate>
+      
+      <guid>https://example.com/post/480blog5/</guid>
+      <description>Introduction Although I thought I had little to discuss last blog regarding CIT, this week has been even less productive. While I have made progress in my computer science class, it was involving yet another HTML/CSS project. I have chosen to not talk about the same topic two postings in a row. Perhaps I will revisit the content of that class when we move on to browser scripts. This week beyond that I have been attending to my other non-major classes, so I have little to talk about that is both scholastic and technical. As a result, I will go over a personal project I recently did that does fit the technical aspect but not the scholastic one.</description>
+    </item>
+    
+  </channel>
+</rss>

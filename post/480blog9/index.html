@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/dsrkafuu/dsr-cdn@1/images/favicons/dsrca/favicon.ico" />
+
+
+
+<title>CIT 480 blog 9 - Robert Fleming&#39;s CIT Blog</title>
+
+
+<meta name="author" content="Robert Fleming" />
+
+
+<meta name="description" content="A minimal Hugo theme with nice theme color." />
+
+
+<meta name="keywords" content="CIT-480, AWS" />
+
+
+<meta property="og:title" content="CIT 480 blog 9" />
+<meta name="twitter:title" content="CIT 480 blog 9" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/post/480blog9/" /><meta property="og:description" content="Introduction This blog will detail the process I used to complete the fourth lab for CIT 480, in which I configured an AWS EC2 instance to allow communication with an AWS simple storage system bucket. For the most part I thought this lab was pretty straight forward but I did have a minor hiccup which I will detail in a later section.
+Background I currently have access to 2 AWS accounts. One is my educate account which still has most of the initial 100 dollar funds. The other is my regular AWS account, which although it does not have any education credits is still within its, first year granting me free tier access to resources." />
+<meta name="twitter:description" content="Introduction This blog will detail the process I used to complete the fourth lab for CIT 480, in which I configured an AWS EC2 instance to allow communication with an AWS simple storage system bucket. For the most part I thought this lab was pretty straight forward but I did have a minor hiccup which I will detail in a later section.
+Background I currently have access to 2 AWS accounts. One is my educate account which still has most of the initial 100 dollar funds. The other is my regular AWS account, which although it does not have any education credits is still within its, first year granting me free tier access to resources." /><meta property="og:image" content="https://example.com/img/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://example.com/img/og.png" /><meta property="article:published_time" content="2021-02-17T23:53:48-08:00" /><meta property="article:modified_time" content="2021-02-17T23:53:48-08:00" />
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+<link rel="stylesheet" href="https://example.com/assets/css/fuji.min.css" />
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://example.com">Robert Fleming&#39;s CIT Blog</a>
+            
+            <span class="title-sub">A Hugo blog for all my CIT antics</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://example.com/post/480blog9/">CIT 480 blog 9</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;876 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-480">CIT-480</a>&nbsp;<a href="/tags/aws">AWS</a>&nbsp;</span>
+
+    </div>
+    
+    <div class="post-content markdown-body">
+        <h2 id="introduction">Introduction</h2>
+<p>This blog will detail the process I used to complete the fourth lab for CIT 480, in which I configured an AWS EC2 instance to allow communication with an AWS simple storage system bucket. For the most part I thought this lab was pretty straight forward but I did have a minor hiccup which I will detail in a later section.</p>
+<h2 id="background">Background</h2>
+<p>I currently have access to 2 AWS accounts. One is my educate account which still has most of the initial 100 dollar funds. The other is my regular AWS account, which although it does not have any education credits is still within its, first year granting me free tier access to resources. As I think AWS knowledge will be a real boon to my career prospects, I have chosen to use the standard environment even if it means I end up paying for some of the resources I use. By doing it this way, I feel I will the most genuine experience with AWS and be more familiarized with how a traditional account functions.</p>
+<h2 id="creating-the-ec2">Creating the EC2</h2>
+<p>This step is the part I am most familiar with. Luckily, I have completed the previous Ansible task with EC2 instances so I am very comfortable with the process. I chose an Ubuntu image as it is my Linux distribution of choice and chose to spin up a t2.micro instance to minimize resource costs. Lastly, I changed the security group do be one I have used in the past. This group allows http traffic everywhere yet restricts SSH traffic to exclusively my home IP range. After I selected the already generated key-pair to use, the instance began initialization. I ran the <code>ssh -i ~/Downloads/&lt;key_name&gt;.pem ubuntu@&lt;EC2_IP&gt;</code> to communicate with the instance and to update the apt repository for future use. I would also install Apache and update the required files at this time. I did this with <code>apt-get install apache2</code> and by using the vim text editor to overwrite the default apache page and styling.</p>
+<h2 id="creating-the-s3-bucket">Creating the S3 Bucket</h2>
+<p>This step I had less experience with but I felt confident in my abilities due to the previous in class live demo. First, I went to the S3 section of the AWS console and selected the create bucket option. Next, I gave my bucket an appropriate name and left all the other settings default. After that, I selected the create bucket option and the resources were allocated for my usage.</p>
+<h2 id="creating-the-iam-role">Creating the IAM Role</h2>
+<p>I had previously created an IAM user so I was somewhat familiarized with the IAM concept and security policies already. For that reason, I was confident this step would cause little issue. I went to the IAM roles section and selected the <code>create role</code> option. From there I specified that it would be used for an AWS service and clicked the EC2 common use case option. Next, I gave the role full bucket permissions with the <code> AmazonS3FullAccess</code> policy. I left every other option as default and the role was created successfully.</p>
+<h2 id="giving-the-ec2-the-role">Giving the EC2 the Role</h2>
+<p>I returned to the EC2 service dashboard and navigated to actions menu. From there I was able to change the IAM settings for the selected instance and give it the role I had just created. Next as a precaution, I disconnected my SSH connection to the machine and restarted the instance. Here comes the “hiccup” I had mentioned earlier. When I restarted the instance, I had not noticed that the IP address I was assigned had changed. In retrospect this makes total sense, since I was not reserving the address itself. I figured out the issue when trying to SSH and corrected the problem in my SSH command and my apache index page to reflect the IP change.</p>
+<h2 id="connecting-the-ec2-instance-to-the-s3-bucket">Connecting the EC2 Instance to the S3 Bucket</h2>
+<p>First, I installed the awscli for ubuntu with <code>sudo apt install awscli</code> After confirming the installation was a success, I researched the commands required to perform functions with the s3 bucket. In order to list the available buckets, I used the <code>aws s3api list-buckets</code> command which returned the information in a handy JSON format. Next in order to copy my index.html page to the bucket I used the <code>aws s3 cp index.html s3://&lt;bucket_name&gt;/</code> command. I checked in the AWS console to confirm the transfer was a success and did register a file had been transferred. Lastly to confirm the file with my cli I used the <code>aws s3 ls s3://&lt;bucket_name&gt;/</code> command. This command listed all the files located on the root of the bucket. The command outputted the file that I had just uploaded. After confirming the Apache webpage was loaded correctly and taking my requisite screen captures, I exited my SSH connection and deleted the contents of the S3 bucket. Once it was emptied, I terminated the bucket and EC2 instance to prevent further charges.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Overall, this task I found to be rather straight-forward. I am glad I had the previous experience with EC2 to speed up the initial process. While I didn’t struggle much with this lab, I still feel that I gained some valuable information. I learned more about the usefulness of IAM roles, and about how AWS services can be interconnected to make more complex web applications.</p>
+
+    </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>Unless otherwise noted, the content of this site is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a>.</p>
+    </blockquote>
+</div>
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/RobertFleming448" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/robert-fleming-16b4051b9/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/3d-models/">3d-Models</a>
+            </span>
+            
+            <span>
+                <a href="/tags/affinity/">Affinity</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ansible/">Ansible</a>
+            </span>
+            
+            <span>
+                <a href="/tags/aws/">AWS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-480/">CIT-480</a>
+            </span>
+            
+            <span>
+                <a href="/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/tags/git/">git</a>
+            </span>
+            
+            <span>
+                <a href="/tags/github/">GitHub</a>
+            </span>
+            
+            <span>
+                <a href="/tags/graphics-engines/">Graphics-Engines</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/java/">Java</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/jekyll/">Jekyll</a>
+            </span>
+            
+            <span>
+                <a href="/tags/networking/">Networking</a>
+            </span>
+            
+            <span>
+                <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/troubleshooting/">Troubleshooting</a>
+            </span>
+            
+        </div>
+    </div>
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#creating-the-ec2">Creating the EC2</a></li>
+    <li><a href="#creating-the-s3-bucket">Creating the S3 Bucket</a></li>
+    <li><a href="#creating-the-iam-role">Creating the IAM Role</a></li>
+    <li><a href="#giving-the-ec2-the-role">Giving the EC2 the Role</a></li>
+    <li><a href="#connecting-the-ec2-instance-to-the-s3-bucket">Connecting the EC2 Instance to the S3 Bucket</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/RobertFleming448" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/robert-fleming-16b4051b9/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/3d-models/">3d-Models</a>
+            </span>
+            
+            <span>
+                <a href="/tags/affinity/">Affinity</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ansible/">Ansible</a>
+            </span>
+            
+            <span>
+                <a href="/tags/aws/">AWS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-480/">CIT-480</a>
+            </span>
+            
+            <span>
+                <a href="/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/tags/git/">git</a>
+            </span>
+            
+            <span>
+                <a href="/tags/github/">GitHub</a>
+            </span>
+            
+            <span>
+                <a href="/tags/graphics-engines/">Graphics-Engines</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/java/">Java</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/jekyll/">Jekyll</a>
+            </span>
+            
+            <span>
+                <a href="/tags/networking/">Networking</a>
+            </span>
+            
+            <span>
+                <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/troubleshooting/">Troubleshooting</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#creating-the-ec2">Creating the EC2</a></li>
+    <li><a href="#creating-the-s3-bucket">Creating the S3 Bucket</a></li>
+    <li><a href="#creating-the-iam-role">Creating the IAM Role</a></li>
+    <li><a href="#giving-the-ec2-the-role">Giving the EC2 the Role</a></li>
+    <li><a href="#connecting-the-ec2-instance-to-the-s3-bucket">Connecting the EC2 Instance to the S3 Bucket</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2020-2021
+                <a href="https://example.com">Robert Fleming</a>
+                 | <a href="https://github.com/RobertFleming448/CIT_Blogs">Source code</a> 
+                | Powered by <a href="https://github.com/dsrkafuu/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.0/lazysizes.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>

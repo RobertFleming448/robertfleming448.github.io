@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/dsrkafuu/dsr-cdn@1/images/favicons/dsrca/favicon.ico" />
+
+
+
+<title>CIT 480 blog 3 - Robert Fleming&#39;s CIT Blog</title>
+
+
+<meta name="author" content="Robert Fleming" />
+
+
+<meta name="description" content="A minimal Hugo theme with nice theme color." />
+
+
+<meta name="keywords" content="CIT-480, Docker" />
+
+
+<meta property="og:title" content="CIT 480 blog 3" />
+<meta name="twitter:title" content="CIT 480 blog 3" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/post/480blog3/" /><meta property="og:description" content="Introduction This blog will detail my struggles and procedures used while attempting the second lab for CIT 480. Much of this lab was very similar to the procedures of Lab 1, since the goal was to make a docker file to replicate the Lab 1 environment on demand. Given that this lab would contain similar content to my previous write-up, I will instead go into detail the hiccups I encountered while trying to complete the lab and how I eventually overcame them.
+Problem Number 1. Since this lab was heavily based on Lab 1, I was refollowing Lab 1’s instructions to a T." />
+<meta name="twitter:description" content="Introduction This blog will detail my struggles and procedures used while attempting the second lab for CIT 480. Much of this lab was very similar to the procedures of Lab 1, since the goal was to make a docker file to replicate the Lab 1 environment on demand. Given that this lab would contain similar content to my previous write-up, I will instead go into detail the hiccups I encountered while trying to complete the lab and how I eventually overcame them.
+Problem Number 1. Since this lab was heavily based on Lab 1, I was refollowing Lab 1’s instructions to a T." /><meta property="og:image" content="https://example.com/img/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://example.com/img/og.png" /><meta property="article:published_time" content="2021-02-17T23:53:28-08:00" /><meta property="article:modified_time" content="2021-02-17T23:53:28-08:00" />
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+<link rel="stylesheet" href="https://example.com/assets/css/fuji.min.css" />
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://example.com">Robert Fleming&#39;s CIT Blog</a>
+            
+            <span class="title-sub">A Hugo blog for all my CIT antics</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://example.com/post/480blog3/">CIT 480 blog 3</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;809 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-480">CIT-480</a>&nbsp;<a href="/tags/docker">Docker</a>&nbsp;</span>
+
+    </div>
+    
+    <div class="post-content markdown-body">
+        <h2 id="introduction">Introduction</h2>
+<p>This blog will detail my struggles and procedures used while attempting the second lab for CIT 480. Much of this lab was very similar to the procedures of Lab 1, since the goal was to make a docker file to replicate the Lab 1 environment on demand. Given that this lab would contain similar content to my previous write-up, I will instead go into detail the hiccups I encountered while trying to complete the lab and how I eventually overcame them.</p>
+<h2 id="problem-number-1">Problem Number 1.</h2>
+<p>Since this lab was heavily based on Lab 1, I was refollowing Lab 1’s instructions to a T. However, one notable difference was required that I had not considered. During Lab 1 we created a docker container with the <code>docker run -it -p 8080:80 –name lab1 ubuntu:18.04 bash</code> That command created a docker container using the ubuntu 18.04 image, with internal port 80 mapped to external port 8080 named lab1. Even though I understood the command in full, there was one main problem I encountered and it had to do with the port-mapping. While I was creating the docker file I was using the previous lab manual as well as my finished container as reference. Since the goal was to recreate the previous environment 1:1 I thought it would be logical to use the same port numbers. Again, in hindsight this makes little sense. After searching online for a solution to the <code>bind for 0.0.0.0:8080 failed: port is already allocated</code> I encountered a forum post stating that since the port was already allocated to an active container, it could not be used again. It seemed so obvious and I knew I had 2 options:</p>
+<ol>
+<li>stop the active container so the new container can be allocated the port</li>
+<li>give the new container another port</li>
+</ol>
+<p>I chose option 2 so that I may cross reference both at the same time. With that problem solved, I tested an apache install to ensure the service was using the correct port, which it did. <strong>Hurray</strong></p>
+<h2 id="problem-number-2">Problem Number 2.</h2>
+<p>This problem was both easy to solve and simple. Like last lab I encountered difficulty when installing multiple PHP modules at once. I still think this was some strange dependency issue but I am unsure. To get around this I just used several <code>apt-get install</code> commands rather than one long one. While this did increase the length of my Docker file, PHP was able to install autonomously with no issue.</p>
+<h2 id="problem-number-3">Problem Number 3.</h2>
+<p>This problem while less obvious to me had yet another simple fix. While I had no issue using the RUN command in the docker file due to the <code>DEBIAN_FRONTEND</code> env variable being set to noninteractive, I encountered some difficulty when trying to run a command that required a certain directory. I had assumed that the <code>RUN cd &lt;dir name&gt;</code> command would provide me with the desired results to change the working directory, yet when I the prompt informed me that certain directories could not be found in future steps, I was confused. I started by using the full directory but this was no longer possible when it came to the Affinity installation step. Looking on forum posts I learned that the <code>RUN cd &lt;dir name&gt;</code> command did not worked how I thought it did from within a docker file. Instead to change the working directory, you had to use the <code>WORKDIR &lt;dire name&gt;</code> instead. After I swapped every <code>RUN cd &lt;dir name&gt;</code> for its corresponding <code>WORKDIR &lt;dir name&gt;</code> everything worked like a charm and I was greeted with the glorious CSUN Web Service Page after I started the apache2 service.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Overall, I found this lab to be a real learning experience. I have done tasks similar to this one that involved automating tasks via scripts and those were mostly straight-forward. Even with docker I have set up my container to a predetermined configuration by copy and pasting a script into a file. However, this was my first time using a docker file. From my experience this is much better than the previous methods I had used to construct my container environment. I especially see the use of building a docker image that will see many repeated docker containers uses. My previous script method would take far longer should I need to replicate my environment periodically. Lastly, I learned that most mistakes can be caused by just being careless. This is especially evident in my <strong>Problem Number 1.</strong> where even though I had a complete understanding of the requirements, I still made a mistake that cost me time. As of now, my docker file could be submitted but I am still editing it to ensure that there is nothing superfluous included. Given that I still have time to work on it before the deadline, I will continue optimizing it during time I’ve allotted to CIT 480 lab work.</p>
+
+    </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>Unless otherwise noted, the content of this site is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a>.</p>
+    </blockquote>
+</div>
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/RobertFleming448" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/robert-fleming-16b4051b9/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/3d-models/">3d-Models</a>
+            </span>
+            
+            <span>
+                <a href="/tags/affinity/">Affinity</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ansible/">Ansible</a>
+            </span>
+            
+            <span>
+                <a href="/tags/aws/">AWS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-480/">CIT-480</a>
+            </span>
+            
+            <span>
+                <a href="/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/tags/git/">git</a>
+            </span>
+            
+            <span>
+                <a href="/tags/github/">GitHub</a>
+            </span>
+            
+            <span>
+                <a href="/tags/graphics-engines/">Graphics-Engines</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/java/">Java</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/jekyll/">Jekyll</a>
+            </span>
+            
+            <span>
+                <a href="/tags/networking/">Networking</a>
+            </span>
+            
+            <span>
+                <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/troubleshooting/">Troubleshooting</a>
+            </span>
+            
+        </div>
+    </div>
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#problem-number-1">Problem Number 1.</a></li>
+    <li><a href="#problem-number-2">Problem Number 2.</a></li>
+    <li><a href="#problem-number-3">Problem Number 3.</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/RobertFleming448" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/robert-fleming-16b4051b9/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/3d-models/">3d-Models</a>
+            </span>
+            
+            <span>
+                <a href="/tags/affinity/">Affinity</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ansible/">Ansible</a>
+            </span>
+            
+            <span>
+                <a href="/tags/aws/">AWS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-480/">CIT-480</a>
+            </span>
+            
+            <span>
+                <a href="/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/tags/git/">git</a>
+            </span>
+            
+            <span>
+                <a href="/tags/github/">GitHub</a>
+            </span>
+            
+            <span>
+                <a href="/tags/graphics-engines/">Graphics-Engines</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/java/">Java</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/jekyll/">Jekyll</a>
+            </span>
+            
+            <span>
+                <a href="/tags/networking/">Networking</a>
+            </span>
+            
+            <span>
+                <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/troubleshooting/">Troubleshooting</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#problem-number-1">Problem Number 1.</a></li>
+    <li><a href="#problem-number-2">Problem Number 2.</a></li>
+    <li><a href="#problem-number-3">Problem Number 3.</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2020-2021
+                <a href="https://example.com">Robert Fleming</a>
+                 | <a href="https://github.com/RobertFleming448/CIT_Blogs">Source code</a> 
+                | Powered by <a href="https://github.com/dsrkafuu/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.0/lazysizes.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HTML on Robert Fleming&#39;s CIT Blog</title>
+    <link>https://example.com/tags/html/</link>
+    <description>Recent content in HTML on Robert Fleming&#39;s CIT Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 17 Feb 2021 23:53:58 -0800</lastBuildDate><atom:link href="https://example.com/tags/html/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CIT 480 blog 12</title>
+      <link>https://example.com/post/480blog12/</link>
+      <pubDate>Wed, 17 Feb 2021 23:53:58 -0800</pubDate>
+      
+      <guid>https://example.com/post/480blog12/</guid>
+      <description>Introduction This blog will be the final part in my PHP learning series. In the last part we went over the basic scripts and functions required to create a basic website login/signup feature. In this section I will go over the additional optional features I added to make the website more complete. The two features I will go over in this blog are the change password script, and the integration of 2 step authentication via Twilio webservices. Beginning Setup
+Before we dive straight into the scripts first, we need to a page to host links to these scripts. Since I do not feel these features should be included as default entries on the standard account page, I created a separate options php page.</description>
+    </item>
+    
+    <item>
+      <title>CIT 480 blog 11</title>
+      <link>https://example.com/post/480blog11/</link>
+      <pubDate>Wed, 17 Feb 2021 23:53:56 -0800</pubDate>
+      
+      <guid>https://example.com/post/480blog11/</guid>
+      <description>Introduction This blog will feature part 2 of my PHP login system explanation. For some more background make sure to check out my 10th blog in this series. This blog will be rather lengthy so I will try my best not repeat my past blog’s contents. Without further ado, this is how I made a login system for my Comp 484 final group project.
+Required Scripts This system required many scripts written in PHP. PHP is a server-side scripting language. In the past I have done server-side scripting via CGI scripting but never have I used PHP. So, if some of my explanations aren’t 100% accurate I apologize ahead of time.</description>
+    </item>
+    
+    <item>
+      <title>CIT 480 blog 10</title>
+      <link>https://example.com/post/480blog10/</link>
+      <pubDate>Wed, 17 Feb 2021 23:53:52 -0800</pubDate>
+      
+      <guid>https://example.com/post/480blog10/</guid>
+      <description>Introduction For the next few blogs, I will be writing a series showing off bits of code I have written for my Computer Science 484 final group project. This blog will be used to provide a little background and explain a program that I wrote to help us in the future.
+The Project The project is an interactive web application that uses templates to auto-generate hundreds of unique algebra problems focusing on middle-school and high-school students. The application will track user progress by recording how many correct and incorrect answers a user gets on specific subjects. To implement this several systems needed to be made.</description>
+    </item>
+    
+    <item>
+      <title>CIT 480 blog 4</title>
+      <link>https://example.com/post/480blog4/</link>
+      <pubDate>Wed, 17 Feb 2021 23:53:32 -0800</pubDate>
+      
+      <guid>https://example.com/post/480blog4/</guid>
+      <description>Introduction Since I have already completed the assignments thus far for CIT 480, I find myself at a lack of content to construct this blog about. As a result, I feel it’s appropriate to move into a more COMP 484 related direction. In this blog I will go over my first HTML/CSS Project for COMP 484 and the requirements/how I accomplished them.
+Requirements The project was simple, we had to construct an HTML website with 4 pages and a stylesheet. Since we were allowed to pick any topic we wanted. I chose the video game franchise, The Legend of Zelda as I was certain I could fill 4 pages with content.</description>
+    </item>
+    
+  </channel>
+</rss>

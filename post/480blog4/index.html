@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/dsrkafuu/dsr-cdn@1/images/favicons/dsrca/favicon.ico" />
+
+
+
+<title>CIT 480 blog 4 - Robert Fleming&#39;s CIT Blog</title>
+
+
+<meta name="author" content="Robert Fleming" />
+
+
+<meta name="description" content="A minimal Hugo theme with nice theme color." />
+
+
+<meta name="keywords" content="CIT-480, HTML, GitHub" />
+
+
+<meta property="og:title" content="CIT 480 blog 4" />
+<meta name="twitter:title" content="CIT 480 blog 4" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/post/480blog4/" /><meta property="og:description" content="Introduction Since I have already completed the assignments thus far for CIT 480, I find myself at a lack of content to construct this blog about. As a result, I feel it’s appropriate to move into a more COMP 484 related direction. In this blog I will go over my first HTML/CSS Project for COMP 484 and the requirements/how I accomplished them.
+Requirements The project was simple, we had to construct an HTML website with 4 pages and a stylesheet. Since we were allowed to pick any topic we wanted. I chose the video game franchise, The Legend of Zelda as I was certain I could fill 4 pages with content." />
+<meta name="twitter:description" content="Introduction Since I have already completed the assignments thus far for CIT 480, I find myself at a lack of content to construct this blog about. As a result, I feel it’s appropriate to move into a more COMP 484 related direction. In this blog I will go over my first HTML/CSS Project for COMP 484 and the requirements/how I accomplished them.
+Requirements The project was simple, we had to construct an HTML website with 4 pages and a stylesheet. Since we were allowed to pick any topic we wanted. I chose the video game franchise, The Legend of Zelda as I was certain I could fill 4 pages with content." /><meta property="og:image" content="https://example.com/img/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://example.com/img/og.png" /><meta property="article:published_time" content="2021-02-17T23:53:32-08:00" /><meta property="article:modified_time" content="2021-02-17T23:53:32-08:00" />
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+<link rel="stylesheet" href="https://example.com/assets/css/fuji.min.css" />
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://example.com">Robert Fleming&#39;s CIT Blog</a>
+            
+            <span class="title-sub">A Hugo blog for all my CIT antics</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://example.com/post/480blog4/">CIT 480 blog 4</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1045 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-480">CIT-480</a>&nbsp;<a href="/tags/html">HTML</a>&nbsp;<a href="/tags/github">GitHub</a>&nbsp;</span>
+
+    </div>
+    
+    <div class="post-content markdown-body">
+        <h2 id="introduction">Introduction</h2>
+<p>Since I have already completed the assignments thus far for CIT 480, I find myself at a lack of content to construct this blog about. As a result, I feel it’s appropriate to move into a more COMP 484 related direction. In this blog I will go over my first HTML/CSS Project for COMP 484 and the requirements/how I accomplished them.</p>
+<h2 id="requirements">Requirements</h2>
+<p>The project was simple, we had to construct an HTML website with 4 pages and a stylesheet. Since we were allowed to pick any topic we wanted. I chose the video game franchise, The Legend of Zelda as I was certain I could fill 4 pages with content. Additionally, we had to use 3 unique elements and 3 unique attributes we had yet to go over in class. The elements I chose were:</p>
+<ul>
+<li>Address</li>
+<li>Table</li>
+<li>Audio</li>
+</ul>
+<p>I chose the Table element because I was already somewhat experienced with it and I felt that could allow me to provide better examples. Audio and Address were chosen because upon reading their documentation they seemed simple enough to implement while explaining my process.</p>
+<p>The Attributes that I chose to cover extensively were:</p>
+<ul>
+<li>Align</li>
+<li>Autoplay</li>
+<li>Preload</li>
+</ul>
+<p>I chose align because in previous work I found the text-align attribute to be somewhat limiting. Later I discovered that Align was deprecated, but I still used it because I had already committed and it still worked in HTML 5. Autoplay and Preload were chosen as they had functionality with the Audio element I had picked already. I would later run into some trouble with the Autoplay attribute.</p>
+<h2 id="address">Address</h2>
+<p>The address field was simple enough, I just embedded the address between the address tags in my footer. I could see this being useful for accessibility. Potentially screen readers could use this tag to better represent webpage address information to people with sight disabilities. An example of the tag is below:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">	&lt;<span style="color:#f92672">footer</span> <span style="color:#a6e22e">role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;contentinfo&#34;</span>&gt;
+         &lt;<span style="color:#f92672">br</span>&gt;
+         &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://github.com/RobertFleming448/COMP484-Project1&#34;</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Introduction&#34;</span>&gt;&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;assets/github.png&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;View On GitHub&#34;</span> <span style="color:#a6e22e">width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;19%&#34;</span> <span style="color:#a6e22e">height</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;19%&#34;</span> &gt;&lt;/<span style="color:#f92672">a</span>&gt;
+         &lt;<span style="color:#f92672">br</span>&gt;
+         &lt;<span style="color:#f92672">p</span>&gt; The Legend of Zelda &amp;trade; Nintendo 1986-2020&lt;/<span style="color:#f92672">p</span>&gt;
+         &lt;<span style="color:#f92672">p</span>&gt;Nintendo of America Mailing Address:&lt;/<span style="color:#f92672">p</span>&gt;
+         &lt;<span style="color:#f92672">address</span>&gt;4600 150th Ave NE Redmond, WA 98052 &lt;/<span style="color:#f92672">address</span>&gt;
+         &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#top&#34;</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Back to the top&#34;</span>&gt;[TOP]&lt;/<span style="color:#f92672">a</span>&gt;
+      &lt;/<span style="color:#f92672">footer</span>&gt;</code></pre></div></p>
+<h2 id="table">Table</h2>
+<p>I used the Table tag in 2 ways.</p>
+<ol>
+<li>To structure Data in a certain way</li>
+<li>To structure the page in a certain way</li>
+</ol>
+<p>My first approach structured data into a table consisting of the release date and information regarding each entry in the series. Here’s an example of the structure I used:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">	### The History of Zelda
+            &lt;<span style="color:#f92672">table</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;timeline&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;timeline&#34;</span>&gt;
+               &lt;<span style="color:#f92672">tr</span>&gt;
+                  &lt;<span style="color:#f92672">th</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;timeline&#34;</span>&gt;Title:&lt;/<span style="color:#f92672">th</span>&gt;
+                  &lt;<span style="color:#f92672">th</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;timeline&#34;</span>&gt;Description&lt;/<span style="color:#f92672">th</span>&gt;
+                  &lt;<span style="color:#f92672">th</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;timeline&#34;</span>&gt;Original Release Date:&lt;/<span style="color:#f92672">th</span>&gt;
+                  &lt;<span style="color:#f92672">th</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;timeline&#34;</span>&gt;Platforms:&lt;/<span style="color:#f92672">th</span>&gt;
+                  &lt;<span style="color:#f92672">th</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;timeline&#34;</span>&gt;Screenshot:&lt;/<span style="color:#f92672">th</span>&gt;
+               &lt;/<span style="color:#f92672">tr</span>&gt;
+               &lt;<span style="color:#f92672">tr</span>&gt;
+                  &lt;<span style="color:#f92672">td</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;timeline&#34;</span>&gt;
+                     &lt;<span style="color:#f92672">h4</span>&gt;The Legend of Zelda&lt;/<span style="color:#f92672">h4</span>&gt;
+                  &lt;/<span style="color:#f92672">td</span>&gt;
+                  &lt;<span style="color:#f92672">td</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;timeline&#34;</span>&gt;Collect the 8 fragments of the Triforce of Wisdom to defeat Ganon and rescue Princess Zelda&lt;/<span style="color:#f92672">td</span>&gt;
+                  &lt;<span style="color:#f92672">td</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;timeline&#34;</span>&gt;1986&lt;/<span style="color:#f92672">td</span>&gt;
+                  &lt;<span style="color:#f92672">td</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;timeline&#34;</span>&gt;Nintendo&amp;nbsp;Entertainment&amp;nbsp;System,&lt;<span style="color:#f92672">br</span>&gt;Gameboy Advance,&lt;<span style="color:#f92672">br</span>&gt;GameCube,&lt;<span style="color:#f92672">br</span>&gt;Wii&lt;<span style="color:#f92672">br</span>&gt;3ds,&lt;<span style="color:#f92672">br</span>&gt;Wii U,&lt;<span style="color:#f92672">br</span>&gt;Nintendo Switch&lt;/<span style="color:#f92672">td</span>&gt;
+                  &lt;<span style="color:#f92672">td</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;timeline&#34;</span>&gt;&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;assets/timeline/zelda1.png&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Zelda 1 Picture&#34;</span> <span style="color:#a6e22e">width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;400&#34;</span> <span style="color:#a6e22e">height</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;300&#34;</span>&gt;&lt;/<span style="color:#f92672">td</span>&gt;
+               &lt;/<span style="color:#f92672">tr</span>&gt;</code></pre></div></p>
+<p>With the style sheet enabled it looked like this:</p>
+<p><img class="img-zoomable" src="/assets/Blog4_4.PNG" alt="The Image" />
+</p>
+<p>My second use was to structure the page to contain a description on one side and an image on the other. Here is an example of that structure:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">	&lt;<span style="color:#f92672">table</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;center&#34;</span>&gt;
+               &lt;<span style="color:#f92672">tr</span>&gt;
+                  &lt;<span style="color:#f92672">td</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;desc&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;link&#34;</span>&gt;
+                     &lt;<span style="color:#f92672">h4</span>&gt;Link&lt;/<span style="color:#f92672">h4</span>&gt;
+                     &lt;<span style="color:#f92672">p</span>&gt;A courageous young lad clad in green. He wields the &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lore.html#courage&#34;</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Triforce of Courage&#34;</span>&gt;Triforce of Courage&lt;/<span style="color:#f92672">a</span>&gt; and the Master Sword. Using his wits and everlasting courage he endeavors to bring peace back to the land of Hyrule. While there are many heroes that go by the name Link, they all share one thing in common, the spirit of the hero.&lt;/<span style="color:#f92672">p</span>&gt;
+                  &lt;/<span style="color:#f92672">td</span>&gt;
+                  &lt;<span style="color:#f92672">td</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pic&#34;</span>&gt;&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;assets/characters/link.png&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Link Picture&#34;</span> <span style="color:#a6e22e">width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;400&#34;</span> <span style="color:#a6e22e">height</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;400&#34;</span>&gt;&lt;/<span style="color:#f92672">td</span>&gt;
+               &lt;/<span style="color:#f92672">tr</span>&gt;
+               &lt;<span style="color:#f92672">tr</span>&gt;
+                  &lt;<span style="color:#f92672">td</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;desc&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;zelda&#34;</span>&gt;
+                     &lt;<span style="color:#f92672">h4</span>&gt;Zelda&lt;/<span style="color:#f92672">h4</span>&gt;
+                     &lt;<span style="color:#f92672">p</span>&gt;The Princess of Hyrule&#39;s royal family. She possesses the &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lore.html#wisdom&#34;</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Triforce of Wisdom&#34;</span>&gt;Triforce of Wisdom&lt;/<span style="color:#f92672">a</span>&gt; which enhances her existent supernatural abilities. Legends say that the Princess is a descendant of the Goddess herself. Zelda assists Link in defeating evil in whichever era it may reside.&lt;/<span style="color:#f92672">p</span>&gt;
+                  &lt;/<span style="color:#f92672">td</span>&gt;
+                  &lt;<span style="color:#f92672">td</span>&gt;&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;assets/characters/zelda.png&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Zelda Picture&#34;</span> <span style="color:#a6e22e">width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;400&#34;</span> <span style="color:#a6e22e">height</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;400&#34;</span>&gt;&lt;/<span style="color:#f92672">td</span>&gt;
+               &lt;/<span style="color:#f92672">tr</span>&gt;</code></pre></div></p>
+<p>And the associated image output:</p>
+<p><img class="img-zoomable" src="/assets/Blog4_2.PNG" alt="The Image" />
+</p>
+<h2 id="audio">Audio</h2>
+<p>Of all the elements this was the easiest to implement. Similar to other media tags all I had to do was specify the source and the type like so:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">	&lt;<span style="color:#f92672">audio</span> <span style="color:#a6e22e">controls</span> <span style="color:#a6e22e">autoplay</span> <span style="color:#a6e22e">loop</span>&gt;
+                  &lt;<span style="color:#f92672">source</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;audio/sacred_realm.mp3&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;audio/mpeg&#34;</span> <span style="color:#a6e22e">preload</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span> &gt;
+                  Audio Not supported by your browser
+               &lt;/<span style="color:#f92672">audio</span>&gt;</code></pre></div></p>
+<p>The result is the following:</p>
+<p><img class="img-zoomable" src="/assets/Blog4_3.PNG" alt="The Image" />
+</p>
+<h2 id="the-attributes">The Attributes</h2>
+<p>Align was used on several pages in order to arrange information/media that was not text based. I used it on my audio, video, and images in order to justify them on the page where I wanted them.</p>
+<p>Autoplay was used twice due to a lack of thinking initially. I first used it on my audio tag but I had failed to realize that modern browsers block media autoplay if it’s not muted (rightfully so) To demonstrate my knowledge of the tag I instead added a muted mp4 to a separate page, which displayed as intended.</p>
+<p><img class="img-zoomable" src="/assets/Blog4_1.PNG" alt="The Image" />
+</p>
+<p>Preload was used to ensure certain media would be loaded automatically as the page loaded. My example was an mp4 file that I wanted to play as a sort of welcome banner. I wanted it to capture the attention of the user upon first visit so I made it load automatically.</p>
+<h2 id="the-style-sheet">The Style Sheet</h2>
+<p>The professor did not necessarily specify his preferred format for the CSS, be it in line, in document, or separate. As a precaution I just chose to make it separate. This helped me maintain stylistic unity on all my pages. To make the CSS I first started with the content of one of the professor’s sample pages. From there I tweaked the stylesheet until the desired look was attained. After that I structured my pages with filler words (ipsum lorem&hellip;)  to get the general idea of the page flow. I would later make small tweaks to my CSS to account for special page formatting but it maintained pretty consistent after the initial draft.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In the end I created a website that I was proud of. It doesn’t have any script functionality, but I feel I was able to construct a nice-looking page that abided by the requirements set. If you want to see my website, you can see it <a href="https://github.com/RobertFleming448/COMP484-Project1" target="_blank">here</a> on github. Overall, I had fun making this site and it was cool getting to use graphical elements as most of my projects are either very ugly or non-graphical at all.</p>
+
+    </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>Unless otherwise noted, the content of this site is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a>.</p>
+    </blockquote>
+</div>
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/RobertFleming448" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/robert-fleming-16b4051b9/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/3d-models/">3d-Models</a>
+            </span>
+            
+            <span>
+                <a href="/tags/affinity/">Affinity</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ansible/">Ansible</a>
+            </span>
+            
+            <span>
+                <a href="/tags/aws/">AWS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-480/">CIT-480</a>
+            </span>
+            
+            <span>
+                <a href="/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/tags/git/">git</a>
+            </span>
+            
+            <span>
+                <a href="/tags/github/">GitHub</a>
+            </span>
+            
+            <span>
+                <a href="/tags/graphics-engines/">Graphics-Engines</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/java/">Java</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/jekyll/">Jekyll</a>
+            </span>
+            
+            <span>
+                <a href="/tags/networking/">Networking</a>
+            </span>
+            
+            <span>
+                <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/troubleshooting/">Troubleshooting</a>
+            </span>
+            
+        </div>
+    </div>
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#address">Address</a></li>
+    <li><a href="#table">Table</a></li>
+    <li><a href="#audio">Audio</a></li>
+    <li><a href="#the-attributes">The Attributes</a></li>
+    <li><a href="#the-style-sheet">The Style Sheet</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/RobertFleming448" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/robert-fleming-16b4051b9/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/3d-models/">3d-Models</a>
+            </span>
+            
+            <span>
+                <a href="/tags/affinity/">Affinity</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ansible/">Ansible</a>
+            </span>
+            
+            <span>
+                <a href="/tags/aws/">AWS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-480/">CIT-480</a>
+            </span>
+            
+            <span>
+                <a href="/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/tags/git/">git</a>
+            </span>
+            
+            <span>
+                <a href="/tags/github/">GitHub</a>
+            </span>
+            
+            <span>
+                <a href="/tags/graphics-engines/">Graphics-Engines</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/java/">Java</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/jekyll/">Jekyll</a>
+            </span>
+            
+            <span>
+                <a href="/tags/networking/">Networking</a>
+            </span>
+            
+            <span>
+                <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/troubleshooting/">Troubleshooting</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#address">Address</a></li>
+    <li><a href="#table">Table</a></li>
+    <li><a href="#audio">Audio</a></li>
+    <li><a href="#the-attributes">The Attributes</a></li>
+    <li><a href="#the-style-sheet">The Style Sheet</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2020-2021
+                <a href="https://example.com">Robert Fleming</a>
+                 | <a href="https://github.com/RobertFleming448/CIT_Blogs">Source code</a> 
+                | Powered by <a href="https://github.com/dsrkafuu/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.0/lazysizes.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>

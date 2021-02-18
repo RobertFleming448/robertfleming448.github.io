@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/dsrkafuu/dsr-cdn@1/images/favicons/dsrca/favicon.ico" />
+
+
+
+<title>CIT 480 blog 12 - Robert Fleming&#39;s CIT Blog</title>
+
+
+<meta name="author" content="Robert Fleming" />
+
+
+<meta name="description" content="A minimal Hugo theme with nice theme color." />
+
+
+<meta name="keywords" content="CIT-480, PHP, HTML" />
+
+
+<meta property="og:title" content="CIT 480 blog 12" />
+<meta name="twitter:title" content="CIT 480 blog 12" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/post/480blog12/" /><meta property="og:description" content="Introduction This blog will be the final part in my PHP learning series. In the last part we went over the basic scripts and functions required to create a basic website login/signup feature. In this section I will go over the additional optional features I added to make the website more complete. The two features I will go over in this blog are the change password script, and the integration of 2 step authentication via Twilio webservices. Beginning Setup
+Before we dive straight into the scripts first, we need to a page to host links to these scripts. Since I do not feel these features should be included as default entries on the standard account page, I created a separate options php page." />
+<meta name="twitter:description" content="Introduction This blog will be the final part in my PHP learning series. In the last part we went over the basic scripts and functions required to create a basic website login/signup feature. In this section I will go over the additional optional features I added to make the website more complete. The two features I will go over in this blog are the change password script, and the integration of 2 step authentication via Twilio webservices. Beginning Setup
+Before we dive straight into the scripts first, we need to a page to host links to these scripts. Since I do not feel these features should be included as default entries on the standard account page, I created a separate options php page." /><meta property="og:image" content="https://example.com/img/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://example.com/img/og.png" /><meta property="article:published_time" content="2021-02-17T23:53:58-08:00" /><meta property="article:modified_time" content="2021-02-17T23:53:58-08:00" />
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+<link rel="stylesheet" href="https://example.com/assets/css/fuji.min.css" />
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://example.com">Robert Fleming&#39;s CIT Blog</a>
+            
+            <span class="title-sub">A Hugo blog for all my CIT antics</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://example.com/post/480blog12/">CIT 480 blog 12</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1182 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-480">CIT-480</a>&nbsp;<a href="/tags/php">PHP</a>&nbsp;<a href="/tags/html">HTML</a>&nbsp;</span>
+
+    </div>
+    
+    <div class="post-content markdown-body">
+        <h2 id="introduction">Introduction</h2>
+<p>This blog will be the final part in my PHP learning series. In the last part we went over the basic scripts and functions required to create a basic website login/signup feature. In this section I will go over the additional optional features I added to make the website more complete. The two features I will go over in this blog are the change password script, and the integration of 2 step authentication via Twilio webservices.
+Beginning Setup</p>
+<p>Before we dive straight into the scripts first, we need to a page to host links to these scripts. Since I do not feel these features should be included as default entries on the standard account page, I created a separate options php page. This page is very basic and like the other pages use the same universal header and footer. It only exists to hold the forms required to change user settings.
+Change Password</p>
+<p>The first feature is the change password feature. For any website it is wise to allow users to change passwords should their old choice become compromised. So, while I do consider this an optional feature it’s one of the more “required” optional features. This script functions very similarly to the login script so much of the code maintains that structure. For more information on that script, visit my <a href="https://robertfleming448.github.io/jekyll/update/2020/11/19/Blog_11.html" target="_blank">11th blog in this series</a>. This script is similar because it takes the users old password, confirms it is correct, and will change to the newly inputted password. Additionally, similarly to the signup script, a user must enter the same password twice to ensure no mistakes have been made in the entry. Like last time, there are error handlers that prevent users from typing invalid inputs for example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PHP" data-lang="PHP"><span style="color:#75715e">//error handler receivers
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">isset</span>($_GET[<span style="color:#e6db74">&#34;error&#34;</span>])){ <span style="color:#75715e">//Error handlers that call functions to check errors, will print corresponding problem under form
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span>($_GET[<span style="color:#e6db74">&#34;error&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;emptyinput&#34;</span>){
+			<span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;&lt;p&gt;Please fill all fields&lt;/p&gt;&#34;</span>;
+		}
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>($_GET[<span style="color:#e6db74">&#34;error&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;pwdMatch&#34;</span>){
+			<span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;&lt;p&gt;Passwords don&#39;t match&lt;/p&gt;&#34;</span>;
+		}
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>($_GET[<span style="color:#e6db74">&#34;error&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;wrongPwd&#34;</span>){
+			<span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;&lt;p&gt;Incorrect Password&lt;/p&gt;&#34;</span>;
+		}
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>($_GET[<span style="color:#e6db74">&#34;error&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;stmtFailed&#34;</span>){
+			<span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;&lt;p&gt;Sorry Something went wrong. Please try again later.&lt;/p&gt;&#34;</span>;
+		}
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>($_GET[<span style="color:#e6db74">&#34;error&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;success&#34;</span>){
+			<span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;&lt;p&gt;Password changed Succesfully&lt;/p&gt;&#34;</span>;
+		}
+	}
+
+
+<span style="color:#75715e">//error handler functions example:
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">emptyInputChange</span>($oldPwd, $pwd, $pwdRepeat)  <span style="color:#75715e">//checks if change password fields are empty, if empty return true
+</span><span style="color:#75715e"></span>	{
+	  $result;
+	  <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">empty</span>($oldPwd) <span style="color:#f92672">||</span> <span style="color:#66d9ef">empty</span>($pwd) <span style="color:#f92672">||</span> <span style="color:#66d9ef">empty</span>($pwdRepeat)){
+		$result<span style="color:#f92672">=</span><span style="color:#66d9ef">true</span>;
+	  }
+	  <span style="color:#66d9ef">else</span> {
+		$result<span style="color:#f92672">=</span><span style="color:#66d9ef">false</span>;
+	  }
+	  <span style="color:#66d9ef">return</span> $result;
+	}
+</code></pre></div>
+<p>If the password matches what we have recorded in our database, and no error handlers return true, we can change the user’s password and notify them of the change. The sql statement script is located here:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PHP" data-lang="PHP">	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">changePassword</span>($conn, $userUid, $pwd) <span style="color:#75715e">//changes user password by altering entry in DB
+</span><span style="color:#75715e"></span>{
+
+  $sql <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;UPDATE users SET usersPwd=? WHERE usersUid=? OR usersEmail=?;&#34;</span>;
+
+  $stmt <span style="color:#f92672">=</span> <span style="color:#a6e22e">mysqli_stmt_init</span>($conn); <span style="color:#75715e">//prepared statement to prevent sql injection attacks
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">mysqli_stmt_prepare</span>($stmt, $sql)) {
+    <span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;location: ../accountSettings.php?error=stmtFailed&#34;</span>);
+    <span style="color:#66d9ef">exit</span>();
+  }
+  $hashedPwd <span style="color:#f92672">=</span> <span style="color:#a6e22e">password_hash</span>($pwd, <span style="color:#a6e22e">PASSWORD_DEFAULT</span>);
+
+  <span style="color:#a6e22e">mysqli_stmt_bind_param</span>($stmt, <span style="color:#e6db74">&#34;sss&#34;</span>, $hashedPwd, $userUid, $userUid);
+  <span style="color:#a6e22e">mysqli_stmt_execute</span>($stmt);
+  <span style="color:#a6e22e">mysqli_stmt_close</span>($stmt);
+
+  <span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;location: ../accountSettings.php?error=success&#34;</span>);
+}
+</code></pre></div>
+<p>Like last time we ensure to hash the password so even in the event of data breach user password information will not be divulged.</p>
+<p>While this step, seems simple, it actually gave me the most difficulty of any of the scripts. I attribute this to the fact that this was my first script written without aid from an online source or tutorial. These scripts helped me make errors throughout the process and learn the language better.</p>
+<h2 id="two-factor">Two Factor</h2>
+<p>While I mentioned that the prior feature gave me more trouble, it is not to undermine the effort that went into getting 2-factor authentication to work. This process was much longer and for the sake of brevity, I will only mention the key aspects that were not repeated.</p>
+<p>First off, was to figure out how I was going to send a SMS message for 2 factor purposes. If you recall in my first blog in this series, I went over a bot program I made to aid in registration. In that program I used the java SDK for Twilio SMS web services. So, for this section since I am using PHP I chose to dabble in the PHP SDK Twilio provides. If you want more detail on the Twilio service on not just the application for this project see my <a href="https://robertfleming448.github.io/jekyll/update/2020/09/02/Blog_1.html" target="_blank">first blog</a>.</p>
+<p>The scripts required for this are the following:</p>
+<ul>
+<li>enable 2-factor</li>
+<li>disable 2-factor</li>
+<li>check 2-factor on enable</li>
+<li>check 2-factor on login</li>
+</ul>
+<p>I chose to differentiate the last 2 so that a user could input a different phone number on enabling in case they were to make a mistake typing their phone number. This could have been done with a few conditional statements to make only one page/script, but it seemed far too complicated and I would be able to save time just reusing code snippets.</p>
+<p>This is the code for enabling 2-factor:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PHP" data-lang="PHP">	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">disable2Factor</span>($conn, $username) <span style="color:#75715e">//disables 2-factor by setting user phone number to null in DB entry
+</span><span style="color:#75715e"></span>	{
+	  $sql <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;UPDATE users SET usersPhone=NULL WHERE usersUid=? OR usersEmail=?;&#34;</span>;
+
+	  $stmt <span style="color:#f92672">=</span> <span style="color:#a6e22e">mysqli_stmt_init</span>($conn); <span style="color:#75715e">//prepared statement to prevent sql injection attacks
+</span><span style="color:#75715e"></span>
+	  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">mysqli_stmt_prepare</span>($stmt, $sql)) {
+		<span style="color:#75715e">//echo(&#34;Error description: &#34; . $conn -&gt; error);
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;location: ../accountSettings.php?error=stmtFailed&#34;</span>);
+		<span style="color:#66d9ef">exit</span>();
+	  }
+	  <span style="color:#a6e22e">mysqli_stmt_bind_param</span>($stmt, <span style="color:#e6db74">&#34;ss&#34;</span>, $username, $username);
+	  <span style="color:#a6e22e">mysqli_stmt_execute</span>($stmt);
+	  <span style="color:#a6e22e">mysqli_stmt_close</span>($stmt);
+
+	  $_SESSION[<span style="color:#e6db74">&#34;TwoFactor&#34;</span>] <span style="color:#f92672">=</span>  <span style="color:#66d9ef">false</span>;
+	  <span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;location: ../accountSettings.php?error=twoFactorDisabled&#34;</span>);
+	}
+</code></pre></div>
+<p>&hellip;and this is the code for disabling 2-factor</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PHP" data-lang="PHP">	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">disable2Factor</span>($conn, $username) <span style="color:#75715e">//disables 2-factor by setting user phone number to null in DB entry
+</span><span style="color:#75715e"></span>	{
+	  $sql <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;UPDATE users SET usersPhone=NULL WHERE usersUid=? OR usersEmail=?;&#34;</span>;
+
+	  $stmt <span style="color:#f92672">=</span> <span style="color:#a6e22e">mysqli_stmt_init</span>($conn); <span style="color:#75715e">//prepared statement to prevent sql injection attacks
+</span><span style="color:#75715e"></span>
+	  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">mysqli_stmt_prepare</span>($stmt, $sql)) {
+		<span style="color:#75715e">//echo(&#34;Error description: &#34; . $conn -&gt; error);
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;location: ../accountSettings.php?error=stmtFailed&#34;</span>);
+		<span style="color:#66d9ef">exit</span>();
+	  }
+	  <span style="color:#a6e22e">mysqli_stmt_bind_param</span>($stmt, <span style="color:#e6db74">&#34;ss&#34;</span>, $username, $username);
+	  <span style="color:#a6e22e">mysqli_stmt_execute</span>($stmt);
+	  <span style="color:#a6e22e">mysqli_stmt_close</span>($stmt);
+
+	  $_SESSION[<span style="color:#e6db74">&#34;TwoFactor&#34;</span>] <span style="color:#f92672">=</span>  <span style="color:#66d9ef">false</span>;
+	  <span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;location: ../accountSettings.php?error=twoFactorDisabled&#34;</span>);
+	}
+</code></pre></div>
+<p>These functions work by inserting the phone number into the user’s database entry to set 2-factor and setting the value to <code>null</code> to deactivate. During login we can check if this value is set or not to determine whether the user should receive the 2-factor prompt.</p>
+<p>Lastly we need to generate the code for the user to enter into the prompt:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PHP" data-lang="PHP">	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">codeGen</span>()  <span style="color:#75715e">//generates secure code from 000000 to 999999
+</span><span style="color:#75715e"></span>	{
+	  $min<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+	  $max<span style="color:#f92672">=</span><span style="color:#ae81ff">999999</span>;
+	  $number<span style="color:#f92672">=</span>  <span style="color:#a6e22e">random_int</span>($min , $max );
+	  $number<span style="color:#f92672">=</span><span style="color:#a6e22e">str_pad</span>($number, <span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#a6e22e">STR_PAD_LEFT</span>);
+	  <span style="color:#66d9ef">return</span> $number;
+	}
+</code></pre></div>
+<p>This simple function produces a secure random integer from 0-999999 padding the front with zeros in order to reach six full digits. This code is then sent to the user via the Twilio sendSMS function, where the user can input the number to log themselves in.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>I hope this summary of my additional PHP scripts/features has been informative and/or entertaining. I was very pleased to get 2-factor working in particular because to me it is an impressive display for a student of web development to include. I hope the professor feels this way as well. Since this is my last blog as of now, I cannot confirm the contents of my future endeavors. However, if I were to take a guess it would involve my usage of D3.js framework and my use of JavaScript in the project. Thank you for taking the time to read these blogs, they have been useful as a method of gathering my thoughts while also making sure my code is halfway presentable.</p>
+
+    </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>Unless otherwise noted, the content of this site is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a>.</p>
+    </blockquote>
+</div>
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/RobertFleming448" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/robert-fleming-16b4051b9/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/3d-models/">3d-Models</a>
+            </span>
+            
+            <span>
+                <a href="/tags/affinity/">Affinity</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ansible/">Ansible</a>
+            </span>
+            
+            <span>
+                <a href="/tags/aws/">AWS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-480/">CIT-480</a>
+            </span>
+            
+            <span>
+                <a href="/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/tags/git/">git</a>
+            </span>
+            
+            <span>
+                <a href="/tags/github/">GitHub</a>
+            </span>
+            
+            <span>
+                <a href="/tags/graphics-engines/">Graphics-Engines</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/java/">Java</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/jekyll/">Jekyll</a>
+            </span>
+            
+            <span>
+                <a href="/tags/networking/">Networking</a>
+            </span>
+            
+            <span>
+                <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/troubleshooting/">Troubleshooting</a>
+            </span>
+            
+        </div>
+    </div>
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#two-factor">Two Factor</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/RobertFleming448" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/robert-fleming-16b4051b9/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/3d-models/">3d-Models</a>
+            </span>
+            
+            <span>
+                <a href="/tags/affinity/">Affinity</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ansible/">Ansible</a>
+            </span>
+            
+            <span>
+                <a href="/tags/aws/">AWS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-480/">CIT-480</a>
+            </span>
+            
+            <span>
+                <a href="/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/tags/git/">git</a>
+            </span>
+            
+            <span>
+                <a href="/tags/github/">GitHub</a>
+            </span>
+            
+            <span>
+                <a href="/tags/graphics-engines/">Graphics-Engines</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/java/">Java</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/jekyll/">Jekyll</a>
+            </span>
+            
+            <span>
+                <a href="/tags/networking/">Networking</a>
+            </span>
+            
+            <span>
+                <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/troubleshooting/">Troubleshooting</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#two-factor">Two Factor</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2020-2021
+                <a href="https://example.com">Robert Fleming</a>
+                 | <a href="https://github.com/RobertFleming448/CIT_Blogs">Source code</a> 
+                | Powered by <a href="https://github.com/dsrkafuu/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.0/lazysizes.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>

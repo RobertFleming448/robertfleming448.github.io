@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GitHub on Robert Fleming&#39;s CIT Blog</title>
+    <link>https://example.com/tags/github/</link>
+    <description>Recent content in GitHub on Robert Fleming&#39;s CIT Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 17 Feb 2021 23:53:32 -0800</lastBuildDate><atom:link href="https://example.com/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CIT 480 blog 4</title>
+      <link>https://example.com/post/480blog4/</link>
+      <pubDate>Wed, 17 Feb 2021 23:53:32 -0800</pubDate>
+      
+      <guid>https://example.com/post/480blog4/</guid>
+      <description>Introduction Since I have already completed the assignments thus far for CIT 480, I find myself at a lack of content to construct this blog about. As a result, I feel it’s appropriate to move into a more COMP 484 related direction. In this blog I will go over my first HTML/CSS Project for COMP 484 and the requirements/how I accomplished them.
+Requirements The project was simple, we had to construct an HTML website with 4 pages and a stylesheet. Since we were allowed to pick any topic we wanted. I chose the video game franchise, The Legend of Zelda as I was certain I could fill 4 pages with content.</description>
+    </item>
+    
+  </channel>
+</rss>

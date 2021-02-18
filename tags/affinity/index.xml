@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Affinity on Robert Fleming&#39;s CIT Blog</title>
+    <link>https://example.com/tags/affinity/</link>
+    <description>Recent content in Affinity on Robert Fleming&#39;s CIT Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 17 Feb 2021 23:53:42 -0800</lastBuildDate><atom:link href="https://example.com/tags/affinity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CIT 480 blog 7</title>
+      <link>https://example.com/post/480blog7/</link>
+      <pubDate>Wed, 17 Feb 2021 23:53:42 -0800</pubDate>
+      
+      <guid>https://example.com/post/480blog7/</guid>
+      <description>Introduction This Blog will detail the trials and tribulations I faced while completing Lab 3. Lab 3 tasked us with yet again recompleting the steps of the prior lab autonomously. This lab required us to once again recreate the lamp stack using an Ansible playbook.
+Ansible Installing Ansible was very easy. I already had Python on my machine so I was able to easily install Ansible using the apt-get install ansible command. From that point I made a simple playbook that would run on my local host (127.0. 0.1) so that I could see if everything was functioning. I had it install PHP through apt.</description>
+    </item>
+    
+  </channel>
+</rss>
