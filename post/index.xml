@@ -2,136 +2,136 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Robert Fleming&#39;s CIT Blog</title>
-    <link>https://example.com/post/</link>
+    <link>https://robertfleming448.github.io/post/</link>
     <description>Recent content in Posts on Robert Fleming&#39;s CIT Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 17 Feb 2021 23:53:58 -0800</lastBuildDate><atom:link href="https://example.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Feb 2021 23:53:58 -0800</lastBuildDate><atom:link href="https://robertfleming448.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CIT 480 blog 12</title>
-      <link>https://example.com/post/480blog12/</link>
+      <link>https://robertfleming448.github.io/post/480blog12/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:58 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog12/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog12/</guid>
       <description>Introduction This blog will be the final part in my PHP learning series. In the last part we went over the basic scripts and functions required to create a basic website login/signup feature. In this section I will go over the additional optional features I added to make the website more complete. The two features I will go over in this blog are the change password script, and the integration of 2 step authentication via Twilio webservices. Beginning Setup
 Before we dive straight into the scripts first, we need to a page to host links to these scripts. Since I do not feel these features should be included as default entries on the standard account page, I created a separate options php page.</description>
     </item>
     
     <item>
       <title>CIT 480 blog 11</title>
-      <link>https://example.com/post/480blog11/</link>
+      <link>https://robertfleming448.github.io/post/480blog11/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:56 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog11/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog11/</guid>
       <description>Introduction This blog will feature part 2 of my PHP login system explanation. For some more background make sure to check out my 10th blog in this series. This blog will be rather lengthy so I will try my best not repeat my past blog’s contents. Without further ado, this is how I made a login system for my Comp 484 final group project.
 Required Scripts This system required many scripts written in PHP. PHP is a server-side scripting language. In the past I have done server-side scripting via CGI scripting but never have I used PHP. So, if some of my explanations aren’t 100% accurate I apologize ahead of time.</description>
     </item>
     
     <item>
       <title>CIT 480 blog 10</title>
-      <link>https://example.com/post/480blog10/</link>
+      <link>https://robertfleming448.github.io/post/480blog10/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:52 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog10/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog10/</guid>
       <description>Introduction For the next few blogs, I will be writing a series showing off bits of code I have written for my Computer Science 484 final group project. This blog will be used to provide a little background and explain a program that I wrote to help us in the future.
 The Project The project is an interactive web application that uses templates to auto-generate hundreds of unique algebra problems focusing on middle-school and high-school students. The application will track user progress by recording how many correct and incorrect answers a user gets on specific subjects. To implement this several systems needed to be made.</description>
     </item>
     
     <item>
       <title>CIT 480 blog 9</title>
-      <link>https://example.com/post/480blog9/</link>
+      <link>https://robertfleming448.github.io/post/480blog9/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:48 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog9/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog9/</guid>
       <description>Introduction This blog will detail the process I used to complete the fourth lab for CIT 480, in which I configured an AWS EC2 instance to allow communication with an AWS simple storage system bucket. For the most part I thought this lab was pretty straight forward but I did have a minor hiccup which I will detail in a later section.
 Background I currently have access to 2 AWS accounts. One is my educate account which still has most of the initial 100 dollar funds. The other is my regular AWS account, which although it does not have any education credits is still within its, first year granting me free tier access to resources.</description>
     </item>
     
     <item>
       <title>CIT 480 blog 8</title>
-      <link>https://example.com/post/480blog8/</link>
+      <link>https://robertfleming448.github.io/post/480blog8/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:45 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog8/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog8/</guid>
       <description>Introduction In this blog I will talk about all the methods I’ve used to configure my network in order to play multiplayer games with friends. I thought this would be a good addition to a blog I posted two weeks ago as it has similar concepts, where I discussed troubleshooting connection problems with my friends trying to play a multiplayer game. For this blog I will be focusing on the four methods I’ve used to play the popular sandbox game: Minecraft with my friends in the past.
 Option 1: The Easiest Yet Least Convenient By far the easiest way to play most PC games with friends is to actually do no network configuration.</description>
     </item>
     
     <item>
       <title>CIT 480 blog 7</title>
-      <link>https://example.com/post/480blog7/</link>
+      <link>https://robertfleming448.github.io/post/480blog7/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:42 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog7/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog7/</guid>
       <description>Introduction This Blog will detail the trials and tribulations I faced while completing Lab 3. Lab 3 tasked us with yet again recompleting the steps of the prior lab autonomously. This lab required us to once again recreate the lamp stack using an Ansible playbook.
 Ansible Installing Ansible was very easy. I already had Python on my machine so I was able to easily install Ansible using the apt-get install ansible command. From that point I made a simple playbook that would run on my local host (127.0. 0.1) so that I could see if everything was functioning. I had it install PHP through apt.</description>
     </item>
     
     <item>
       <title>CIT 480 blog 6</title>
-      <link>https://example.com/post/480blog6/</link>
+      <link>https://robertfleming448.github.io/post/480blog6/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:38 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog6/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog6/</guid>
       <description>Introduction For this blog I actually have something more technical to write about. Since I am a CIT student and this is a fact my good friends are aware of, it is not unlikely for me to be summoned for computer help. In a saga of advice, I have given to my self-admitting technology illiterate friend I aided him in a peer to peer networking issue. I am always happy to help my friends and to stretch my “IT muscles.”
 A Little Background I have previously given this friend a lot of advice in the past. Some of this included the ways of running Windows applications on his MacBook.</description>
     </item>
     
     <item>
       <title>CIT 480 blog 5</title>
-      <link>https://example.com/post/480blog5/</link>
+      <link>https://robertfleming448.github.io/post/480blog5/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:35 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog5/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog5/</guid>
       <description>Introduction Although I thought I had little to discuss last blog regarding CIT, this week has been even less productive. While I have made progress in my computer science class, it was involving yet another HTML/CSS project. I have chosen to not talk about the same topic two postings in a row. Perhaps I will revisit the content of that class when we move on to browser scripts. This week beyond that I have been attending to my other non-major classes, so I have little to talk about that is both scholastic and technical. As a result, I will go over a personal project I recently did that does fit the technical aspect but not the scholastic one.</description>
     </item>
     
     <item>
       <title>CIT 480 blog 4</title>
-      <link>https://example.com/post/480blog4/</link>
+      <link>https://robertfleming448.github.io/post/480blog4/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:32 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog4/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog4/</guid>
       <description>Introduction Since I have already completed the assignments thus far for CIT 480, I find myself at a lack of content to construct this blog about. As a result, I feel it’s appropriate to move into a more COMP 484 related direction. In this blog I will go over my first HTML/CSS Project for COMP 484 and the requirements/how I accomplished them.
 Requirements The project was simple, we had to construct an HTML website with 4 pages and a stylesheet. Since we were allowed to pick any topic we wanted. I chose the video game franchise, The Legend of Zelda as I was certain I could fill 4 pages with content.</description>
     </item>
     
     <item>
       <title>CIT 480 blog 3</title>
-      <link>https://example.com/post/480blog3/</link>
+      <link>https://robertfleming448.github.io/post/480blog3/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:28 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog3/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog3/</guid>
       <description>Introduction This blog will detail my struggles and procedures used while attempting the second lab for CIT 480. Much of this lab was very similar to the procedures of Lab 1, since the goal was to make a docker file to replicate the Lab 1 environment on demand. Given that this lab would contain similar content to my previous write-up, I will instead go into detail the hiccups I encountered while trying to complete the lab and how I eventually overcame them.
 Problem Number 1. Since this lab was heavily based on Lab 1, I was refollowing Lab 1’s instructions to a T.</description>
     </item>
     
     <item>
       <title>CIT 480 Blog 2</title>
-      <link>https://example.com/post/480blog2/</link>
+      <link>https://robertfleming448.github.io/post/480blog2/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:25 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog2/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog2/</guid>
       <description>Introduction This blog will document the processes and tribulations I faced while completing Lab 1 Lamp Stack. I did not anticipate much trouble with this lab since I have done a very similar process hosting an apache webserver on an ubuntu container in a previous class. However, the task was slightly different and as a result had specific requirements.
 Docker Docker was a tool I have used in the past scholastically. While my previous docker installation/environment was no longer available I did not anticipate much trouble setting it up again. I ran into a slight hiccup but that was to be expected.</description>
     </item>
     
     <item>
       <title>CIT 480 blog 1</title>
-      <link>https://example.com/post/480blog1/</link>
+      <link>https://robertfleming448.github.io/post/480blog1/</link>
       <pubDate>Wed, 17 Feb 2021 23:43:13 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog1/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog1/</guid>
       <description>Introduction Given as this is my first officially numbered blog, I will now make the contents of this blog pertaining to my endeavors of class material. As a result, for this blog I will be primarily focusing on my experience setting up Git on my machine as well as Jekyll with its supporting modules.
 Git The first step was configuring Git on my home computer. I have used Git before for work-related source code management, but I have never used it on my personal computer. So, while I was familiar with the standard git bash commands git add, git commit, git push etc.</description>
     </item>
     
     <item>
       <title>CIT 480 Blog 0</title>
-      <link>https://example.com/post/480blog0/</link>
+      <link>https://robertfleming448.github.io/post/480blog0/</link>
       <pubDate>Wed, 17 Feb 2021 23:26:37 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog0/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog0/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Since this is my first blog post for CIT 480 and I have little to discuss in terms of class content, I think it would be fitting to describe the process I used to enroll in COMP 484 and this class. When I went to enroll in this course&amp;rsquo;s corequisite, COMP 484, it was closed. I&amp;rsquo;ve been through this before and the only solution I&amp;rsquo;ve found is to refresh the page every couple of minutes to wait for availability. This would be no problem since this occurred in midst of Covid stay at home orders. However, I would be unavailable to refresh this during meals, bathing, etc. To solve this, I came up with a system to automize the refresh system.&lt;/p&gt;
 &lt;p&gt;I decided to write this program in Java, as it was the programming language I was most familiar with. First off, I devised a logical breakdown for the program. The required modules were:&lt;/p&gt;

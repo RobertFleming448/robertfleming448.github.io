@@ -2,47 +2,47 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PHP on Robert Fleming&#39;s CIT Blog</title>
-    <link>https://example.com/tags/php/</link>
+    <link>https://robertfleming448.github.io/tags/php/</link>
     <description>Recent content in PHP on Robert Fleming&#39;s CIT Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 17 Feb 2021 23:53:58 -0800</lastBuildDate><atom:link href="https://example.com/tags/php/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Feb 2021 23:53:58 -0800</lastBuildDate><atom:link href="https://robertfleming448.github.io/tags/php/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CIT 480 blog 12</title>
-      <link>https://example.com/post/480blog12/</link>
+      <link>https://robertfleming448.github.io/post/480blog12/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:58 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog12/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog12/</guid>
       <description>Introduction This blog will be the final part in my PHP learning series. In the last part we went over the basic scripts and functions required to create a basic website login/signup feature. In this section I will go over the additional optional features I added to make the website more complete. The two features I will go over in this blog are the change password script, and the integration of 2 step authentication via Twilio webservices. Beginning Setup
 Before we dive straight into the scripts first, we need to a page to host links to these scripts. Since I do not feel these features should be included as default entries on the standard account page, I created a separate options php page.</description>
     </item>
     
     <item>
       <title>CIT 480 blog 11</title>
-      <link>https://example.com/post/480blog11/</link>
+      <link>https://robertfleming448.github.io/post/480blog11/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:56 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog11/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog11/</guid>
       <description>Introduction This blog will feature part 2 of my PHP login system explanation. For some more background make sure to check out my 10th blog in this series. This blog will be rather lengthy so I will try my best not repeat my past blog’s contents. Without further ado, this is how I made a login system for my Comp 484 final group project.
 Required Scripts This system required many scripts written in PHP. PHP is a server-side scripting language. In the past I have done server-side scripting via CGI scripting but never have I used PHP. So, if some of my explanations aren’t 100% accurate I apologize ahead of time.</description>
     </item>
     
     <item>
       <title>CIT 480 blog 7</title>
-      <link>https://example.com/post/480blog7/</link>
+      <link>https://robertfleming448.github.io/post/480blog7/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:42 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog7/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog7/</guid>
       <description>Introduction This Blog will detail the trials and tribulations I faced while completing Lab 3. Lab 3 tasked us with yet again recompleting the steps of the prior lab autonomously. This lab required us to once again recreate the lamp stack using an Ansible playbook.
 Ansible Installing Ansible was very easy. I already had Python on my machine so I was able to easily install Ansible using the apt-get install ansible command. From that point I made a simple playbook that would run on my local host (127.0. 0.1) so that I could see if everything was functioning. I had it install PHP through apt.</description>
     </item>
     
     <item>
       <title>CIT 480 Blog 2</title>
-      <link>https://example.com/post/480blog2/</link>
+      <link>https://robertfleming448.github.io/post/480blog2/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:25 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog2/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog2/</guid>
       <description>Introduction This blog will document the processes and tribulations I faced while completing Lab 1 Lamp Stack. I did not anticipate much trouble with this lab since I have done a very similar process hosting an apache webserver on an ubuntu container in a previous class. However, the task was slightly different and as a result had specific requirements.
 Docker Docker was a tool I have used in the past scholastically. While my previous docker installation/environment was no longer available I did not anticipate much trouble setting it up again. I ran into a slight hiccup but that was to be expected.</description>
     </item>

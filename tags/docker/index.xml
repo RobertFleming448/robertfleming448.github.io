@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docker on Robert Fleming&#39;s CIT Blog</title>
-    <link>https://example.com/tags/docker/</link>
+    <link>https://robertfleming448.github.io/tags/docker/</link>
     <description>Recent content in Docker on Robert Fleming&#39;s CIT Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 17 Feb 2021 23:53:28 -0800</lastBuildDate><atom:link href="https://example.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Feb 2021 23:53:28 -0800</lastBuildDate><atom:link href="https://robertfleming448.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CIT 480 blog 3</title>
-      <link>https://example.com/post/480blog3/</link>
+      <link>https://robertfleming448.github.io/post/480blog3/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:28 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog3/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog3/</guid>
       <description>Introduction This blog will detail my struggles and procedures used while attempting the second lab for CIT 480. Much of this lab was very similar to the procedures of Lab 1, since the goal was to make a docker file to replicate the Lab 1 environment on demand. Given that this lab would contain similar content to my previous write-up, I will instead go into detail the hiccups I encountered while trying to complete the lab and how I eventually overcame them.
 Problem Number 1. Since this lab was heavily based on Lab 1, I was refollowing Lab 1’s instructions to a T.</description>
     </item>
     
     <item>
       <title>CIT 480 Blog 2</title>
-      <link>https://example.com/post/480blog2/</link>
+      <link>https://robertfleming448.github.io/post/480blog2/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:25 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog2/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog2/</guid>
       <description>Introduction This blog will document the processes and tribulations I faced while completing Lab 1 Lamp Stack. I did not anticipate much trouble with this lab since I have done a very similar process hosting an apache webserver on an ubuntu container in a previous class. However, the task was slightly different and as a result had specific requirements.
 Docker Docker was a tool I have used in the past scholastically. While my previous docker installation/environment was no longer available I did not anticipate much trouble setting it up again. I ran into a slight hiccup but that was to be expected.</description>
     </item>

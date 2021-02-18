@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Troubleshooting on Robert Fleming&#39;s CIT Blog</title>
-    <link>https://example.com/tags/troubleshooting/</link>
+    <link>https://robertfleming448.github.io/tags/troubleshooting/</link>
     <description>Recent content in Troubleshooting on Robert Fleming&#39;s CIT Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 17 Feb 2021 23:53:38 -0800</lastBuildDate><atom:link href="https://example.com/tags/troubleshooting/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Feb 2021 23:53:38 -0800</lastBuildDate><atom:link href="https://robertfleming448.github.io/tags/troubleshooting/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CIT 480 blog 6</title>
-      <link>https://example.com/post/480blog6/</link>
+      <link>https://robertfleming448.github.io/post/480blog6/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:38 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog6/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog6/</guid>
       <description>Introduction For this blog I actually have something more technical to write about. Since I am a CIT student and this is a fact my good friends are aware of, it is not unlikely for me to be summoned for computer help. In a saga of advice, I have given to my self-admitting technology illiterate friend I aided him in a peer to peer networking issue. I am always happy to help my friends and to stretch my “IT muscles.”
 A Little Background I have previously given this friend a lot of advice in the past. Some of this included the ways of running Windows applications on his MacBook.</description>
     </item>

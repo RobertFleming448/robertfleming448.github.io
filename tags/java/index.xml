@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Java on Robert Fleming&#39;s CIT Blog</title>
-    <link>https://example.com/tags/java/</link>
+    <link>https://robertfleming448.github.io/tags/java/</link>
     <description>Recent content in Java on Robert Fleming&#39;s CIT Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 17 Feb 2021 23:53:52 -0800</lastBuildDate><atom:link href="https://example.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Feb 2021 23:53:52 -0800</lastBuildDate><atom:link href="https://robertfleming448.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CIT 480 blog 10</title>
-      <link>https://example.com/post/480blog10/</link>
+      <link>https://robertfleming448.github.io/post/480blog10/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:52 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog10/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog10/</guid>
       <description>Introduction For the next few blogs, I will be writing a series showing off bits of code I have written for my Computer Science 484 final group project. This blog will be used to provide a little background and explain a program that I wrote to help us in the future.
 The Project The project is an interactive web application that uses templates to auto-generate hundreds of unique algebra problems focusing on middle-school and high-school students. The application will track user progress by recording how many correct and incorrect answers a user gets on specific subjects. To implement this several systems needed to be made.</description>
     </item>
     
     <item>
       <title>CIT 480 Blog 0</title>
-      <link>https://example.com/post/480blog0/</link>
+      <link>https://robertfleming448.github.io/post/480blog0/</link>
       <pubDate>Wed, 17 Feb 2021 23:26:37 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog0/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog0/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Since this is my first blog post for CIT 480 and I have little to discuss in terms of class content, I think it would be fitting to describe the process I used to enroll in COMP 484 and this class. When I went to enroll in this course&amp;rsquo;s corequisite, COMP 484, it was closed. I&amp;rsquo;ve been through this before and the only solution I&amp;rsquo;ve found is to refresh the page every couple of minutes to wait for availability. This would be no problem since this occurred in midst of Covid stay at home orders. However, I would be unavailable to refresh this during meals, bathing, etc. To solve this, I came up with a system to automize the refresh system.&lt;/p&gt;
 &lt;p&gt;I decided to write this program in Java, as it was the programming language I was most familiar with. First off, I devised a logical breakdown for the program. The required modules were:&lt;/p&gt;

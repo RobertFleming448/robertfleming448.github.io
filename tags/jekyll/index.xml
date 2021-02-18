@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jekyll on Robert Fleming&#39;s CIT Blog</title>
-    <link>https://example.com/tags/jekyll/</link>
+    <link>https://robertfleming448.github.io/tags/jekyll/</link>
     <description>Recent content in Jekyll on Robert Fleming&#39;s CIT Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 17 Feb 2021 23:43:13 -0800</lastBuildDate><atom:link href="https://example.com/tags/jekyll/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Feb 2021 23:43:13 -0800</lastBuildDate><atom:link href="https://robertfleming448.github.io/tags/jekyll/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CIT 480 blog 1</title>
-      <link>https://example.com/post/480blog1/</link>
+      <link>https://robertfleming448.github.io/post/480blog1/</link>
       <pubDate>Wed, 17 Feb 2021 23:43:13 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog1/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog1/</guid>
       <description>Introduction Given as this is my first officially numbered blog, I will now make the contents of this blog pertaining to my endeavors of class material. As a result, for this blog I will be primarily focusing on my experience setting up Git on my machine as well as Jekyll with its supporting modules.
 Git The first step was configuring Git on my home computer. I have used Git before for work-related source code management, but I have never used it on my personal computer. So, while I was familiar with the standard git bash commands git add, git commit, git push etc.</description>
     </item>

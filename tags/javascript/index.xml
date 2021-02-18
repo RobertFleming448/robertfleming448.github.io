@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>JavaScript on Robert Fleming&#39;s CIT Blog</title>
-    <link>https://example.com/tags/javascript/</link>
+    <link>https://robertfleming448.github.io/tags/javascript/</link>
     <description>Recent content in JavaScript on Robert Fleming&#39;s CIT Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 17 Feb 2021 23:53:52 -0800</lastBuildDate><atom:link href="https://example.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Feb 2021 23:53:52 -0800</lastBuildDate><atom:link href="https://robertfleming448.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CIT 480 blog 10</title>
-      <link>https://example.com/post/480blog10/</link>
+      <link>https://robertfleming448.github.io/post/480blog10/</link>
       <pubDate>Wed, 17 Feb 2021 23:53:52 -0800</pubDate>
       
-      <guid>https://example.com/post/480blog10/</guid>
+      <guid>https://robertfleming448.github.io/post/480blog10/</guid>
       <description>Introduction For the next few blogs, I will be writing a series showing off bits of code I have written for my Computer Science 484 final group project. This blog will be used to provide a little background and explain a program that I wrote to help us in the future.
 The Project The project is an interactive web application that uses templates to auto-generate hundreds of unique algebra problems focusing on middle-school and high-school students. The application will track user progress by recording how many correct and incorrect answers a user gets on specific subjects. To implement this several systems needed to be made.</description>
     </item>
