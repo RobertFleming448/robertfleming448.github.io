@@ -107,7 +107,7 @@ Before we dive straight into the scripts first, we need to a page to host links 
 Beginning Setup</p>
 <p>Before we dive straight into the scripts first, we need to a page to host links to these scripts. Since I do not feel these features should be included as default entries on the standard account page, I created a separate options php page. This page is very basic and like the other pages use the same universal header and footer. It only exists to hold the forms required to change user settings.
 Change Password</p>
-<p>The first feature is the change password feature. For any website it is wise to allow users to change passwords should their old choice become compromised. So, while I do consider this an optional feature it’s one of the more “required” optional features. This script functions very similarly to the login script so much of the code maintains that structure. For more information on that script, visit my <a href="https://robertfleming448.github.io/jekyll/update/2020/11/19/Blog_11.html" target="_blank">11th blog in this series</a>. This script is similar because it takes the users old password, confirms it is correct, and will change to the newly inputted password. Additionally, similarly to the signup script, a user must enter the same password twice to ensure no mistakes have been made in the entry. Like last time, there are error handlers that prevent users from typing invalid inputs for example:</p>
+<p>The first feature is the change password feature. For any website it is wise to allow users to change passwords should their old choice become compromised. So, while I do consider this an optional feature it’s one of the more “required” optional features. This script functions very similarly to the login script so much of the code maintains that structure. For more information on that script, visit my <a href="https://robertfleming448.github.io/post/480blog11/" target="_blank">11th blog in this series</a>. This script is similar because it takes the users old password, confirms it is correct, and will change to the newly inputted password. Additionally, similarly to the signup script, a user must enter the same password twice to ensure no mistakes have been made in the entry. Like last time, there are error handlers that prevent users from typing invalid inputs for example:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PHP" data-lang="PHP"><span style="color:#75715e">//error handler receivers
 </span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">isset</span>($_GET[<span style="color:#e6db74">&#34;error&#34;</span>])){ <span style="color:#75715e">//Error handlers that call functions to check errors, will print corresponding problem under form
 </span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span>($_GET[<span style="color:#e6db74">&#34;error&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;emptyinput&#34;</span>){
@@ -166,7 +166,7 @@ Change Password</p>
 <p>While this step, seems simple, it actually gave me the most difficulty of any of the scripts. I attribute this to the fact that this was my first script written without aid from an online source or tutorial. These scripts helped me make errors throughout the process and learn the language better.</p>
 <h2 id="two-factor">Two Factor</h2>
 <p>While I mentioned that the prior feature gave me more trouble, it is not to undermine the effort that went into getting 2-factor authentication to work. This process was much longer and for the sake of brevity, I will only mention the key aspects that were not repeated.</p>
-<p>First off, was to figure out how I was going to send a SMS message for 2 factor purposes. If you recall in my first blog in this series, I went over a bot program I made to aid in registration. In that program I used the java SDK for Twilio SMS web services. So, for this section since I am using PHP I chose to dabble in the PHP SDK Twilio provides. If you want more detail on the Twilio service on not just the application for this project see my <a href="https://robertfleming448.github.io/jekyll/update/2020/09/02/Blog_1.html" target="_blank">first blog</a>.</p>
+<p>First off, was to figure out how I was going to send a SMS message for 2 factor purposes. If you recall in my first blog in this series, I went over a bot program I made to aid in registration. In that program I used the java SDK for Twilio SMS web services. So, for this section since I am using PHP I chose to dabble in the PHP SDK Twilio provides. If you want more detail on the Twilio service on not just the application for this project see my <a href="https://robertfleming448.github.io/post/480blog0/" target="_blank">first blog</a>.</p>
 <p>The scripts required for this are the following:</p>
 <ul>
 <li>enable 2-factor</li>
@@ -321,6 +321,10 @@ Change Password</p>
             </span>
             
             <span>
+                <a href="/tags/hugo/">Hugo</a>
+            </span>
+            
+            <span>
                 <a href="/tags/java/">Java</a>
             </span>
             
@@ -442,6 +446,10 @@ Change Password</p>
             
             <span>
                 <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/hugo/">Hugo</a>
             </span>
             
             <span>

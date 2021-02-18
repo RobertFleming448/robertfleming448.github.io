@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on Robert Fleming&#39;s CIT Blog</title>
+    <link>https://robertfleming448.github.io/tags/hugo/</link>
+    <description>Recent content in Hugo on Robert Fleming&#39;s CIT Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 18 Feb 2021 13:40:25 -0800</lastBuildDate><atom:link href="https://robertfleming448.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CIT 481 blog 0</title>
+      <link>https://robertfleming448.github.io/post/481blog0/</link>
+      <pubDate>Thu, 18 Feb 2021 13:40:25 -0800</pubDate>
+      
+      <guid>https://robertfleming448.github.io/post/481blog0/</guid>
+      <description>Introduction As we start a fresh semester, I find a fresh set of visuals will help keep things interested. As such, my blogs now have a sleek minimalistic design using the Hugo Fuji theme. Yes you read that right. My blog will now be using Hugo. For my previous blogs that I wrote during my semester in CIT 480, I used a similar static site generator called Jekyll. While it did the job, I by no means used all its features to their best extent, and I overall was not too fond of it. That is why I decided to use Hugo from this point forward.</description>
+    </item>
+    
+  </channel>
+</rss>
