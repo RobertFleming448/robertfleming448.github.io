@@ -16,7 +16,7 @@
 
 
 
-<title>CIT 480 blog 8 - Robert Fleming&#39;s CIT Blog</title>
+<title>CIT 481 blog 1 - Robert Fleming&#39;s CIT Blog</title>
 
 
 <meta name="author" content="Robert Fleming" />
@@ -25,18 +25,16 @@
 <meta name="description" content="A minimal Hugo theme with nice theme color." />
 
 
-<meta name="keywords" content="CIT-480, Networking" />
+<meta name="keywords" content="CIT-481, FreeBSD, Unix" />
 
 
-<meta property="og:title" content="CIT 480 blog 8" />
-<meta name="twitter:title" content="CIT 480 blog 8" />
+<meta property="og:title" content="CIT 481 blog 1" />
+<meta name="twitter:title" content="CIT 481 blog 1" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://robertfleming448.github.io/post/480blog8/" /><meta property="og:description" content="Introduction In this blog I will talk about all the methods I’ve used to configure my network in order to play multiplayer games with friends. I thought this would be a good addition to a blog I posted two weeks ago as it has similar concepts, where I discussed troubleshooting connection problems with my friends trying to play a multiplayer game. For this blog I will be focusing on the four methods I’ve used to play the popular sandbox game: Minecraft with my friends in the past.
-Option 1: The Easiest Yet Least Convenient By far the easiest way to play most PC games with friends is to actually do no network configuration." />
-<meta name="twitter:description" content="Introduction In this blog I will talk about all the methods I’ve used to configure my network in order to play multiplayer games with friends. I thought this would be a good addition to a blog I posted two weeks ago as it has similar concepts, where I discussed troubleshooting connection problems with my friends trying to play a multiplayer game. For this blog I will be focusing on the four methods I’ve used to play the popular sandbox game: Minecraft with my friends in the past.
-Option 1: The Easiest Yet Least Convenient By far the easiest way to play most PC games with friends is to actually do no network configuration." /><meta property="og:image" content="https://robertfleming448.github.io/img/og.png" />
+<meta property="og:url" content="https://robertfleming448.github.io/post/481blog1/" /><meta property="og:description" content="Introduction Despite this being my senior year, and having a relatively light scholastic work-load, I still thankfully have something to write about. I have a backlog of projects that I can dive into should the need arise later in the semester perhaps when things slow down. Additionally, only 2 of my 3 major classes this semester I would consider &ldquo;technical.&rdquo; One of those has little to no coding on a weekly basis. However this week that class has provided me with an opportunity to write down my lab progress. We were tasked with configuring, building, and installing a custom kernel for FreeBSD." />
+<meta name="twitter:description" content="Introduction Despite this being my senior year, and having a relatively light scholastic work-load, I still thankfully have something to write about. I have a backlog of projects that I can dive into should the need arise later in the semester perhaps when things slow down. Additionally, only 2 of my 3 major classes this semester I would consider &ldquo;technical.&rdquo; One of those has little to no coding on a weekly basis. However this week that class has provided me with an opportunity to write down my lab progress. We were tasked with configuring, building, and installing a custom kernel for FreeBSD." /><meta property="og:image" content="https://robertfleming448.github.io/img/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://robertfleming448.github.io/img/og.png" /><meta property="article:published_time" content="2021-02-17T23:53:45-08:00" /><meta property="article:modified_time" content="2021-02-17T23:53:45-08:00" />
+<meta name="twitter:image" content="https://robertfleming448.github.io/img/og.png" /><meta property="article:published_time" content="2021-02-24T20:53:24-08:00" /><meta property="article:modified_time" content="2021-02-24T20:53:24-08:00" />
 
 
 <style>
@@ -94,26 +92,63 @@ Option 1: The Easiest Yet Least Convenient By far the easiest way to play most P
 <article>
     
     <h2 class="post-item post-title">
-        <a href="https://robertfleming448.github.io/post/480blog8/">CIT 480 blog 8</a>
+        <a href="https://robertfleming448.github.io/post/481blog1/">CIT 481 blog 1</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1178 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-480">CIT-480</a>&nbsp;<a href="/tags/networking">Networking</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-24</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;971 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-481">CIT-481</a>&nbsp;<a href="/tags/freebsd">FreeBSD</a>&nbsp;<a href="/tags/unix">Unix</a>&nbsp;</span>
 
     </div>
     
     <div class="post-content markdown-body">
         <h2 id="introduction">Introduction</h2>
-<p>In this blog I will talk about all the methods I’ve used to configure my network in order to play multiplayer games with friends. I thought this would be a good addition to a blog I posted two weeks ago as it has similar concepts, where I discussed troubleshooting connection problems with my friends trying to play a multiplayer game. For this blog I will be focusing on the four methods I’ve used to play the popular sandbox game: Minecraft with my friends in the past.</p>
-<h2 id="option-1-the-easiest-yet-least-convenient">Option 1: The Easiest Yet Least Convenient</h2>
-<p>By far the easiest way to play most PC games with friends is to actually do no network configuration. By that I mean a LAN party. Depending on the application connectivity can be done in two ways. Sometimes the game or software is smart and will allow clients to search the network for active games. This is the case with Minecraft. For other games, all you must do is find out what the private IP address is for the machine hosting the session. This can be done easily in Windows by opening a command prompt and typing <code>ipconfig</code>. I have done this with my friends in the past but it is certainly a hassle. For one everybody needs to bring their computers to one local area network and connect to a network. Additionally, you need to make sure there is enough ethernet cables to go around or else you will have to connect wirelessly which seriously degrades the experience by introducing latency issues.</p>
-<h2 id="option-2-easy-but-not-convenient">Option 2: Easy but not Convenient</h2>
-<p>This option acts as sort of an intermediary between the prior method and the next. For Minecraft in particular it requires the host to run the server-side executable jar file available at <a href="https://www.minecraft.net/en-us/download/server" target="_blank">Minecraft.net</a>. This will allow multiple users to play in the same session when not on the same LAN. This method is useful when the users do not have access to edit router port triggering settings. Next both the host and the client must download a VPN (Virtual Private Network) software. For this I used the free version of <a href="https://www.vpn.net/" target="_blank">LogMeIn Hamachi</a> This software allows other users to join my LAN from a remote location effectively putting us on the same network. After Hamachi is configured and I give the user my public IP address. We both can join the server by connecting to <code>localhost</code> or <code>127.0. 0.1</code>. This method is nice because it requires little router configuration, but it does come at a cost. When I last used Hamachi, there was a free version that allowed 5 concurrent users on connect to you network. Now for my purposes at the time it was fine as only a handful of friends had wanted to play together. But should I require more VPN connections for more friends it would have costed me. However, for my purposes at this time is sufficed and we were able to play together despite no having access to my router settings.</p>
-<h2 id="option-3-not-that-easy-but-convenient">Option 3: Not that Easy but Convenient</h2>
-<p>This option is what I use primarily from this point onwards as I have the more networking experience now and I also have access to my Router’s configurations. This option is a more traditional server style than the last. Since this server needs to actively communicate with machines located on different networks, I first need to ensure that the lines of transit are open. I will detail the required process for Windows computers as it is the method that I am most familiar with. First like the last step you need to download the server.jar executable from the Minecraft website. Next you need to open up the required port in you Router settings. If this port is left closed traffic from other computers will not be allowed to communicate with the server. To do this you must first land at your Router’s entry page. Similar to Option 1, you must run the <code>ipconfig</code> command and retrieve your default gateway. Typing this address into a web browser will allow you to change router settings. You must navigate to the networking option of the router that says either port-triggers or port-forwarding. It differs based on each make and model. Next you must allow the used port by adding a new entry to the port list. The port used by Minecraft is <code>25565</code>, therefor the port range you should allow is <code>25565-25565</code> for both inbound and outbound to ensure only that port is opened. Next you must choose the protocol. It is recommended to allow both <code>UDP</code> and <code>TCP</code> protocol. With that done next you need to allow the port through the windows firewall as it is liable to block it on occasion. Enter the Windows Defender Firewall with Advanced Security tool through the start menu or control panel. Again, like the Router settings we need to allow <code>UDP/TCP</code> traffic both inbound and outbound. Once that is set up, you need to find your public IP address. I use <a href="https://www.whatsmyip.org/">https://www.whatsmyip.org/</a> for this as its easier than looking it up through Windows networking tools. Once that has been given to my friends, they are able to connect to the server when it is up. This option is by far my preferred method as I have the most control over everything involved. I can set up scripts to determine server uptime amongst many other useful things. However, it does require me to run the server in the background of my main machine or dedicate a separate machine to run the server, so its not perfect for all situations. My next and final option will go over “solving” this problem.</p>
-<h2 id="option-4-very-easy-very-convenient-but-costly">Option 4: Very Easy, Very Convenient, but Costly</h2>
-<p>Like many games, Minecraft allows you to pay to lease an official server. These are called Minecraft Realms. They offer all the benefits of the previous option without requiring the dedicated hardware to run it. However, it does cost a decent amount of money. To lease a server costs $7.99 monthly and while this seems cheap it does add up, given that the game itself is only $26.85 dollars. I have used this option for playing with others and it is convenient to be able to continue the fun even after the server owner decides to log off for the night, but for the cost I generally prefer to run my own server.</p>
+<p>Despite this being my senior year, and having a relatively light scholastic work-load, I still thankfully have something to write about. I have a backlog of projects that I can dive into should the need arise later in the semester perhaps when things slow down. Additionally, only 2 of my 3 major classes this semester I would consider &ldquo;technical.&rdquo; One of those has little to no coding on a weekly basis. However this week that class has provided me with an opportunity to write down my lab progress. We were tasked with configuring, building, and installing a custom kernel for FreeBSD.</p>
+<h2 id="freebsd">FreeBSD</h2>
+<p><a href="https://www.freebsd.org/" target="_blank">FreeBSD</a> is a modern OS that operates very closely to a UNIX environment. Its default shell is the <em>Bourne Shell</em>, <code>sh</code>, and as a Linux user I am very familiar with its successor the <em>Bourne Again Shell</em>, <code>bash</code>. As a result, I will not go over the installation or base configration of FreeBSD but I will dive straight into the Kernel build.</p>
+<h2 id="assignment-overview">Assignment Overview</h2>
+<p>The Assignment&rsquo;s goal was rather straightforward, discover the mandatory boot devices and configure a Kernel to only use those devices at startup to speed up the boot process. The professor provided us the manual pages for <code>DMESG</code> and <code>PCICONF</code>. Using these commands we be able to complete the tasks he assigned.</p>
+<h2 id="configuration">Configuration</h2>
+<p>In order to configure a custom Kernel, we required a base, or a <code>GENERIC</code> file. These generic files can be used as starter files for Kernels based on types of CPU architectures. In order to find our <code>GENERIC</code> we had to look in the <code>/usr/src/sys/</code> directory. In that directory we needed to choose the CPU architecture that matched our machine. As a result I chose <code>amd64/</code>. From there I went to the <code>conf/</code> directory where I found the <code>GENERIC</code>.</p>
+<h3 id="prerequisites-to-editing">Prerequisites to Editing</h3>
+<p>I very well could have used <code>vi</code> or <code>nano</code> to edit the config file, but I wanted a more familiar environment. Additionally, I knew that I needed to be able to export my work from the machine eventually so I chose to get it out of the way now. There were 2 options for saving work to my host OS either:</p>
+<ol>
+<li>Sharing a directory between host and guest OS&rsquo;s via VMware</li>
+<li>Connecting removable drive and transfering it between host and guest</li>
+</ol>
+<p>I chose the second option as I was unaware if the Guest Additions Tools would work on FreeBSD, and I knew mounting a drive would take very little time. I also saved the output of <code>DMESG</code> and <code>PCICONF</code> to a text file so I could further explore the output on my host machine. Once I mounted the drive, I copied the <code>GENERIC</code> and text files to it and unmounted to further edit on my host OS.</p>
+<h3 id="editing-the-generic">Editing the Generic</h3>
+<p>To edit the generic I went through the devices loaded, seen in <code>DMESG</code>, and commented out missing devices in the <code>GENERIC</code>. While this did work it was not without a little trial an error. Sometimes I would comment out a device that despite not being in the <code>DMESG</code> load order, had a vital dependency for something else. I kept editing back in fourth in preparation for the next step.</p>
+<p>Here is a segment of my edited config file: Note how the only used SCSI controller is not commented
+<pre><code class="language-script" data-lang="script"># SCSI Controllers
+device		ahc			# AHA2940 and onboard AIC7xxx devices
+#device		ahd			# AHA39320/29320 and onboard AIC79xx devices
+#device		esp			# AMD Am53C974 (Tekram DC-390(T))
+#device		hptiop			# Highpoint RocketRaid 3xxx series
+#device		isp			# Qlogic family
+#device		ispfw			# Firmware for QLogic HBAs- normally a module
+#device		mpt			# LSI-Logic MPT-Fusion
+#device		mps			# LSI-Logic MPT-Fusion 2
+#device		mpr			# LSI-Logic MPT-Fusion 3
+#device		ncr			# NCR/Symbios Logic
+#device		sym			# NCR/Symbios Logic (newer chipsets + those of `ncr&#39;)
+#device		trm			# Tekram DC395U/UW/F DC315U adapters
+#device		isci			# Intel C600 SAS controller
+#device		ocs_fc			# Emulex FC adapters
+
+# ATA/SCSI peripherals
+device		scbus			# SCSI bus (required for ATA/SCSI)
+#device		ch			# SCSI media changers
+device		da			# Direct Access (disks)
+#device		sa			# Sequential Access (tape etc)
+device		cd			# CD
+#device		pass			# Passthrough device (direct ATA/SCSI access)
+#device		ses			# Enclosure Services (SES and SAF-TE)
+#device		ctl			# CAM Target Layer</code></pre></p>
+<h2 id="building-the-kernel">Building the Kernel</h2>
+<p>Once I finished editing my Kernel for the first time, I remounted the device and copied my edited config file back into the <code>/usr/src/sys/amd64/conf</code>directory. After that I navigated to the <code>/usr/src</code> directory and typed the following command to attempt a build of my Kernel: <code>make buildkernel KERNCONF=KERNEL_CUSTOM</code> This would run for 5-6 minutes than reach a fatal error. From looking at the error messages, I could glean what dependency was missing in my Kernel device list. I would edit this progressively to re-add the required devices. After 5 or so attempts the Kernel was built unsuccessfully with zero warnings or errors.</p>
+<h2 id="installing-the-kernel">Installing the Kernel</h2>
+<p>After the successful build I ran <code>make installkernel KERNCONF=KERNEL_CUSTOM</code>. This took a few minutes but it seemed to work first try. The only thing I had left to do was reboot the machine to see if it broke or not. After a reboot and a successful sign-in, I concluded that my efforts were successful, and I prepared my lab submission consisting of my modifed GENERIC as well as text file containing the new outputs of <code>DMESG</code> and <code>PCICONF</code>.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>In this blog I have gone over the methods I’ve used for running multiplayer sessions of Minecraft: Java Addition. It is worth mentioning that for other versions of this game all these steps may not be necessary. In the end I still prefer option 3 as it gives me the most control over the session and doesn’t cost anything. However, for someone not as experienced in networking, I can understand the value in some of the other methods. I hope this blog acts as a concise method of describing the networking options available for both Minecraft and perhaps other multiplayer online games, and provides options so people can choose the option that best caters to their needs.</p>
+<p>While this lab did take longer than I expected, I did finish well before the deadline so I can possible make further adjustments to my Kernel before submission. I think this lab was a good test of troubleshooting as I really had to explore the documentation and forums in order to diagnose the dependency errors I faced during building. Hopefully in the future I can report back on my developments in FreeBSD labs, but that does it for now.</p>
 
     </div>
 </article>
@@ -251,10 +286,16 @@ Option 1: The Easiest Yet Least Convenient By far the easiest way to play most P
         <h3>TOC</h3><nav id="TableOfContents">
   <ul>
     <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#option-1-the-easiest-yet-least-convenient">Option 1: The Easiest Yet Least Convenient</a></li>
-    <li><a href="#option-2-easy-but-not-convenient">Option 2: Easy but not Convenient</a></li>
-    <li><a href="#option-3-not-that-easy-but-convenient">Option 3: Not that Easy but Convenient</a></li>
-    <li><a href="#option-4-very-easy-very-convenient-but-costly">Option 4: Very Easy, Very Convenient, but Costly</a></li>
+    <li><a href="#freebsd">FreeBSD</a></li>
+    <li><a href="#assignment-overview">Assignment Overview</a></li>
+    <li><a href="#configuration">Configuration</a>
+      <ul>
+        <li><a href="#prerequisites-to-editing">Prerequisites to Editing</a></li>
+        <li><a href="#editing-the-generic">Editing the Generic</a></li>
+      </ul>
+    </li>
+    <li><a href="#building-the-kernel">Building the Kernel</a></li>
+    <li><a href="#installing-the-kernel">Installing the Kernel</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
   </ul>
 </nav></div>
@@ -398,10 +439,16 @@ Option 1: The Easiest Yet Least Convenient By far the easiest way to play most P
         <nav id="TableOfContents">
   <ul>
     <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#option-1-the-easiest-yet-least-convenient">Option 1: The Easiest Yet Least Convenient</a></li>
-    <li><a href="#option-2-easy-but-not-convenient">Option 2: Easy but not Convenient</a></li>
-    <li><a href="#option-3-not-that-easy-but-convenient">Option 3: Not that Easy but Convenient</a></li>
-    <li><a href="#option-4-very-easy-very-convenient-but-costly">Option 4: Very Easy, Very Convenient, but Costly</a></li>
+    <li><a href="#freebsd">FreeBSD</a></li>
+    <li><a href="#assignment-overview">Assignment Overview</a></li>
+    <li><a href="#configuration">Configuration</a>
+      <ul>
+        <li><a href="#prerequisites-to-editing">Prerequisites to Editing</a></li>
+        <li><a href="#editing-the-generic">Editing the Generic</a></li>
+      </ul>
+    </li>
+    <li><a href="#building-the-kernel">Building the Kernel</a></li>
+    <li><a href="#installing-the-kernel">Installing the Kernel</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
