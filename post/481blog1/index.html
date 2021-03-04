@@ -103,7 +103,7 @@
         <h2 id="introduction">Introduction</h2>
 <p>Despite this being my senior year, and having a relatively light scholastic work-load, I still thankfully have something to write about. I have a backlog of projects that I can dive into should the need arise later in the semester perhaps when things slow down. Additionally, only 2 of my 3 major classes this semester I would consider &ldquo;technical.&rdquo; One of those has little to no coding on a weekly basis. However this week that class has provided me with an opportunity to write down my lab progress. We were tasked with configuring, building, and installing a custom kernel for FreeBSD.</p>
 <h2 id="freebsd">FreeBSD</h2>
-<p><a href="https://www.freebsd.org/" target="_blank">FreeBSD</a> is a modern OS that operates very closely to a UNIX environment. Its default shell is the <em>Bourne Shell</em>, <code>sh</code>, and as a Linux user I am very familiar with its successor the <em>Bourne Again Shell</em>, <code>bash</code>. As a result, I will not go over the installation or base configration of FreeBSD but I will dive straight into the Kernel build.</p>
+<p><a href="https://www.freebsd.org/" target="_blank">FreeBSD</a> is a modern OS that operates very closely to a UNIX environment. Its default shell is the <em>Bourne Shell</em>, <code>sh</code>, and as a Linux user I am very familiar with its successor the <em>Bourne Again Shell</em>, <code>bash</code>. As a result, I will not go over the installation or base configuration of FreeBSD but I will dive straight into the Kernel build.</p>
 <h2 id="assignment-overview">Assignment Overview</h2>
 <p>The Assignment&rsquo;s goal was rather straightforward, discover the mandatory boot devices and configure a Kernel to only use those devices at startup to speed up the boot process. The professor provided us the manual pages for <code>DMESG</code> and <code>PCICONF</code>. Using these commands we be able to complete the tasks he assigned.</p>
 <h2 id="configuration">Configuration</h2>
@@ -112,7 +112,7 @@
 <p>I very well could have used <code>vi</code> or <code>nano</code> to edit the config file, but I wanted a more familiar environment. Additionally, I knew that I needed to be able to export my work from the machine eventually so I chose to get it out of the way now. There were 2 options for saving work to my host OS either:</p>
 <ol>
 <li>Sharing a directory between host and guest OS&rsquo;s via VMware</li>
-<li>Connecting removable drive and transfering it between host and guest</li>
+<li>Connecting removable drive and transferring it between host and guest</li>
 </ol>
 <p>I chose the second option as I was unaware if the Guest Additions Tools would work on FreeBSD, and I knew mounting a drive would take very little time. I also saved the output of <code>DMESG</code> and <code>PCICONF</code> to a text file so I could further explore the output on my host machine. Once I mounted the drive, I copied the <code>GENERIC</code> and text files to it and unmounted to further edit on my host OS.</p>
 <h3 id="editing-the-generic">Editing the Generic</h3>
@@ -213,6 +213,10 @@ device		cd			# CD
             </span>
             
             <span>
+                <a href="/tags/apache/">Apache</a>
+            </span>
+            
+            <span>
                 <a href="/tags/aws/">AWS</a>
             </span>
             
@@ -245,6 +249,10 @@ device		cd			# CD
             </span>
             
             <span>
+                <a href="/tags/group-project/">Group Project</a>
+            </span>
+            
+            <span>
                 <a href="/tags/html/">HTML</a>
             </span>
             
@@ -269,7 +277,15 @@ device		cd			# CD
             </span>
             
             <span>
+                <a href="/tags/nginx/">Nginx</a>
+            </span>
+            
+            <span>
                 <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/tls/">TLS</a>
             </span>
             
             <span>
@@ -362,6 +378,10 @@ device		cd			# CD
             </span>
             
             <span>
+                <a href="/tags/apache/">Apache</a>
+            </span>
+            
+            <span>
                 <a href="/tags/aws/">AWS</a>
             </span>
             
@@ -394,6 +414,10 @@ device		cd			# CD
             </span>
             
             <span>
+                <a href="/tags/group-project/">Group Project</a>
+            </span>
+            
+            <span>
                 <a href="/tags/html/">HTML</a>
             </span>
             
@@ -418,7 +442,15 @@ device		cd			# CD
             </span>
             
             <span>
+                <a href="/tags/nginx/">Nginx</a>
+            </span>
+            
+            <span>
                 <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/tls/">TLS</a>
             </span>
             
             <span>

@@ -6,7 +6,17 @@
     <description>Recent content on Robert Fleming&#39;s CIT Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 24 Feb 2021 20:53:24 -0800</lastBuildDate><atom:link href="https://robertfleming448.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Mar 2021 19:30:09 -0800</lastBuildDate><atom:link href="https://robertfleming448.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CIT 481 blog 2</title>
+      <link>https://robertfleming448.github.io/post/481blog2/</link>
+      <pubDate>Wed, 03 Mar 2021 19:30:09 -0800</pubDate>
+      
+      <guid>https://robertfleming448.github.io/post/481blog2/</guid>
+      <description>Introduction This blog I will be detailing the process I went through to acquire a domain and a TLS certificate to allow HTTPS traffic. This will be the first part in a potential multipart series going through my tasks in the CIT 481 semester-long group project. I was put in charge of Domain and Certificate Acquisition as I was the one with the most experience with domains.
+Domain Choice Being poor college students, we didn&amp;rsquo;t want to break the bank on our domain. However, we still wanted it to be related to our team, to make it easily distinguishable. With those prerequisites in mind, I went searching several domain registrar websites to find a cheap year long domain license.</description>
+    </item>
+    
     <item>
       <title>CIT 481 blog 1</title>
       <link>https://robertfleming448.github.io/post/481blog1/</link>
