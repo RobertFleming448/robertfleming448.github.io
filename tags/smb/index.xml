@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SMB on Robert Fleming&#39;s CIT Blog</title>
+    <link>https://robertfleming448.github.io/tags/smb/</link>
+    <description>Recent content in SMB on Robert Fleming&#39;s CIT Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 10 Mar 2021 18:33:58 -0800</lastBuildDate><atom:link href="https://robertfleming448.github.io/tags/smb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CIT 481 blog 3</title>
+      <link>https://robertfleming448.github.io/post/481blog3/</link>
+      <pubDate>Wed, 10 Mar 2021 18:33:58 -0800</pubDate>
+      
+      <guid>https://robertfleming448.github.io/post/481blog3/</guid>
+      <description>Introduction For this blog I will be going over my process and reasoning for creating a Minecraft Server with a Raspberry Pi 4. This is one of the topics I have saved for moments that are somewhat slow this semester. While I have been working diligently on other projects, the content is not substantial enough to fill an entire blog. As a result, I will keep it on the backburner until I feel suitable progress has been made.
+Reasoning During this pandemic, I find interacting with friends online to be a more pressing matter. Without avenues to interact with my peers, I would surely go mad.</description>
+    </item>
+    
+  </channel>
+</rss>
