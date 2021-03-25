@@ -16,7 +16,7 @@
 
 
 
-<title>AWS - Robert Fleming&#39;s CIT Blog</title>
+<title>CIT 481 blog 4 - Robert Fleming&#39;s CIT Blog</title>
 
 
 <meta name="author" content="Robert Fleming" />
@@ -25,13 +25,18 @@
 <meta name="description" content="A minimal Hugo theme with nice theme color." />
 
 
+<meta name="keywords" content="CIT-481, AWS, TLS, Ansible, SSH" />
 
-<meta property="og:title" content="AWS" />
-<meta name="twitter:title" content="AWS" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://robertfleming448.github.io/tags/aws/" /><meta property="og:image" content="https://robertfleming448.github.io/img/og.png" />
+
+<meta property="og:title" content="CIT 481 blog 4" />
+<meta name="twitter:title" content="CIT 481 blog 4" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://robertfleming448.github.io/post/481blog4/" /><meta property="og:description" content="Introduction In this blog I will record my issues and solutions I went through while trying to complete the first module of our CIT 481 Senior Design project.
+Background Our team is undergoing an alternative project offered by the professor and we are tasked with using an Ansible playbook to automate building a tech stack on an AWS infrastructure. This infrastructure includes 3 private and 3 public subnets spanning across 3 separate availability zones. Each Availability zone must contain a private web server EC2 instance and a public SSH bastion Host EC2 instance. I will focus on the computing resources in this blog and less so on the VPC as that was a lesser role of mine." />
+<meta name="twitter:description" content="Introduction In this blog I will record my issues and solutions I went through while trying to complete the first module of our CIT 481 Senior Design project.
+Background Our team is undergoing an alternative project offered by the professor and we are tasked with using an Ansible playbook to automate building a tech stack on an AWS infrastructure. This infrastructure includes 3 private and 3 public subnets spanning across 3 separate availability zones. Each Availability zone must contain a private web server EC2 instance and a public SSH bastion Host EC2 instance. I will focus on the computing resources in this blog and less so on the VPC as that was a lesser role of mine." /><meta property="og:image" content="https://robertfleming448.github.io/img/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://robertfleming448.github.io/img/og.png" /><meta property="og:updated_time" content="2021-03-25T13:45:40-07:00" />
+<meta name="twitter:image" content="https://robertfleming448.github.io/img/og.png" /><meta property="article:published_time" content="2021-03-25T13:45:40-07:00" /><meta property="article:modified_time" content="2021-03-25T13:45:40-07:00" />
 
 
 <style>
@@ -86,14 +91,8 @@
             
             <div class="col-12 col-md-9 float-left content">
                 
-
-<div class="page-info">
-    <span>Posts with the tag AWS: </span>
-</div>
-
-
-
-<div class="post">
+<article>
+    
     <h2 class="post-item post-title">
         <a href="https://robertfleming448.github.io/post/481blog4/">CIT 481 blog 4</a>
     </h2>
@@ -101,32 +100,42 @@
         <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-03-25</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1052 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-481">CIT-481</a>&nbsp;<a href="/tags/aws">AWS</a>&nbsp;<a href="/tags/tls">TLS</a>&nbsp;<a href="/tags/ansible">Ansible</a>&nbsp;<a href="/tags/ssh">SSH</a>&nbsp;</span>
 
     </div>
-    <div class="post-item post-summary markdown-body">
-        Introduction In this blog I will record my issues and solutions I went through while trying to complete the first module of our CIT 481 Senior Design project.
-Background Our team is undergoing an alternative project offered by the professor and we are tasked with using an Ansible playbook to automate building a tech stack on an AWS infrastructure. This infrastructure includes 3 private and 3 public subnets spanning across 3 separate availability zones. Each Availability zone must contain a private web server EC2 instance and a public SSH bastion Host EC2 instance. I will focus on the computing resources in this blog and less so on the VPC as that was a lesser role of mine.
+    
+    <div class="post-content markdown-body">
+        <h2 id="introduction">Introduction</h2>
+<p>In this blog I will record my issues and solutions I went through while trying to complete the first module of our CIT 481 Senior Design project.</p>
+<h2 id="background">Background</h2>
+<p>Our team is undergoing an alternative project offered by the professor and we are tasked with using an Ansible playbook to automate building a tech stack on an AWS infrastructure. This infrastructure includes 3 private and 3 public subnets spanning across 3 separate availability zones. Each Availability zone must contain a private web server EC2 instance and a public SSH bastion Host EC2 instance. I will focus on the computing resources in this blog and less so on the VPC as that was a lesser role of mine.</p>
+<h2 id="aws-infrastructure">AWS Infrastructure</h2>
+<p>Our infrastructure went through a few different version. At first our model was very poor. We had little idea of where components would go in our model and we were unaware of the routing processes. The first model we developed is bellow.</p>
+<p><img class="img-zoomable" src="/assets/481_Blog4_1.png" alt="Model 1" />
+</p>
+<p>As you can see, we were unsure about how an SSH bastion even functioned in practice. We had it placed outside the VPC in a sort of purgatory due to this. After trying this model in AWS, it was obvious that it would not work. We went back to the drawing board and reviewed class content and we discovered how wrong we were. The updated model is bellow.</p>
+<p><img class="img-zoomable" src="/assets/481_Blog4_2.png" alt="Model 2" />
+</p>
+<p>This time we were much more defined, and we understood where the SSH bastion(<strong>S</strong>) should be placed. Additionally we determined that our previous model involving an elastic IP address connected to a load balancer was not how AWS functioned. Lastly we added NAT gateways to the Public subnet to provide outside access to Private resources.</p>
+<h3 id="nat-gateway">NAT Gateway</h3>
+<p>When the SSH Bastion was configured and worked as intended (More on that in a future blog). I successfully connected to and attempted an Apt-Update. To my dismay, it could not connect to the internet. This was remedied by routing it to a NAT gateway that I placed in the Public Subnet of that availability zone. Once I specified all traffic to be routed through each corresponding NAT gateway, both Apt-Updates, and other Ansible calls could perform successfully.</p>
+<h3 id="using-our-domain">Using Our Domain</h3>
+<p>In a previous blog I described how I used an A record to point to an Elastic IP address pointing to an EC2 instance to test our TLS certificates and Domain name. However once the load balancer was issued, we could no longer use this method. To use our purchased GoDaddy domain in AWS we needed to setup the AWS name server records in our Godaddy domain management console. This gave AWS Route 53 control of making future records. Next I made an alias for our domain to allow traffic from <a href="http://www.teambellevue.xyz">www.teambellevue.xyz</a> to reach the same host. I then added another record to attach my load balancer to the hosted zone. Once all the records were in place, the domain pointed to our load balancer with all three servers providing.</p>
+<h2 id="issues-encountered">Issues Encountered</h2>
+<p>When we were setting up a classic load balancer we could not for the life of us get it to register as healthy. Initially I had thought this was due the private nature of subnet causing issues with a classic load balancer. I tried the other load balancer options yet still no luck. After a consultation with the Professor, we discovered a simple mistake; The EC2 instances Security settings blocked incoming HTTP/HTTPS. I had thought that since all traffic was routed to the NAT gateway this would suffice, but that was not the case. After assigning it another security group, I remade the load balancer and pointed it towards the 3 web servers, and it displayed them all as healthy.</p>
+<h3 id="tls-certificate-with-a-classic-load-balancer">TLS Certificate with a Classic Load Balancer</h3>
+<p>Another issue that sprang up that I had not anticipated was the TLS certificate acquisition. I had achieved this earlier on a single instance using Ansible and Certbot to acquire a free TLS Certificate from Let&rsquo;s Encrypt, however the method was no longer working with an Elastic Load Balancer. Although I am not entirely sure, my suspicion is that the method Certbot uses for authentication would not work with a classic load balancer. In my previous method, certbot was able to identify the IP address with the A record in my GoDaddy console, however this time since I was using an AWS hosted zone there was not IP address to input as an A record. My guess, <em>I could be wrong</em>, is that AWS just forwards traffic to the load balancer domain and does not have an actual public IP address for it. This would make sense since I was never able to assign it an elastic IP.</p>
+<p>To fix this problem I looked into Amazon Certificate Management Service. Luckily for us AWS will provide TLS certificates to AWS compute services free of charge. We will only need to pay for the compute resources themselves. After inputting my domain info and other equivalent aliases, a cert was generated for me. Next I went back to my load balancer and enabled HTTPS listening. This prompted the creation wizard to have me select my certificate, which I chose the AWS managed one. It is worth mentioning that the Let&rsquo;s Encrypt cert would work here if I chose to import it, but I feel that makes the process overly complicated. After it finished setting up, all 3 servers listed healthy and I tested my domain for https access. At first it did not work but after a few moments and refreshed later the lock icon appeared in the searchbar.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>This step through me a couple of curve balls. Never have I worked with private subnet resources in AWS before. This made finding out how route tables and NAT gateways worked very rewarding. I was also pleased how simple AWS made Cert acquisition. Making that process automatic in Ansible took much more time and was not all that reliable. I feel this method is much better than the last, and I am glad I forced to discover it. While Project 0 is now concluded, I feel that my role as leader will still be active to a degree. Next blog I will delve into the lengthy process I went through try and get SSH bastion hopping automated with Ansible.</p>
+
     </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>Unless otherwise noted, the content of this site is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a>.</p>
+    </blockquote>
 </div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://robertfleming448.github.io/post/480blog9/">CIT 480 blog 9</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;876 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-480">CIT-480</a>&nbsp;<a href="/tags/aws">AWS</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        Introduction This blog will detail the process I used to complete the fourth lab for CIT 480, in which I configured an AWS EC2 instance to allow communication with an AWS simple storage system bucket. For the most part I thought this lab was pretty straight forward but I did have a minor hiccup which I will detail in a later section.
-Background I currently have access to 2 AWS accounts. One is my educate account which still has most of the initial 100 dollar funds. The other is my regular AWS account, which although it does not have any education credits is still within its, first year granting me free tier access to resources.
-    </div>
-</div>
-
-
-
-
-
-
-
 
 
 
@@ -281,9 +290,25 @@ Background I currently have access to 2 AWS accounts. One is my educate account 
             
         </div>
     </div>
-    
-    
-    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#aws-infrastructure">AWS Infrastructure</a>
+      <ul>
+        <li><a href="#nat-gateway">NAT Gateway</a></li>
+        <li><a href="#using-our-domain">Using Our Domain</a></li>
+      </ul>
+    </li>
+    <li><a href="#issues-encountered">Issues Encountered</a>
+      <ul>
+        <li><a href="#tls-certificate-with-a-classic-load-balancer">TLS Certificate with a Classic Load Balancer</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
 </aside>
         </div>
         <div class="btn">
@@ -447,6 +472,30 @@ Background I currently have access to 2 AWS accounts. One is my educate account 
             </span>
             
         </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#aws-infrastructure">AWS Infrastructure</a>
+      <ul>
+        <li><a href="#nat-gateway">NAT Gateway</a></li>
+        <li><a href="#using-our-domain">Using Our Domain</a></li>
+      </ul>
+    </li>
+    <li><a href="#issues-encountered">Issues Encountered</a>
+      <ul>
+        <li><a href="#tls-certificate-with-a-classic-load-balancer">TLS Certificate with a Classic Load Balancer</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
     </div>
     
     
