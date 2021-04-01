@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/dsrkafuu/dsr-cdn@1/images/favicons/dsrca/favicon.ico" />
+
+
+
+<title>CIT 481 blog 5 - Robert Fleming&#39;s CIT Blog</title>
+
+
+<meta name="author" content="Robert Fleming" />
+
+
+<meta name="description" content="A minimal Hugo theme with nice theme color." />
+
+
+<meta name="keywords" content="CIT-481, AWS, Ansible, SSH" />
+
+
+<meta property="og:title" content="CIT 481 blog 5" />
+<meta name="twitter:title" content="CIT 481 blog 5" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://robertfleming448.github.io/post/481blog5/" /><meta property="og:description" content="Introduction As mentioned in the blog prior where I discussed Load Balancers and Certificates on AWS, this week I will be going over my solution for getting our SSH bastion to function as intended.
+SSH Bastion As a preface, an SSH Bastion is a remote server that resides in a public section of a network. By connecting to this node, you can further connect to other machines located in private, non-internet facing subnets.
+Server Setup An ssh bastion really is very similar to any other machine out there. All that really matters for our implementation is having a network with a private and public subnet." />
+<meta name="twitter:description" content="Introduction As mentioned in the blog prior where I discussed Load Balancers and Certificates on AWS, this week I will be going over my solution for getting our SSH bastion to function as intended.
+SSH Bastion As a preface, an SSH Bastion is a remote server that resides in a public section of a network. By connecting to this node, you can further connect to other machines located in private, non-internet facing subnets.
+Server Setup An ssh bastion really is very similar to any other machine out there. All that really matters for our implementation is having a network with a private and public subnet." /><meta property="og:image" content="https://robertfleming448.github.io/img/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://robertfleming448.github.io/img/og.png" /><meta property="article:published_time" content="2021-03-31T17:37:47-07:00" /><meta property="article:modified_time" content="2021-03-31T17:37:47-07:00" />
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+<link rel="stylesheet" href="https://robertfleming448.github.io/assets/css/fuji.min.css" />
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://robertfleming448.github.io">Robert Fleming&#39;s CIT Blog</a>
+            
+            <span class="title-sub">A Hugo blog for all my CIT antics</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://robertfleming448.github.io/post/481blog5/">CIT 481 blog 5</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-03-31</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1272 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-481">CIT-481</a>&nbsp;<a href="/tags/aws">AWS</a>&nbsp;<a href="/tags/ansible">Ansible</a>&nbsp;<a href="/tags/ssh">SSH</a>&nbsp;</span>
+
+    </div>
+    
+    <div class="post-content markdown-body">
+        <h2 id="introduction">Introduction</h2>
+<p>As mentioned in the blog prior where I discussed Load Balancers and Certificates on AWS, this week I will be going over my solution for getting our SSH bastion to function as intended.</p>
+<h2 id="ssh-bastion">SSH Bastion</h2>
+<p>As a preface, an SSH Bastion is a remote server that resides in a public section of a network. By connecting to this node, you can further connect to other machines located in private, non-internet facing subnets.</p>
+<h2 id="server-setup">Server Setup</h2>
+<p>An ssh bastion really is very similar to any other machine out there. All that really matters for our implementation is having a network with a private and public subnet. I will not go into the section as it was not my lead role in the project. The bastion resides in the public subnet so that us administrators can SSH into it, and the target server, must reside in the private subnet to increase its security.</p>
+<h3 id="security-groups">Security Groups</h3>
+<p>This section applies to AWS in particular, but rules like these can be setup on really any firewall. First we must block all incoming connections by default. All traffic can be allowed out. After on our bastion group we must allow SSH traffic only through our home, or otherwise trusted IP address. Next we must configure our server group to only allow ssh traffic from the bastion group (or bastion IP&rsquo;s if not done in AWS). Next you must allow web traffic out for the load balancer.</p>
+<h3 id="nat">NAT</h3>
+<p>Your Private subnet needs to be able to connect to outside traffic so you must either route it to a NAT <code>Gateway</code> in your public subnet or a NAT <code>Instance</code> in your public subnet. They both function similarly, however a NAT instance requires more configuration. This NAT instance can also function as your SSH bastion. For the purpose of this example, I will be using a NAT Gateway like described in last weeks blog.</p>
+<h3 id="ec2">EC2</h3>
+<p>Now you spin up the EC2 instances with the bastion in public with its security group, and the server in private with its security group. In theory this is all that is really required on the server infrastructure setup for this part. For ansible you will want to ensure that python is installed on your host machines.</p>
+<h2 id="connection-setup">Connection Setup</h2>
+<p>Now that we have a proper SSH setup, we need to be able to connect to both the bastion and be able to jump to the web server. We should have 2 IP addresses:</p>
+<ol>
+<li>The public IP of the bastion</li>
+<li>The private IP of the server</li>
+</ol>
+<p>Since both machines reside in the same network, the bastion should be able to recognize the server exclusively by its private address. Now to actually connect to the ssh bastion is quite simple. So long as you have the correct key file you can ssh directly to it with the <code>ssh -i &lt;key path&gt; &lt;username&gt;@&lt;bastion host ip</code> command. This should successfully connect you to the bastion. However if you try to jump to the private instance you&rsquo;ll realize something: <em>you don&rsquo;t have the key!</em> There are 2 ways of doing this for SSH&rsquo;ing I&rsquo;ll go over both methods:</p>
+<ol>
+<li>Using Secure Copy <code>scp</code> copy your SSH RSA key to the bastion then jump manually.</li>
+<li>Setup your OpenSSH config file to use built in proxy features <em><strong>(PICK ME!)</strong></em></li>
+</ol>
+<p>The syntax for OpenSSH configs is very simple, and even better yet, Ansible uses it by default.</p>
+<h3 id="sshconfig-setup">~/.ssh/config Setup</h3>
+<p>First navigate to the ~/.ssh/ directory. If you do not have a file name config. make it. <code>chmod 600</code> it to only allow owner read write access. Next make an entry the entry syntax for standard connections is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Host bastion1
+  HostName &lt;bastion public ip&gt;
+  User &lt;default username&gt;
+  IdentityFile &lt;key file path&gt;</code></pre></div>
+<p>Next you must add the web server host that must jump from that connection:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Host server1
+  HostName &lt;server private ip&gt;
+  User &lt;default username&gt;
+  IdentityFile &lt;key file path&gt;
+  ProxyCommand ssh -q bastion1 nc %h %p</code></pre></div>
+<p>Note the added line. This command instructs OpenSSH to first connect to the bastion1 host we defined earlier then jump to the server1 host using the specified key file. Now when we SSH we need not specify the key file or username. We can enter <code>ssh bastion1</code> or <code>ssh server1</code> and OpenSSH will handle the rest. This method allows us to keep the key on only our machine and not on the bastion host. Like mentioned previously, Ansible will work with this configuration as well. Now we can specify the host names we wrote in the config to the ansible inventory file and OpenSSH should handle the rest.</p>
+<h2 id="config-automation">Config Automation</h2>
+<p>Since the theme of the class and project in general is automation. I thought it would be wise to also automate the config generation process. I wrote a simple bash script to take IP addresses as parameters and generate a config entry. this entry can be created in the current directory, appended to the config file or replace it entirely through prompts. I am in the process of adding options to the script to allow it to be ran automatically without user interaction. More on that in a future blog. Here is the code for the script:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#! /bin/bash
+</span><span style="color:#75715e"></span>
+keyName<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Robert_Test.pem&#34;</span>
+position<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+counter<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#66d9ef">$((</span>$#<span style="color:#f92672">%</span><span style="color:#ae81ff">2</span><span style="color:#66d9ef">))</span> -ne <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>
+<span style="color:#66d9ef">then</span>
+	echo <span style="color:#e6db74">&#34;Even amount of args required&#34;</span>
+	exit
+<span style="color:#66d9ef">fi</span>
+
+echo -e <span style="color:#e6db74">&#34;SSH config file will be generated with: \n&#34;</span>
+itemArray<span style="color:#f92672">=()</span>
+
+<span style="color:#66d9ef">for</span> item in <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span>
+<span style="color:#66d9ef">do</span>
+	itemArray<span style="color:#f92672">+=(</span> $item <span style="color:#f92672">)</span>
+<span style="color:#66d9ef">done</span>
+
+<span style="color:#66d9ef">while</span> <span style="color:#f92672">[</span> $counter -lt $# <span style="color:#f92672">]</span>
+<span style="color:#66d9ef">do</span>
+	let position<span style="color:#f92672">=</span>position+1
+	echo -e <span style="color:#e6db74">&#34;SSH Bastion </span>$position<span style="color:#e6db74">:\t </span><span style="color:#e6db74">${</span>itemArray[$counter]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+	let counter<span style="color:#f92672">=</span>counter+1
+	echo -e <span style="color:#e6db74">&#34;Web Server </span>$position<span style="color:#e6db74">:\t </span><span style="color:#e6db74">${</span>itemArray[$counter]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+	let counter<span style="color:#f92672">=</span>counter+1
+<span style="color:#66d9ef">done</span>
+echo -e -n <span style="color:#e6db74">&#34;\nIs this okay (y/n)
+</span><span style="color:#e6db74">&gt;&#34;</span>
+read answer
+
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $answer !<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;y&#34;</span> <span style="color:#f92672">]]</span>
+<span style="color:#66d9ef">then</span>
+	echo <span style="color:#e6db74">&#34;generation cancelled&#34;</span>
+	exit
+<span style="color:#66d9ef">fi</span>
+
+answer<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+contents<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;###config start\n&#34;</span>
+position<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+counter<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+
+echo -e <span style="color:#e6db74">&#34;generated contents are:\n====================================================\n&#34;</span>
+<span style="color:#66d9ef">while</span> <span style="color:#f92672">[</span> $counter -lt $# <span style="color:#f92672">]</span>
+<span style="color:#66d9ef">do</span>
+	let position<span style="color:#f92672">=</span>position+1
+	contents<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$contents<span style="color:#e6db74">\n\n### Bastion </span>$position<span style="color:#e6db74">, Directly Reachable\nHost bastion</span>$position<span style="color:#e6db74">\nHostName</span><span style="color:#e6db74">${</span>itemArray[$counter]<span style="color:#e6db74">}</span><span style="color:#e6db74">\nUser ubuntu\nIdentityFile ~/.ssh/</span>$keyName<span style="color:#e6db74">\n&#34;</span>
+
+	let counter<span style="color:#f92672">=</span>counter+1
+
+	contents<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$contents<span style="color:#e6db74">\n### Web Server </span>$position<span style="color:#e6db74">, Reachable after 1 jump\nHost server</span>$position<span style="color:#e6db74">\nHostName </span><span style="color:#e6db74">${</span>itemArray[$counter]<span style="color:#e6db74">}</span><span style="color:#e6db74">\nUser ubuntu\nIdentityFile ~/.ssh/</span>$keyName<span style="color:#e6db74">\nProxyCommand ssh -q bastion</span>$position<span style="color:#e6db74"> nc %h %p&#34;</span>
+
+	let counter<span style="color:#f92672">=</span>counter+1
+<span style="color:#66d9ef">done</span>
+echo -e $contents
+echo -e <span style="color:#e6db74">&#34;\n====================================================\n&#34;</span>
+echo -e -n <span style="color:#e6db74">&#34;Create file here (h), append to ssh config (a), overwrite ssh config (o) or cancel (c)?\n&gt;&#34;</span>
+read answer
+
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $answer <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;h&#34;</span> <span style="color:#f92672">]]</span>
+<span style="color:#66d9ef">then</span>
+	echo -e <span style="color:#e6db74">&#34;</span>$contents<span style="color:#e6db74">&#34;</span> &gt; config
+	chmod <span style="color:#ae81ff">600</span> config
+	echo <span style="color:#e6db74">&#34;Config generated in current directory&#34;</span>
+
+<span style="color:#66d9ef">elif</span> <span style="color:#f92672">[[</span> $answer <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;a&#34;</span> <span style="color:#f92672">]]</span>
+<span style="color:#66d9ef">then</span>
+	echo -e <span style="color:#e6db74">&#34;\n</span>$contents<span style="color:#e6db74">&#34;</span> &gt;&gt; ~/.ssh/config
+	echo <span style="color:#e6db74">&#34;Config appended to ~/.ssh/config&#34;</span>
+
+<span style="color:#66d9ef">elif</span> <span style="color:#f92672">[[</span> $answer <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;o&#34;</span> <span style="color:#f92672">]]</span>
+<span style="color:#66d9ef">then</span>
+	answer<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+	echo -e -n <span style="color:#e6db74">&#34;Are you sure you want to overwrite the contents of ~/.ssh/config? this cannot be undone (y/n)\n&gt;&#34;</span>
+	read answer
+
+	<span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $answer !<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;y&#34;</span> <span style="color:#f92672">]]</span>
+	<span style="color:#66d9ef">then</span>
+		echo <span style="color:#e6db74">&#34;generation cancelled&#34;</span>
+		exit
+	<span style="color:#66d9ef">fi</span>
+
+	echo -e <span style="color:#e6db74">&#34;</span>$contents<span style="color:#e6db74">&#34;</span> &gt; ~/.ssh/config
+	chmod <span style="color:#ae81ff">600</span> ~/.ssh/config
+	echo <span style="color:#e6db74">&#34;Config overwrote ~/.ssh/config&#34;</span>
+<span style="color:#66d9ef">else</span>
+	echo <span style="color:#e6db74">&#34;generation cancelled&#34;</span>
+	exit
+
+<span style="color:#66d9ef">fi</span></code></pre></div></p>
+<p>Do keep in mind that I don&rsquo;t claim the be the best &ldquo;bash scripter&rdquo; in the world. So there is likely some better way of reading arguments that I&rsquo;m not aware of. However it works and we can now quickly generate configs for quick SSH access.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In the end, this solution was by far the easiest. I was searching for a method online and I found various other answers, but they all involved editing Ansible configuration extensively. I thought this method was more in line with the &ldquo;straight out of the box&rdquo; approach that is lent to quickly building infrastructure, so I&rsquo;m glad it worked. While this solution may seem simple it did take several hours of research to discover. The main breakthrough came about when I learned Ansible utilized OpenSSH so default configs should work. From there I just had to discover the proxy syntax and it worked like a charm.</p>
+
+    </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>Unless otherwise noted, the content of this site is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a>.</p>
+    </blockquote>
+</div>
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/RobertFleming448" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/robert-fleming-16b4051b9/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/3d-models/">3d-Models</a>
+            </span>
+            
+            <span>
+                <a href="/tags/affinity/">Affinity</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ansible/">Ansible</a>
+            </span>
+            
+            <span>
+                <a href="/tags/apache/">Apache</a>
+            </span>
+            
+            <span>
+                <a href="/tags/aws/">AWS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-480/">CIT-480</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-481/">CIT-481</a>
+            </span>
+            
+            <span>
+                <a href="/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/tags/freebsd/">FreeBSD</a>
+            </span>
+            
+            <span>
+                <a href="/tags/git/">git</a>
+            </span>
+            
+            <span>
+                <a href="/tags/github/">GitHub</a>
+            </span>
+            
+            <span>
+                <a href="/tags/graphics-engines/">Graphics-Engines</a>
+            </span>
+            
+            <span>
+                <a href="/tags/group-project/">Group Project</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/hugo/">Hugo</a>
+            </span>
+            
+            <span>
+                <a href="/tags/java/">Java</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/jekyll/">Jekyll</a>
+            </span>
+            
+            <span>
+                <a href="/tags/networking/">Networking</a>
+            </span>
+            
+            <span>
+                <a href="/tags/nginx/">Nginx</a>
+            </span>
+            
+            <span>
+                <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/server/">Server</a>
+            </span>
+            
+            <span>
+                <a href="/tags/smb/">SMB</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ssh/">SSH</a>
+            </span>
+            
+            <span>
+                <a href="/tags/tls/">TLS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/troubleshooting/">Troubleshooting</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ufw/">UFW</a>
+            </span>
+            
+            <span>
+                <a href="/tags/unix/">Unix</a>
+            </span>
+            
+        </div>
+    </div>
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#ssh-bastion">SSH Bastion</a></li>
+    <li><a href="#server-setup">Server Setup</a>
+      <ul>
+        <li><a href="#security-groups">Security Groups</a></li>
+        <li><a href="#nat">NAT</a></li>
+        <li><a href="#ec2">EC2</a></li>
+      </ul>
+    </li>
+    <li><a href="#connection-setup">Connection Setup</a>
+      <ul>
+        <li><a href="#sshconfig-setup">~/.ssh/config Setup</a></li>
+      </ul>
+    </li>
+    <li><a href="#config-automation">Config Automation</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/RobertFleming448" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/robert-fleming-16b4051b9/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/3d-models/">3d-Models</a>
+            </span>
+            
+            <span>
+                <a href="/tags/affinity/">Affinity</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ansible/">Ansible</a>
+            </span>
+            
+            <span>
+                <a href="/tags/apache/">Apache</a>
+            </span>
+            
+            <span>
+                <a href="/tags/aws/">AWS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-480/">CIT-480</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-481/">CIT-481</a>
+            </span>
+            
+            <span>
+                <a href="/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/tags/freebsd/">FreeBSD</a>
+            </span>
+            
+            <span>
+                <a href="/tags/git/">git</a>
+            </span>
+            
+            <span>
+                <a href="/tags/github/">GitHub</a>
+            </span>
+            
+            <span>
+                <a href="/tags/graphics-engines/">Graphics-Engines</a>
+            </span>
+            
+            <span>
+                <a href="/tags/group-project/">Group Project</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/hugo/">Hugo</a>
+            </span>
+            
+            <span>
+                <a href="/tags/java/">Java</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/jekyll/">Jekyll</a>
+            </span>
+            
+            <span>
+                <a href="/tags/networking/">Networking</a>
+            </span>
+            
+            <span>
+                <a href="/tags/nginx/">Nginx</a>
+            </span>
+            
+            <span>
+                <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/server/">Server</a>
+            </span>
+            
+            <span>
+                <a href="/tags/smb/">SMB</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ssh/">SSH</a>
+            </span>
+            
+            <span>
+                <a href="/tags/tls/">TLS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/troubleshooting/">Troubleshooting</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ufw/">UFW</a>
+            </span>
+            
+            <span>
+                <a href="/tags/unix/">Unix</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#ssh-bastion">SSH Bastion</a></li>
+    <li><a href="#server-setup">Server Setup</a>
+      <ul>
+        <li><a href="#security-groups">Security Groups</a></li>
+        <li><a href="#nat">NAT</a></li>
+        <li><a href="#ec2">EC2</a></li>
+      </ul>
+    </li>
+    <li><a href="#connection-setup">Connection Setup</a>
+      <ul>
+        <li><a href="#sshconfig-setup">~/.ssh/config Setup</a></li>
+      </ul>
+    </li>
+    <li><a href="#config-automation">Config Automation</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2020-2021
+                <a href="https://robertfleming448.github.io">Robert Fleming</a>
+                 | <a href="https://github.com/RobertFleming448/CIT_Blogs">Source code</a> 
+                | Powered by <a href="https://github.com/dsrkafuu/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.0/lazysizes.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>
