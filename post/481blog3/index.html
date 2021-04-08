@@ -115,7 +115,7 @@ Reasoning During this pandemic, I find interacting with friends online to be a m
 <h2 id="network-configuration">Network configuration</h2>
 <p>I am certain I have gone over this before so I will make it brief. I went to my Router&rsquo;s default gateway page using <code>ipconfig</code> via Windows CMD to locate its address. Once I navigated to it in a web browser I inputted the Administrator Credentials and added a new virtual server for port forwarding. In the entry I chose the Private IP I wanted for the server as well as which ports I wanted to allow traffic to. Lastly I went to my reserved IP address section in my Router and reserved the previous IP for the Raspberry Pi&rsquo;s MAC address. This would ensure that DHCP would not give my Server a different Internal IP address when reconnecting to the network. Lastly, I went to <a href="https://www.canyouseeme.org/" target="_blank">CanYouSeeMe.org</a> to see if traffic was allowed through the port. The tool confirmed traffic was allowed through <strong>Success</strong>.</p>
 <h2 id="controlling-the-server">Controlling the server</h2>
-<p>Now that I had the server all set up, I needed to be able to access it remotely. First I wanted to test the shared network folder that I had enabled with SMB. I went to my Windows explorer and selected the Map Network Drive option. After typing in my Raspberry Pi credentials, I could see the shared folder. Next I needed a method of SSH&rsquo;ing into the server. I had considered using an SSH application like MobaXterm or PuTTY, but after a little searching I found that PowerShell had an optional SSH module. After checking my Windows optional features, I was able to confirm the option was enabled. Next I typed in <code>ssh &lt;username&gt;@&lt;ip address&gt;</code> I was immediatley prompted for my credentials, and when I entered them I was given full access. I didn&rsquo;t mention this prior, but I made a separate account, I was not running Root the entire time. This user account was a sudoer for whenever I needed elevated privileges however.</p>
+<p>Now that I had the server all set up, I needed to be able to access it remotely. First I wanted to test the shared network folder that I had enabled with SMB. I went to my Windows explorer and selected the Map Network Drive option. After typing in my Raspberry Pi credentials, I could see the shared folder. Next I needed a method of SSH&rsquo;ing into the server. I had considered using an SSH application like MobaXterm or PuTTY, but after a little searching I found that PowerShell had an optional SSH module. After checking my Windows optional features, I was able to confirm the option was enabled. Next I typed in <code>ssh &lt;username&gt;@&lt;ip address&gt;</code> I was immediately prompted for my credentials, and when I entered them I was given full access. I didn&rsquo;t mention this prior, but I made a separate account, I was not running Root the entire time. This user account was a sudoer for whenever I needed elevated privileges however.</p>
 <h2 id="finishing-touches">Finishing Touches</h2>
 <p>Now that I confirmed everything was working, I needed the files for our original server. Luckily our friend was allowed to download them before he cancelled his subscription. With a little bit of rearranging, I was able to get all of our old server&rsquo;s files in their proper place. It is worth noting that Minecraft Realms has a slightly different organization method than the Server API we were using. Next I installed a few useful Server Plugins via my SMB shared folder. After that I turned the server on with a script over SSH. Once it was running, all our friends joined and it was working as well as could be expected. A Raspberry Pi is a tiny computer after all. However for our standard concurrent player count of around 3 it was plenty sufficient.</p>
 <h2 id="conclusion">Conclusion</h2>
@@ -252,6 +252,10 @@ Reasoning During this pandemic, I find interacting with friends online to be a m
             </span>
             
             <span>
+                <a href="/tags/packet-filter/">Packet Filter</a>
+            </span>
+            
+            <span>
                 <a href="/tags/php/">PHP</a>
             </span>
             
@@ -265,6 +269,10 @@ Reasoning During this pandemic, I find interacting with friends online to be a m
             
             <span>
                 <a href="/tags/ssh/">SSH</a>
+            </span>
+            
+            <span>
+                <a href="/tags/terraform/">Terraform</a>
             </span>
             
             <span>
@@ -430,6 +438,10 @@ Reasoning During this pandemic, I find interacting with friends online to be a m
             </span>
             
             <span>
+                <a href="/tags/packet-filter/">Packet Filter</a>
+            </span>
+            
+            <span>
                 <a href="/tags/php/">PHP</a>
             </span>
             
@@ -443,6 +455,10 @@ Reasoning During this pandemic, I find interacting with friends online to be a m
             
             <span>
                 <a href="/tags/ssh/">SSH</a>
+            </span>
+            
+            <span>
+                <a href="/tags/terraform/">Terraform</a>
             </span>
             
             <span>

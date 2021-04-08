@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Terraform on Robert Fleming&#39;s CIT Blog</title>
+    <link>https://robertfleming448.github.io/tags/terraform/</link>
+    <description>Recent content in Terraform on Robert Fleming&#39;s CIT Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 08 Apr 2021 11:34:38 -0700</lastBuildDate><atom:link href="https://robertfleming448.github.io/tags/terraform/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CIT 481 blog 6</title>
+      <link>https://robertfleming448.github.io/post/481blog6/</link>
+      <pubDate>Thu, 08 Apr 2021 11:34:38 -0700</pubDate>
+      
+      <guid>https://robertfleming448.github.io/post/481blog6/</guid>
+      <description>Preface I am going to try something slightly different this week. As I don&amp;rsquo;t feel that my progress in any one project is substantial nor unique enough to fill the contents of a full blog, I am going to make this blog a double feature The first part will detail my exploits in Terraform to quickly build cloud architecture, and my second part will explain how I setup pf in freeBSD.
+Terraform Introduction This part will go over how I created the AWS infrastructure for our group project using Terraform. I was tasked with writing the compute section of our Terraform which includes:</description>
+    </item>
+    
+  </channel>
+</rss>
