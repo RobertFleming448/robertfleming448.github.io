@@ -16,7 +16,7 @@
 
 
 
-<title>CIT 481 blog 3 - Robert Fleming&#39;s CIT Blog</title>
+<title>CIT 481 blog 7 - Robert Fleming&#39;s CIT Blog</title>
 
 
 <meta name="author" content="Robert Fleming" />
@@ -25,18 +25,18 @@
 <meta name="description" content="A minimal Hugo theme with nice theme color." />
 
 
-<meta name="keywords" content="CIT-481, SMB, Server, UFW, SSH" />
+<meta name="keywords" content="CIT-481, Apache, freeBSD, Portsnap" />
 
 
-<meta property="og:title" content="CIT 481 blog 3" />
-<meta name="twitter:title" content="CIT 481 blog 3" />
+<meta property="og:title" content="CIT 481 blog 7" />
+<meta name="twitter:title" content="CIT 481 blog 7" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://robertfleming448.github.io/post/481blog3/" /><meta property="og:description" content="Introduction For this blog I will be going over my process and reasoning for creating a Minecraft Server with a Raspberry Pi 4. This is one of the topics I have saved for moments that are somewhat slow this semester. While I have been working diligently on other projects, the content is not substantial enough to fill an entire blog. As a result, I will keep it on the backburner until I feel suitable progress has been made.
-Reasoning During this pandemic, I find interacting with friends online to be a more pressing matter. Without avenues to interact with my peers, I would surely go mad." />
-<meta name="twitter:description" content="Introduction For this blog I will be going over my process and reasoning for creating a Minecraft Server with a Raspberry Pi 4. This is one of the topics I have saved for moments that are somewhat slow this semester. While I have been working diligently on other projects, the content is not substantial enough to fill an entire blog. As a result, I will keep it on the backburner until I feel suitable progress has been made.
-Reasoning During this pandemic, I find interacting with friends online to be a more pressing matter. Without avenues to interact with my peers, I would surely go mad." /><meta property="og:image" content="https://robertfleming448.github.io/img/og.png" />
+<meta property="og:url" content="https://robertfleming448.github.io/post/481blog7/" /><meta property="og:description" content="Introduction In this blog I will go over my recent endeavors in Computer Science 424. For this assignment we needed to build Apache from source and ensure our host operating system could view the website in a standard web browser. Several configuration changes must also be made during build. This includes:
+ Multi-Processing Multi-threading  As these are not on by default we must build from source to have a version of Apache that suits our needs This assignment was very open-ended and involved reading documentation to discover a way of accomplishing the task. As a result, the conclusions I came to may not be the most efficient nor the recommended practice." />
+<meta name="twitter:description" content="Introduction In this blog I will go over my recent endeavors in Computer Science 424. For this assignment we needed to build Apache from source and ensure our host operating system could view the website in a standard web browser. Several configuration changes must also be made during build. This includes:
+ Multi-Processing Multi-threading  As these are not on by default we must build from source to have a version of Apache that suits our needs This assignment was very open-ended and involved reading documentation to discover a way of accomplishing the task. As a result, the conclusions I came to may not be the most efficient nor the recommended practice." /><meta property="og:image" content="https://robertfleming448.github.io/img/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://robertfleming448.github.io/img/og.png" /><meta property="article:published_time" content="2021-03-10T18:33:58-08:00" /><meta property="article:modified_time" content="2021-03-10T18:33:58-08:00" />
+<meta name="twitter:image" content="https://robertfleming448.github.io/img/og.png" /><meta property="article:published_time" content="2021-04-14T17:04:40-07:00" /><meta property="article:modified_time" content="2021-04-14T17:04:40-07:00" />
 
 
 <style>
@@ -94,32 +94,36 @@ Reasoning During this pandemic, I find interacting with friends online to be a m
 <article>
     
     <h2 class="post-item post-title">
-        <a href="https://robertfleming448.github.io/post/481blog3/">CIT 481 blog 3</a>
+        <a href="https://robertfleming448.github.io/post/481blog7/">CIT 481 blog 7</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-03-10</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1022 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-481">CIT-481</a>&nbsp;<a href="/tags/smb">SMB</a>&nbsp;<a href="/tags/server">Server</a>&nbsp;<a href="/tags/ufw">UFW</a>&nbsp;<a href="/tags/ssh">SSH</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-04-14</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;942 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-481">CIT-481</a>&nbsp;<a href="/tags/apache">Apache</a>&nbsp;<a href="/tags/freebsd">freeBSD</a>&nbsp;<a href="/tags/portsnap">Portsnap</a>&nbsp;</span>
 
     </div>
     
     <div class="post-content markdown-body">
         <h2 id="introduction">Introduction</h2>
-<p>For this blog I will be going over my process and reasoning for creating a Minecraft Server with a Raspberry Pi 4. This is one of the topics I have saved for moments that are somewhat slow this semester. While I have been working diligently on other projects, the content is not substantial enough to fill an entire blog. As a result, I will keep it on the backburner until I feel suitable progress has been made.</p>
-<h2 id="reasoning">Reasoning</h2>
-<p>During this pandemic, I find interacting with friends online to be a more pressing matter. Without avenues to interact with my peers, I would surely go mad. Like many friend groups, we enjoyed playing Minecraft casually together. To do this one of our friends purchased a &ldquo;Minecraft Realm&rdquo; subscription. This service grants players access to a multiplayer server for a monthly fee. However when our friend no longer was interested in playing he discontinued the service. This left everyone else in the friend group stranded. We either had to pay for the server, or host it ourselves. I decided that since I was the most technical person of the group, I would be the one to host the server, and save us money in the process.</p>
-<h2 id="the-hardware">The Hardware</h2>
-<p>To run a Minecraft server, one really only needs a device with Java installed, and the server side software. I knew that I didn&rsquo;t want to run the software on my primary computer as it would be overkill, and I don&rsquo;t want my 850 watt pc running nonstop 24/7. After some research, I decided a Raspberry Pi 4 with 8gb of RAM should be sufficient for the few users that still played.</p>
-<h2 id="the-os">The OS</h2>
-<p>Raspberry Pi&rsquo;s are very flexible so I decided to use an OS I was already comfortable with. I chose Ubuntu&rsquo;s Raspberry Pi distribution desktop environment. I understand that running in a command line only server OS would save system resources, but frankly for system setup, I much prefer a GUI. I disabled the GUI on startup after the configuration changes were made.</p>
-<h2 id="configuring-the-server">Configuring the Server</h2>
-<p>Configuring the server was rather simple for the most part. First I installed <code>GUFW</code>. For those not in the loop, <code>GUFW</code> or Graphic Uncomplicated Firewall, is an application that runs on top of the standard <code>UFW</code> or Uncomplicated Firewall. Despite <code>UFW</code> being much easier than IP tables, I still find setting rules much easier in the GUI environment. Next I installed <code>Samba</code> through Ubuntu&rsquo;s built-in file sharing interface. I wanted to set this up so that I could transfer files to and from the server within my LAN. Lastly I installed Java along with the Minecraft server Jar. Using <code>GUFW</code> I allowed SMB and SSH traffic through my LAN, for server management. I also allowed the Minecraft server default port (25565) through to ensure clients could connect to the server.</p>
-<h2 id="network-configuration">Network configuration</h2>
-<p>I am certain I have gone over this before so I will make it brief. I went to my Router&rsquo;s default gateway page using <code>ipconfig</code> via Windows CMD to locate its address. Once I navigated to it in a web browser I inputted the Administrator Credentials and added a new virtual server for port forwarding. In the entry I chose the Private IP I wanted for the server as well as which ports I wanted to allow traffic to. Lastly I went to my reserved IP address section in my Router and reserved the previous IP for the Raspberry Pi&rsquo;s MAC address. This would ensure that DHCP would not give my Server a different Internal IP address when reconnecting to the network. Lastly, I went to <a href="https://www.canyouseeme.org/" target="_blank">CanYouSeeMe.org</a> to see if traffic was allowed through the port. The tool confirmed traffic was allowed through <strong>Success</strong>.</p>
-<h2 id="controlling-the-server">Controlling the server</h2>
-<p>Now that I had the server all set up, I needed to be able to access it remotely. First I wanted to test the shared network folder that I had enabled with SMB. I went to my Windows explorer and selected the Map Network Drive option. After typing in my Raspberry Pi credentials, I could see the shared folder. Next I needed a method of SSH&rsquo;ing into the server. I had considered using an SSH application like MobaXterm or PuTTY, but after a little searching I found that PowerShell had an optional SSH module. After checking my Windows optional features, I was able to confirm the option was enabled. Next I typed in <code>ssh &lt;username&gt;@&lt;ip address&gt;</code> I was immediately prompted for my credentials, and when I entered them I was given full access. I didn&rsquo;t mention this prior, but I made a separate account, I was not running Root the entire time. This user account was a sudoer for whenever I needed elevated privileges however.</p>
-<h2 id="finishing-touches">Finishing Touches</h2>
-<p>Now that I confirmed everything was working, I needed the files for our original server. Luckily our friend was allowed to download them before he cancelled his subscription. With a little bit of rearranging, I was able to get all of our old server&rsquo;s files in their proper place. It is worth noting that Minecraft Realms has a slightly different organization method than the Server API we were using. Next I installed a few useful Server Plugins via my SMB shared folder. After that I turned the server on with a script over SSH. Once it was running, all our friends joined and it was working as well as could be expected. A Raspberry Pi is a tiny computer after all. However for our standard concurrent player count of around 3 it was plenty sufficient.</p>
+<p>In this blog I will go over my recent endeavors in Computer Science 424. For this assignment we needed to build Apache from source and ensure our host operating system could view the website in a standard web browser. Several configuration changes must also be made during build. This includes:</p>
+<ul>
+<li>Multi-Processing</li>
+<li>Multi-threading</li>
+</ul>
+<p>As these are not on by default we must build from source to have a version of Apache that suits our needs This assignment was very open-ended and involved reading documentation to discover a way of accomplishing the task. As a result, the conclusions I came to may not be the most efficient nor the recommended practice.</p>
+<h2 id="finding-the-source">Finding the Source</h2>
+<p>This step was the part that required the most reading. Since we were running FreeBSD as our guest operating system, we needed to find a way of building specifically for it. After perusing the FreeBSD documentation for some time, I ran into <code>Portsnap</code>. Portsnap, or simply <code>ports</code> are a collection of makefiles for thousands of commonly used pieces of software for use on FreeBSD. Luckily for us, Portsnap is installed by default on our installation of FreeBSD. First we needed to grab all the files. By running <code>portsnap fetch</code> we get the most recent version of the ports archive. This archive must be uncompressed to utilize the makefiles. By running <code>portsnap extract</code> this can be accomplished. This step took quite some time, taking over 10 minutes to complete the final list. It extracts all the makefiles in a tree structure where common files are bunched in separate directories. For example a games directory will hold a few dozen subdirectories, those subdirectories hold the makefiles for the games themselves. As the process was running I was reading the output directories to make locating Apache easier in the future. One directory that caught my eye was <code>www/</code>. It seemed like a prime candidate for Apache and other web server applications. I navigated to the www directory and <code>grep</code>ed for Apache. I found 2 versions, of which I chose apache24. I chose this version as it seemed to line up with the most recent release of Apache being <code>2.4.46</code>.</p>
+<h2 id="building-from-source">Building from Source</h2>
+<p>Now that I have the makefiles themselves I must actually perform the make operation. To do this, all I had to do was enter the chosen directory, and run <code>make install</code>. This opened a text based user interface for configuration during the build process. For this I chose to enable PHP, mysql, and mysqli support. I am uncertain if these will be useful or not in this class, but if possible I would like to avoid going through the build process again. In this interface I also enabled the required multi-processing and multi-threading options, which were off by default. Every other option I kept the default setting. I also chose to install the documentation as I built because I did not want to be lost in the future. This took some time, but after around 15 or so minutes and a few user prompts later, I had my own build of apache24.</p>
+<h2 id="configuration">Configuration</h2>
+<p>Luckily for this lab little configuration was needed within FreeBSD. The only requirement is to allow whichever port we chose for web traffic through the packet filter we set up in the previous lab. If you want more info on this, check out my <a href="https://robertfleming448.github.io/post/481blog6/#packet-filter">blog 6</a>. I simply added the following rules to the end of my pf.conf file:</p>
+<ul>
+<li>pass in proto tcp to port 80</li>
+<li>pass in proto tcp to port 8080</li>
+</ul>
+<p>I added both these rules as I was unsure which port I was going to end up using. After that was setup, I restarted my packet filter so the new rules would update with <code>service pf restart</code></p>
+<h2 id="virtual-machine-configuration">Virtual Machine Configuration</h2>
+<p>This is yet another highly variable step. Next to ensure the webserver was functioning, we needed to open it in our host OS&rsquo;s web browser. Its worth mentioning that for this class we are using VMware as our Virtual Machine software. When I created this virtual machine, many weeks ago, I chose to attach new machines to my LAN automatically. This is good for me, because I don&rsquo;t have to deal with the headache that would be port mapping. Essentially if I didn&rsquo;t add new machines to my existing LAN, accessing the server would involve me going through VMware&rsquo;s settings to map the internal port of a virtual machine to an external port of my host OS. However since it is already mounted on my LAN, I can just type the associated IP address of the virtual machine along with the used port into my web browser. The result was something like this <code>192.168.0.12:8080</code>. Since that machine is running a web server on port 8080 and is allowing that traffic in the Apache24 test page will display <em><strong>IT WORKS!</strong></em>.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>This project was a great success. The server may be slightly underpowered, but for a little fun here and there it works fine. I did a little calculations and the Raspberry Pi only costs about 5 dollars a year to run in power. That with the price of the computer itself costs around only 80 dollars. That may seem a bit much, but compared to the subscription fee, it will pay for itself in no time. And if I ever want to repurpose the Pi for a future project I always have that option.</p>
+<p>I liked this assignment because it gave me the freedom to make decisions on how to accomplish my tasks. This is the format this professor often takes with assignments. He will provide a background during a brief lecture and then metaphorically throw you into the deep end. Overall while I sometimes enjoy more structure it is nice to get my hands dirty every once in a while. It feels like a closer parallel to real world IT work with no hand holding. I still need to complete the second written portion of this assignment. It is structured more like a research paper than a lab write-up. I have never done a computer-science related research paper in the past so I am looking forward to the unique challenges I will encounter when I start it.</p>
 
     </div>
 </article>
@@ -301,13 +305,10 @@ Reasoning During this pandemic, I find interacting with friends online to be a m
         <h3>TOC</h3><nav id="TableOfContents">
   <ul>
     <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#reasoning">Reasoning</a></li>
-    <li><a href="#the-hardware">The Hardware</a></li>
-    <li><a href="#the-os">The OS</a></li>
-    <li><a href="#configuring-the-server">Configuring the Server</a></li>
-    <li><a href="#network-configuration">Network configuration</a></li>
-    <li><a href="#controlling-the-server">Controlling the server</a></li>
-    <li><a href="#finishing-touches">Finishing Touches</a></li>
+    <li><a href="#finding-the-source">Finding the Source</a></li>
+    <li><a href="#building-from-source">Building from Source</a></li>
+    <li><a href="#configuration">Configuration</a></li>
+    <li><a href="#virtual-machine-configuration">Virtual Machine Configuration</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
   </ul>
 </nav></div>
@@ -495,13 +496,10 @@ Reasoning During this pandemic, I find interacting with friends online to be a m
         <nav id="TableOfContents">
   <ul>
     <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#reasoning">Reasoning</a></li>
-    <li><a href="#the-hardware">The Hardware</a></li>
-    <li><a href="#the-os">The OS</a></li>
-    <li><a href="#configuring-the-server">Configuring the Server</a></li>
-    <li><a href="#network-configuration">Network configuration</a></li>
-    <li><a href="#controlling-the-server">Controlling the server</a></li>
-    <li><a href="#finishing-touches">Finishing Touches</a></li>
+    <li><a href="#finding-the-source">Finding the Source</a></li>
+    <li><a href="#building-from-source">Building from Source</a></li>
+    <li><a href="#configuration">Configuration</a></li>
+    <li><a href="#virtual-machine-configuration">Virtual Machine Configuration</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
   </ul>
 </nav>

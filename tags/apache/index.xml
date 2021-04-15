@@ -6,7 +6,17 @@
     <description>Recent content in Apache on Robert Fleming&#39;s CIT Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 03 Mar 2021 19:30:09 -0800</lastBuildDate><atom:link href="https://robertfleming448.github.io/tags/apache/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 Apr 2021 17:04:40 -0700</lastBuildDate><atom:link href="https://robertfleming448.github.io/tags/apache/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CIT 481 blog 7</title>
+      <link>https://robertfleming448.github.io/post/481blog7/</link>
+      <pubDate>Wed, 14 Apr 2021 17:04:40 -0700</pubDate>
+      
+      <guid>https://robertfleming448.github.io/post/481blog7/</guid>
+      <description>Introduction In this blog I will go over my recent endeavors in Computer Science 424. For this assignment we needed to build Apache from source and ensure our host operating system could view the website in a standard web browser. Several configuration changes must also be made during build. This includes:
+ Multi-Processing Multi-threading  As these are not on by default we must build from source to have a version of Apache that suits our needs This assignment was very open-ended and involved reading documentation to discover a way of accomplishing the task. As a result, the conclusions I came to may not be the most efficient nor the recommended practice.</description>
+    </item>
+    
     <item>
       <title>CIT 481 blog 2</title>
       <link>https://robertfleming448.github.io/post/481blog2/</link>

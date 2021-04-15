@@ -31,7 +31,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://robertfleming448.github.io/post/" /><meta property="og:image" content="https://robertfleming448.github.io/img/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://robertfleming448.github.io/img/og.png" /><meta property="og:updated_time" content="2021-04-08T11:34:38-07:00" />
+<meta name="twitter:image" content="https://robertfleming448.github.io/img/og.png" /><meta property="og:updated_time" content="2021-04-14T17:04:40-07:00" />
 
 
 <style>
@@ -88,6 +88,20 @@
                 
 
 
+
+<div class="post">
+    <h2 class="post-item post-title">
+        <a href="https://robertfleming448.github.io/post/480blog10/">CIT 480 blog 10</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1093 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-480">CIT-480</a>&nbsp;<a href="/tags/html">HTML</a>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/java">Java</a>&nbsp;</span>
+
+    </div>
+    <div class="post-item post-summary markdown-body">
+        Introduction For the next few blogs, I will be writing a series showing off bits of code I have written for my Computer Science 484 final group project. This blog will be used to provide a little background and explain a program that I wrote to help us in the future.
+The Project The project is an interactive web application that uses templates to auto-generate hundreds of unique algebra problems focusing on middle-school and high-school students. The application will track user progress by recording how many correct and incorrect answers a user gets on specific subjects. To implement this several systems needed to be made.
+    </div>
+</div>
 
 <div class="post">
     <h2 class="post-item post-title">
@@ -214,140 +228,6 @@ Git The first step was configuring Git on my home computer. I have used Git befo
     </div>
 </div>
 
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://robertfleming448.github.io/post/480blog0/">CIT 480 Blog 0</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1094 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-480">CIT-480</a>&nbsp;<a href="/tags/java">Java</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <h2 id="introduction">Introduction</h2>
-<p>Since this is my first blog post for CIT 480 and I have little to discuss in terms of class content, I think it would be fitting to describe the process I used to enroll in COMP 484 and this class. When I went to enroll in this course&rsquo;s corequisite, COMP 484, it was closed. I&rsquo;ve been through this before and the only solution I&rsquo;ve found is to refresh the page every couple of minutes to wait for availability. This would be no problem since this occurred in midst of Covid stay at home orders. However, I would be unavailable to refresh this during meals, bathing, etc. To solve this, I came up with a system to automize the refresh system.</p>
-<p>I decided to write this program in Java, as it was the programming language I was most familiar with. First off, I devised a logical breakdown for the program. The required modules were:</p>
-<ol>
-<li>A bot that refreshed the page and navigated to the add screen</li>
-<li>A function that captured the page</li>
-<li>A function that parsed the image to see if any changes were made to the add screen</li>
-<li>A function that notifies me when a change occurs, so I can run to my computer</li>
-</ol>
-<p>Next are a few &ldquo;optional&rdquo; components that I included to make the program easier to bug correct</p>
-<ol>
-<li>A logging function that appends whenever a significant action occurs including time and picture</li>
-<li>Bug correction function that rescues the bot should it get stuck during page navigation</li>
-</ol>
-<h2 id="the-bot">The Bot</h2>
-<p>I first made a bot that would navigate the page by pressing the <code>TAB</code> key a predetermined amount of times and pressing <code>ENTER</code> when required. To accomplish this, I used the <code>robot class</code> located in the <code>java.awt</code> library. This method encountered far too many infinite &ldquo;death loops&rdquo; when the bot got stuck on an incorrect page so I scrapped it.</p>
-<p>The second bot while less portable, used the same <code>Robot class</code> as before. To ensure the bot never fell into an infinite loop, I hardcoded the bot to navigate using the mouse cursor using the measurements of my screen. This was not an elegant solution but for my purposes it functioned. The bot was capable of scrolling through the pages pressing the required radio bubble and waiting at the add screen before restarting the process. The code for this bot is below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">refreshPageAlt</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> AWTException<span style="color:#f92672">,</span> InterruptedException
-	<span style="color:#f92672">{</span>
-		Robot robot <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Robot<span style="color:#f92672">();</span>
-
-		TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>2<span style="color:#f92672">);</span>
-
-		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">keyPress</span><span style="color:#f92672">(</span>KeyEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">VK_F5</span><span style="color:#f92672">);</span>
-		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">keyRelease</span><span style="color:#f92672">(</span>KeyEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">VK_F5</span><span style="color:#f92672">);</span>
-
-		TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>8<span style="color:#f92672">);</span>
-
-		<span style="color:#75715e">//first Page
-</span><span style="color:#75715e"></span>		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mouseMove</span><span style="color:#f92672">(</span>700<span style="color:#f92672">,</span> 200<span style="color:#f92672">);</span>
-		TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
-		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mousePress</span><span style="color:#f92672">(</span>InputEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">BUTTON1_DOWN_MASK</span><span style="color:#f92672">);</span>
-		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mouseRelease</span><span style="color:#f92672">(</span>InputEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">BUTTON1_DOWN_MASK</span><span style="color:#f92672">);</span>
-		TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
-		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mouseMove</span><span style="color:#f92672">(</span>1910<span style="color:#f92672">,</span> 300<span style="color:#f92672">);</span>
-		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mousePress</span><span style="color:#f92672">(</span>InputEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">BUTTON1_DOWN_MASK</span><span style="color:#f92672">);</span>
-		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mouseMove</span><span style="color:#f92672">(</span>1910<span style="color:#f92672">,</span> 1000<span style="color:#f92672">);</span>
-		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mouseRelease</span><span style="color:#f92672">(</span>InputEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">BUTTON1_DOWN_MASK</span><span style="color:#f92672">);</span>
-		TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
-		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mouseMove</span><span style="color:#f92672">(</span>700<span style="color:#f92672">,</span> 940<span style="color:#f92672">);</span>
-		TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
-		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mousePress</span><span style="color:#f92672">(</span>InputEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">BUTTON1_DOWN_MASK</span><span style="color:#f92672">);</span>
-		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mouseRelease</span><span style="color:#f92672">(</span>InputEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">BUTTON1_DOWN_MASK</span><span style="color:#f92672">);</span>
-
-		TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>8<span style="color:#f92672">);</span>
-
-		<span style="color:#75715e">//Second Page
-</span><span style="color:#75715e"></span>		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mouseMove</span><span style="color:#f92672">(</span>220<span style="color:#f92672">,</span> 450<span style="color:#f92672">);</span>		<span style="color:#75715e">//alt screen size: (220, 450)	//main screen size(220, 470)
-</span><span style="color:#75715e"></span>		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mousePress</span><span style="color:#f92672">(</span>InputEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">BUTTON1_DOWN_MASK</span><span style="color:#f92672">);</span>
-		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mouseRelease</span><span style="color:#f92672">(</span>InputEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">BUTTON1_DOWN_MASK</span><span style="color:#f92672">);</span>
-		TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
-		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mouseMove</span><span style="color:#f92672">(</span>600<span style="color:#f92672">,</span> 480<span style="color:#f92672">);</span>		<span style="color:#75715e">//alt screen size: (600, 480)	//main screen size(600, 500)
-</span><span style="color:#75715e"></span>		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mousePress</span><span style="color:#f92672">(</span>InputEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">BUTTON1_DOWN_MASK</span><span style="color:#f92672">);</span>
-		robot<span style="color:#f92672">.</span><span style="color:#a6e22e">mouseRelease</span><span style="color:#f92672">(</span>InputEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">BUTTON1_DOWN_MASK</span><span style="color:#f92672">);</span>
-
-		append<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Page Refreshed&#34;</span><span style="color:#f92672">);</span>
-	    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Page Refreshed&#34;</span><span style="color:#f92672">);</span>
-
-	    TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>8<span style="color:#f92672">);</span>
-	<span style="color:#f92672">}</span></code></pre></div>
-<h2 id="the-captureanalyzer">The Capture/Analyzer</h2>
-<p>Next, I had to come up with a function that would take the contents of the screen and determine if a class became available. Luckily CSUN&rsquo;s system color codes classes with the following scheme:</p>
-<ul>
-<li>Green=Available</li>
-<li>Yellow=Waitlisted</li>
-<li>Blue=Closed</li>
-</ul>
-<p>Using these colors, I could easily determine changes in class availability based on color information. Utilizing the <code>Color class</code> and the <code>Rectangle class</code> I was able to take a screenshot of the page and get the RGB values of each pixel. By measuring the changes in green pixels on screen from previous measurements I could determine if availability changed. Part of the code is below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">capture</span><span style="color:#f92672">()</span>
-	<span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">try</span>
-        <span style="color:#f92672">{</span>
-            Robot robot <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Robot<span style="color:#f92672">();</span>
-            <span style="color:#75715e">//Fullscreen but cropped around class hardcoded for my screen
-</span><span style="color:#75715e"></span>            Rectangle screenSize <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Rectangle<span style="color:#f92672">(</span>Toolkit<span style="color:#f92672">.</span><span style="color:#a6e22e">getDefaultToolkit</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getScreenSize</span><span style="color:#f92672">());</span>
-            <span style="color:#75715e">//System.out.println(screenSize.width);
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">//System.out.println(screenSize.height);
-</span><span style="color:#75715e"></span>            Rectangle captureRect <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Rectangle<span style="color:#f92672">(</span>420<span style="color:#f92672">,</span> 1130 <span style="color:#f92672">/</span> 2<span style="color:#f92672">,</span> 581 <span style="color:#f92672">,</span> 448<span style="color:#f92672">);</span>		<span style="color:#75715e">//alt screen dimensions: (420, 1130 / 2, 581 , 448);	//main screen size (420, 1150 / 2, 581 , 448 );
-</span><span style="color:#75715e"></span>            BufferedImage bufferedImage <span style="color:#f92672">=</span> robot<span style="color:#f92672">.</span><span style="color:#a6e22e">createScreenCapture</span><span style="color:#f92672">(</span>captureRect<span style="color:#f92672">);</span>
-            File file <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;screen-capture.png&#34;</span><span style="color:#f92672">);</span>	 
-            <span style="color:#66d9ef">boolean</span> status <span style="color:#f92672">=</span> ImageIO<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>bufferedImage<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;png&#34;</span><span style="color:#f92672">,</span> file<span style="color:#f92672">);</span>
-            append<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Screen Captured ? &#34;</span> <span style="color:#f92672">+</span> status <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; File Path:- &#34;</span> <span style="color:#f92672">+</span> file<span style="color:#f92672">.</span><span style="color:#a6e22e">getAbsolutePath</span><span style="color:#f92672">());</span>
-            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Screen Captured ? &#34;</span> <span style="color:#f92672">+</span> status <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; File Path:- &#34;</span> <span style="color:#f92672">+</span> file<span style="color:#f92672">.</span><span style="color:#a6e22e">getAbsolutePath</span><span style="color:#f92672">());</span>
-        <span style="color:#f92672">}</span>
-	<span style="color:#f92672">}</span>
-
-	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">parseImg</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException
-	<span style="color:#f92672">{</span>
-		<span style="color:#66d9ef">int</span> greenCount<span style="color:#f92672">=</span>0<span style="color:#f92672">;</span>
-		<span style="color:#75715e">//Reading the image
-</span><span style="color:#75715e"></span>	      BufferedImage img <span style="color:#f92672">=</span> ImageIO<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> File<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;screen-capture.png&#34;</span><span style="color:#f92672">));</span>
-	      <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> y <span style="color:#f92672">&lt;</span> img<span style="color:#f92672">.</span><span style="color:#a6e22e">getHeight</span><span style="color:#f92672">();</span> y<span style="color:#f92672">++)</span>
-	      <span style="color:#f92672">{</span>
-	         <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> x <span style="color:#f92672">&lt;</span> img<span style="color:#f92672">.</span><span style="color:#a6e22e">getWidth</span><span style="color:#f92672">();</span> x<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
-	            <span style="color:#75715e">//Retrieving contents of a pixel
-</span><span style="color:#75715e"></span>	            <span style="color:#66d9ef">int</span> pixel <span style="color:#f92672">=</span> img<span style="color:#f92672">.</span><span style="color:#a6e22e">getRGB</span><span style="color:#f92672">(</span>x<span style="color:#f92672">,</span>y<span style="color:#f92672">);</span>
-	            <span style="color:#75715e">//Creating a Color object from pixel value
-</span><span style="color:#75715e"></span>	            Color color <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Color<span style="color:#f92672">(</span>pixel<span style="color:#f92672">,</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
-	            <span style="color:#75715e">//Retrieving the R G B values
-</span><span style="color:#75715e"></span>	            <span style="color:#66d9ef">int</span> blue <span style="color:#f92672">=</span> color<span style="color:#f92672">.</span><span style="color:#a6e22e">getBlue</span><span style="color:#f92672">();</span>
-	            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>blue<span style="color:#f92672">&lt;</span>50<span style="color:#f92672">)</span>
-	            <span style="color:#f92672">{</span>
-	            	greenCount<span style="color:#f92672">++;</span>
-	            <span style="color:#f92672">}</span>
-	         <span style="color:#f92672">}</span>
-	      <span style="color:#f92672">}</span>
-	      <span style="color:#66d9ef">return</span> greenCount<span style="color:#f92672">;</span>
-
-	<span style="color:#f92672">}</span></code></pre></div>
-<h2 id="notification">Notification</h2>
-<p>Next, I needed to be able to know if a change had occurred. There were 2 methods I thought of that could accomplish this task:</p>
-<ul>
-<li>Using a SMTP server to utilize my cell provider&rsquo;s email to SMS service address</li>
-<li>Using a third-party service and paying per SMS message</li>
-</ul>
-<p>I had initially started with the email method but after some configuration and thought I determined I didn&rsquo;t have the resources to run a SMTP server on my computer. In the end I used a payed service called <code>Twilio</code> Twilio provides the libraries required to use their SMS services in dozens of computer languages, Java included. In the end from testing and utilization  the service cost me a little over a dollar, with each text costing a fraction of a cent.</p>
-<h2 id="error-correction">Error Correction</h2>
-<p>Every so often, the program would get stuck in a loop that I had not accounted for. This was not surprising as many parts of the bot were hardcoded for my environment. To fix this I added the link to the add page to the program. After encountering too many error values, the bot would rescue itself by returning to the starting page. While this solution was not the most elegant, again it worked for my purposes.</p>
-<h2 id="logging">Logging</h2>
-<p>This was by far the easiest function to implement. The method would just append the programs current status and time to a text document. Additionally, it would save a screenshot titled the current time. If an error were to occur, I could read the log and look at the corresponding image to try and determine the cause.</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>In the end the program was a rousing success. I had turned the program on while I was eating lunch and low and behold a notification. I ran to my computer and found the class space open. Without this notification there is no doubt this availability would have been snatched up before I noticed. For this reason, I think the time and money I invested in this program was well worth it.</p>
-    </div>
-</div>
-
 
 
 
@@ -388,6 +268,24 @@ Git The first step was configuring Git on my home computer. I have used Git befo
     
     
     
+    
+    
+    
+    
+    <div class="pag-item">
+        <a href="/post/page/3/">3</a>
+    </div>
+    
+    
+    
+    <div class="pag-next">
+        <a href="/post/page/3/"><i class="iconfont icon-chevron-forward-circle-sharp"></i></i></a>
+    </div>
+    
+    
+    <div class="pag-last">
+        <a href="/post/page/3/"><i class="iconfont icon-caret-forward-circle-sharp"></i></a>
+    </div>
     
 </div>
 
@@ -516,6 +414,10 @@ Git The first step was configuring Git on my home computer. I have used Git befo
             
             <span>
                 <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/portsnap/">Portsnap</a>
             </span>
             
             <span>
@@ -691,6 +593,10 @@ Git The first step was configuring Git on my home computer. I have used Git befo
             
             <span>
                 <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/portsnap/">Portsnap</a>
             </span>
             
             <span>
