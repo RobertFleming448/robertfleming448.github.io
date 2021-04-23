@@ -16,7 +16,7 @@
 
 
 
-<title>CIT 481 blog 2 - Robert Fleming&#39;s CIT Blog</title>
+<title>CIT 481 blog 8 - Robert Fleming&#39;s CIT Blog</title>
 
 
 <meta name="author" content="Robert Fleming" />
@@ -25,18 +25,18 @@
 <meta name="description" content="A minimal Hugo theme with nice theme color." />
 
 
-<meta name="keywords" content="CIT-481, Group-Project, Apache, Nginx, TLS" />
+<meta name="keywords" content="CIT-481, Apache, AWS, Ansible, Group-Project" />
 
 
-<meta property="og:title" content="CIT 481 blog 2" />
-<meta name="twitter:title" content="CIT 481 blog 2" />
+<meta property="og:title" content="CIT 481 blog 8" />
+<meta name="twitter:title" content="CIT 481 blog 8" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://robertfleming448.github.io/post/481blog2/" /><meta property="og:description" content="Introduction This blog I will be detailing the process I went through to acquire a domain and a TLS certificate to allow HTTPS traffic. This will be the first part in a potential multipart series going through my tasks in the CIT 481 semester-long group project. I was put in charge of Domain and Certificate Acquisition as I was the one with the most experience with domains.
-Domain Choice Being poor college students, we didn&rsquo;t want to break the bank on our domain. However, we still wanted it to be related to our team, to make it easily distinguishable. With those prerequisites in mind, I went searching several domain registrar websites to find a cheap year long domain license." />
-<meta name="twitter:description" content="Introduction This blog I will be detailing the process I went through to acquire a domain and a TLS certificate to allow HTTPS traffic. This will be the first part in a potential multipart series going through my tasks in the CIT 481 semester-long group project. I was put in charge of Domain and Certificate Acquisition as I was the one with the most experience with domains.
-Domain Choice Being poor college students, we didn&rsquo;t want to break the bank on our domain. However, we still wanted it to be related to our team, to make it easily distinguishable. With those prerequisites in mind, I went searching several domain registrar websites to find a cheap year long domain license." /><meta property="og:image" content="https://robertfleming448.github.io/img/og.png" />
+<meta property="og:url" content="https://robertfleming448.github.io/post/481blog8/" /><meta property="og:description" content="Introduction This blog will act as a sort of &ldquo;Housekeeping&rdquo; in terms of project progress not much has changed since last I wrote. However several small changes have been made, and I think it would be fitting to make a blog post on the various minute details regarding the senior design project. While individually they are insignificant, together they are not.
+Ansible Refactor In a previous blog post, I talked about our Web Stack automating Ansible playbook. In the range of time between this post and that one some changes have been made. To briefly recap, our first version of the Ansible Script as of Project 0&rsquo;s completion installed Apache, PHP, mySQL, and pulled the Git repository holding our sample web app." />
+<meta name="twitter:description" content="Introduction This blog will act as a sort of &ldquo;Housekeeping&rdquo; in terms of project progress not much has changed since last I wrote. However several small changes have been made, and I think it would be fitting to make a blog post on the various minute details regarding the senior design project. While individually they are insignificant, together they are not.
+Ansible Refactor In a previous blog post, I talked about our Web Stack automating Ansible playbook. In the range of time between this post and that one some changes have been made. To briefly recap, our first version of the Ansible Script as of Project 0&rsquo;s completion installed Apache, PHP, mySQL, and pulled the Git repository holding our sample web app." /><meta property="og:image" content="https://robertfleming448.github.io/img/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://robertfleming448.github.io/img/og.png" /><meta property="article:published_time" content="2021-03-03T19:30:09-08:00" /><meta property="article:modified_time" content="2021-03-03T19:30:09-08:00" />
+<meta name="twitter:image" content="https://robertfleming448.github.io/img/og.png" /><meta property="article:published_time" content="2021-04-22T12:50:59-07:00" /><meta property="article:modified_time" content="2021-04-22T12:50:59-07:00" />
 
 
 <style>
@@ -94,38 +94,84 @@ Domain Choice Being poor college students, we didn&rsquo;t want to break the ban
 <article>
     
     <h2 class="post-item post-title">
-        <a href="https://robertfleming448.github.io/post/481blog2/">CIT 481 blog 2</a>
+        <a href="https://robertfleming448.github.io/post/481blog8/">CIT 481 blog 8</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-03-03</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;779 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-481">CIT-481</a>&nbsp;<a href="/tags/group-project">Group-Project</a>&nbsp;<a href="/tags/apache">Apache</a>&nbsp;<a href="/tags/nginx">Nginx</a>&nbsp;<a href="/tags/tls">TLS</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-04-22</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1037 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-481">CIT-481</a>&nbsp;<a href="/tags/apache">Apache</a>&nbsp;<a href="/tags/aws">AWS</a>&nbsp;<a href="/tags/ansible">Ansible</a>&nbsp;<a href="/tags/group-project">Group-Project</a>&nbsp;</span>
 
     </div>
     
     <div class="post-content markdown-body">
         <h2 id="introduction">Introduction</h2>
-<p>This blog I will be detailing the process I went through to acquire a domain and a TLS certificate to allow HTTPS traffic. This will be the first part in a potential multipart series going through my tasks in the CIT 481 semester-long group project. I was put in charge of Domain and Certificate Acquisition as I was the one with the most experience with domains.</p>
-<h2 id="domain-choice">Domain Choice</h2>
-<p>Being poor college students, we didn&rsquo;t want to break the bank on our domain. However, we still wanted it to be related to our team, to make it easily distinguishable. With those prerequisites in mind, I went searching several domain registrar websites to find a cheap year long domain license. The main options I looked through were:</p>
-<ol>
-<li>Amazon Route 53</li>
-<li>Godaddy</li>
-<li>NameCheap</li>
-</ol>
-<p>I decided to go with Godaddy because I was already experienced with them, and they still offered prices competitive with the other registrars. In the end I chose teambellevue.xyz for the low low price of .99 for the first year.</p>
-<h2 id="domain-configuration">Domain Configuration</h2>
-<p>Next I needed to put the domain in use. For the time being I knew I wanted to test our HTTPS connection, so I chose to spin up a temporary infrastructure just to learn the process.</p>
-<h3 id="aws-setup">AWS Setup</h3>
-<p>First I created a new security group that would allow SSH traffic in for shell access, and allow HTTP <code>80</code> and HTTPS <code>443</code>. I had a similar security group before that only allowed HTTP but this would require more rules to allow secure traffic as well.</p>
-<p>Next I spun up a t2.micro instance using the Ubuntu 20.04 AMI. I added the security group and specified which key file I wanted to get SSH access.</p>
-<p>Lastly, I allocated a new elastic IP address and assigned my running EC2 instance to it. I noted the IP address for use in my godaddy domain management console.</p>
-<h3 id="godaddy-setup">Godaddy Setup</h3>
-<p>This step was very simple to do manually, but in the future automating it may be a little more difficult. I simply went to my godaddy console and added a new <code>a record</code> to connect the domain to the IP address.</p>
-<h2 id="ec2-configuration">EC2 Configuration</h2>
-<p>For this step I installed Apache2 and Nginx as I wanted to test each separately to give us wiggle room in the future. Next I installed certbot with snap: <code>sudo snap install --classic certbot</code>. Certbot is the command line tool used by <a href="https://letsencrypt.org/" target="_blank">LetsEncrypt</a> to establish ownership of domains to grant TLS certificates. Once all the software was installed I tested the domain by typing teambellevue.xyz into my search bar. Initially no result came through due to my security Firefox plugins. Once I allowed HTTP traffic the default apache page loaded without issue.</p>
-<h2 id="tls">TLS</h2>
-<p>Now that I had confirmed HTTP traffic worked, I now needed to allow HTTPS traffic. First I tested certbot&rsquo;s installation with <code>sudo ln -s /snap/bin/certbot /usr/bin/certbot</code>. According to the documentation this command tests to see if certbot is in working condition for granting certificates. Next I ran <code>sudo certbot --apache</code> which both configured my apache installation to work with certbot and ran the required scripts to grant the domain a certificate. I entered the Domain name and after a short while, the command returned a success message. I next tested the domain again in a web browser, this time without disabling HTTPS security plugin, and it connected immediately with the desired protocol. Next I entered <code>sudo certbot renew --dry-run</code> This command simulates the certificate running out and requests another from the certificate authority. I wanted to test this now so we wouldn&rsquo;t run into issue after the process was setup. It worked first try so I knew in the future we need not worry about our certificate running out. Next I uninstalled Apache and tried every step over again with Nginx. The steps proceeded just as smoothly so I knew moving forward, we could pick either for our project.</p>
-<h2 id="conclusion-and-considerations">Conclusion and Considerations</h2>
-<p>This was my real first outing in HTTPS and I was shocked with how simple it was. In the past I have hosted standard HTTP-only websites and shied away from certificates because I thought it would be too much of a time sink. However Let&rsquo;s Encrypt and Certbot really simplified the process, and even for free. Moving forward I need to look into a way of automating this process. Perhaps at first I could make it into a simple bash script to see if I could run it without user input, and later I can progress into using Ansible for use with multiple web servers at once. However, I am already pleased with my current progress, and that is a project for a different blog.</p>
+<p>This blog will act as a sort of &ldquo;Housekeeping&rdquo; in terms of project progress not much has changed since last I wrote. However several small changes have been made, and I think it would be fitting to make a blog post on the various minute details regarding the senior design project. While individually they are insignificant, together they are not.</p>
+<h2 id="ansible-refactor">Ansible Refactor</h2>
+<p>In a previous blog post, I talked about our Web Stack automating Ansible playbook. In the range of time between this post and that one some changes have been made. To briefly recap, our first version of the Ansible Script as of Project 0&rsquo;s completion installed Apache, PHP, mySQL, and pulled the Git repository holding our sample web app. However as of Project 1, some changes would have to be made. First, we needed to remove the git pull section and run it as its own playbook. This makes sense so that if the webapp should ever require an update, it can be repulled from source without running the Web stack setup again. This part was very simple and it only involved removing a section from the web stack playbook and including it in its own file:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">---
+- hosts: web_server
+
+  tasks:
+<span style="color:#75715e">#Empty /var/www/html directory</span>
+   - name: Clean /var/www/html/ Path
+     file:
+       state: absent
+       path: /var/www/html/
+     become: true
+
+<span style="color:#75715e">#Used to clone project to nginx directory when app is chosen</span>
+   - name: Clone Git Repo
+     git:
+       repo: https://github.com/Team-Bellevue/SPFtoolbox.git
+       dest: /var/www/html/
+     become: true</code></pre></div>
+<p>Next a change needed to be made to the Tech Stack Configuration. When the Terraform and Ansible ran, and the Web app was live and working as intended, there was one issue: It did not use HTTPS. Now this is not to say we did not have a working certificate. In fact, we could manually specify the protocol in the search bar and use the desired secure protocol that way.</p>
+<p>The problem was that HTTP was the default protocol. A standard user may not understand the difference between HTTP and HTTPS traffic so it is our responsibility to ensure HTTPS traffic is the default at all times. As a simple test, I manually removed the HTTP port 80 listener in our Classic Load Balancer. This was more so done for curiosity sake rather than an actual solution to the problem. To my surprise, the web app was able to display with only HTTPS traffic. However when accessing the website with standard HTTP it would fail; to be expected. This is also undesirable because we want our website to be reachable from all clients.</p>
+<p>I tried two methods to remedy this one of which worked. For sake of showing my thought pattern, I will go over both.</p>
+<h3 id="attempt-1-apache-config-it-didnt-work">Attempt 1: Apache Config (It didn&rsquo;t work)</h3>
+<p>The first thing I found was to use virtualHosts and redirect statements. My thinking was that if a user went to the website with insecure HTTP traffic, just simply redirect them to the HTTP version. To do this, I made an edit to my apache.conf file in <code>/etc/apache2/</code>. I made the following entry manually at the bottom of the conf file.:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">VirtualHost</span> <span style="color:#960050;background-color:#1e0010">*</span><span style="color:#a6e22e">:80</span>&gt;
+  ServerName http://[domain_name]
+  ServerAlias http://www.[domain_name]
+  Redirect permanent / https://[domain_name]
+&lt;/<span style="color:#f92672">VirtualHost</span>&gt;</code></pre></div></p>
+<!-- I know this isnt HTML it just displayed better than shell syntax-->
+<p>This caused the browser to endlessly redirect causing the page to fail to load. In hindsight this makes sense, it was not possible to have apache recognize the protocol used from within the config file.</p>
+<h3 id="attempt-2-rewrite-rules-it-worked">Attempt 2: Rewrite Rules (It worked)</h3>
+<p>The next thing I found was called rewrite rules. While I had seen this earlier I had disregarded it because I thought a more simple solution could be found. In short, a rewrite rule will see if a client is using http and rewrite it as https so they are using the correct protocol. To enable this, I went to <code>/etc/apache2/sites-enabled/000-default.conf</code> and added the following just before the VirtualHost section closed:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">VirtualHost</span> <span style="color:#960050;background-color:#1e0010">*</span><span style="color:#a6e22e">:80</span>&gt;
+  RewriteEngine On
+  RewriteCond %{HTTP:X-Forwarded-Proto} =http
+  RewriteRule .* https://%{HTTP:Host}%{REQUEST_URI} [L,R=permanent]
+&lt;/<span style="color:#f92672">VirtualHost</span>&gt;</code></pre></div></p>
+<p>Next from SSH shell I entered <code>a2enmod rewrite</code> to enable the rewrite module in apache. After I restarted Apache with <code>sudo service apache2 restart</code> I edited the load balancer and severed the connections to the other instances that I had not made a change to. Luckily when I entered our domain name it appeared as HTTPS. I also tried this in a separate browser will history/cache cleared to make sure other users would experience similar results.</p>
+<h3 id="adding-the-change-to-ansible">Adding the Change to Ansible</h3>
+<p>Now that I have found a proper solution, I needed to make sure the change was automatic when we ran our ansible. I could choose to either:</p>
+<ul>
+<li>make the 000-default.conf file beforehand and copy it overall</li>
+<li>add the code block to the file via built-in ansible commands</li>
+</ul>
+<p>I chose the latter. I was able to find an ansible module that could be used to insert code blocks. The module&rsquo;s name was <code>blockinfile</code>. What made this module so useful was the ability to specify location for the block via parameters and <code>regex</code>. This way I could simply edit the file then rewrite the entire thing. Bellow is the entire block of ansible to both make the edit, activate the rule module, and restart the service:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Configure Apache Step 1</span>
+  <span style="color:#f92672">blockinfile</span>:
+    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/etc/apache2/sites-enabled/000-default.conf</span>
+    <span style="color:#f92672">insertbefore</span>: <span style="color:#ae81ff">&lt;/VirtualHost&gt;</span>
+    <span style="color:#f92672">block</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">     RewriteEngine On
+</span><span style="color:#e6db74">     RewriteCond %{HTTP:X-Forwarded-Proto} =http
+</span><span style="color:#e6db74">     RewriteRule .* https://%{HTTP:Host}%{REQUEST_URI} [L,R=permanent]</span>     
+  <span style="color:#f92672">become</span>: <span style="color:#66d9ef">true</span>
+
+- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Configure Apache Step 2</span>
+  <span style="color:#f92672">command</span>: <span style="color:#ae81ff">a2enmod rewrite</span>
+  <span style="color:#f92672">become</span>: <span style="color:#66d9ef">true</span>
+
+- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Restart Apache</span>
+  <span style="color:#f92672">ansible.builtin.service</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">apache2</span>
+    <span style="color:#f92672">state</span>: <span style="color:#ae81ff">restarted</span>
+  <span style="color:#f92672">become</span>: <span style="color:#66d9ef">true</span></code></pre></div>
+<p>After I made the change I destroyed all the infrastructure that terraform made and started from scratch. Once the Terraform was finished, I ran both Ansible playbooks one after the other. After the load balancer marked all three server instances as healthy, I hit the domain in my recently cleared web browser and it was preseented using HTTPS.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>I am glad I got this part to work. While I knew it would not be too difficult, it was an issue that was weighing in the back of my mind. Although I ran into a few hiccups along the way, everything turned out well in the end. I&rsquo;m not sure if the HTTP default occurred as a result of our specific method or was an planned hurdle, but I am glad we encountered it nonetheless.</p>
 
     </div>
 </article>
@@ -307,16 +353,14 @@ Domain Choice Being poor college students, we didn&rsquo;t want to break the ban
         <h3>TOC</h3><nav id="TableOfContents">
   <ul>
     <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#domain-choice">Domain Choice</a></li>
-    <li><a href="#domain-configuration">Domain Configuration</a>
+    <li><a href="#ansible-refactor">Ansible Refactor</a>
       <ul>
-        <li><a href="#aws-setup">AWS Setup</a></li>
-        <li><a href="#godaddy-setup">Godaddy Setup</a></li>
+        <li><a href="#attempt-1-apache-config-it-didnt-work">Attempt 1: Apache Config (It didn&rsquo;t work)</a></li>
+        <li><a href="#attempt-2-rewrite-rules-it-worked">Attempt 2: Rewrite Rules (It worked)</a></li>
+        <li><a href="#adding-the-change-to-ansible">Adding the Change to Ansible</a></li>
       </ul>
     </li>
-    <li><a href="#ec2-configuration">EC2 Configuration</a></li>
-    <li><a href="#tls">TLS</a></li>
-    <li><a href="#conclusion-and-considerations">Conclusion and Considerations</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
   </ul>
 </nav></div>
 </aside>
@@ -503,16 +547,14 @@ Domain Choice Being poor college students, we didn&rsquo;t want to break the ban
         <nav id="TableOfContents">
   <ul>
     <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#domain-choice">Domain Choice</a></li>
-    <li><a href="#domain-configuration">Domain Configuration</a>
+    <li><a href="#ansible-refactor">Ansible Refactor</a>
       <ul>
-        <li><a href="#aws-setup">AWS Setup</a></li>
-        <li><a href="#godaddy-setup">Godaddy Setup</a></li>
+        <li><a href="#attempt-1-apache-config-it-didnt-work">Attempt 1: Apache Config (It didn&rsquo;t work)</a></li>
+        <li><a href="#attempt-2-rewrite-rules-it-worked">Attempt 2: Rewrite Rules (It worked)</a></li>
+        <li><a href="#adding-the-change-to-ansible">Adding the Change to Ansible</a></li>
       </ul>
     </li>
-    <li><a href="#ec2-configuration">EC2 Configuration</a></li>
-    <li><a href="#tls">TLS</a></li>
-    <li><a href="#conclusion-and-considerations">Conclusion and Considerations</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>

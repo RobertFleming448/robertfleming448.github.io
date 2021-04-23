@@ -6,7 +6,17 @@
     <description>Recent content in Apache on Robert Fleming&#39;s CIT Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 14 Apr 2021 17:04:40 -0700</lastBuildDate><atom:link href="https://robertfleming448.github.io/tags/apache/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Apr 2021 12:50:59 -0700</lastBuildDate><atom:link href="https://robertfleming448.github.io/tags/apache/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CIT 481 blog 8</title>
+      <link>https://robertfleming448.github.io/post/481blog8/</link>
+      <pubDate>Thu, 22 Apr 2021 12:50:59 -0700</pubDate>
+      
+      <guid>https://robertfleming448.github.io/post/481blog8/</guid>
+      <description>Introduction This blog will act as a sort of &amp;ldquo;Housekeeping&amp;rdquo; in terms of project progress not much has changed since last I wrote. However several small changes have been made, and I think it would be fitting to make a blog post on the various minute details regarding the senior design project. While individually they are insignificant, together they are not.
+Ansible Refactor In a previous blog post, I talked about our Web Stack automating Ansible playbook. In the range of time between this post and that one some changes have been made. To briefly recap, our first version of the Ansible Script as of Project 0&amp;rsquo;s completion installed Apache, PHP, mySQL, and pulled the Git repository holding our sample web app.</description>
+    </item>
+    
     <item>
       <title>CIT 481 blog 7</title>
       <link>https://robertfleming448.github.io/post/481blog7/</link>
