@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/dsrkafuu/dsr-cdn@1/images/favicons/dsrca/favicon.ico" />
+
+
+
+<title>CIT 481 blog 9 - Robert Fleming&#39;s CIT Blog</title>
+
+
+<meta name="author" content="Robert Fleming" />
+
+
+<meta name="description" content="A minimal Hugo theme with nice theme color." />
+
+
+<meta name="keywords" content="CIT-481, JavaScript, HTML" />
+
+
+<meta property="og:title" content="CIT 481 blog 9" />
+<meta name="twitter:title" content="CIT 481 blog 9" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://robertfleming448.github.io/post/481blog9/" /><meta property="og:description" content="Introduction As this semester comes to a close, things begin to slow down. We have recently reached an interim period between project deliverables and planning as started for the next and final phase. In my other classes we have experienced a similar drought. One class is in the middle of a project I would consider non-technical and the other is in review for midterms/finals. I did have something prepared for an occasion such as this. Last semester I had planned to discuss a project in JavaScript but never had an opportunity to. So while it may not be necessarily fresh in my mind, I will try my best to describe my thought process." />
+<meta name="twitter:description" content="Introduction As this semester comes to a close, things begin to slow down. We have recently reached an interim period between project deliverables and planning as started for the next and final phase. In my other classes we have experienced a similar drought. One class is in the middle of a project I would consider non-technical and the other is in review for midterms/finals. I did have something prepared for an occasion such as this. Last semester I had planned to discuss a project in JavaScript but never had an opportunity to. So while it may not be necessarily fresh in my mind, I will try my best to describe my thought process." /><meta property="og:image" content="https://robertfleming448.github.io/img/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://robertfleming448.github.io/img/og.png" /><meta property="article:published_time" content="2021-04-28T22:36:45-07:00" /><meta property="article:modified_time" content="2021-04-28T22:36:45-07:00" />
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+<link rel="stylesheet" href="https://robertfleming448.github.io/assets/css/fuji.min.css" />
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://robertfleming448.github.io">Robert Fleming&#39;s CIT Blog</a>
+            
+            <span class="title-sub">A Hugo blog for all my CIT antics</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://robertfleming448.github.io/post/481blog9/">CIT 481 blog 9</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-04-28</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;970 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-481">CIT-481</a>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/html">HTML</a>&nbsp;</span>
+
+    </div>
+    
+    <div class="post-content markdown-body">
+        <h2 id="introduction">Introduction</h2>
+<p>As this semester comes to a close, things begin to slow down. We have recently reached an interim period between project deliverables and planning as started for the next and final phase. In my other classes we have experienced a similar drought. One class is in the middle of a project I would consider non-technical and the other is in review for midterms/finals. I did have something prepared for an occasion such as this. Last semester I had planned to discuss a project in JavaScript but never had an opportunity to. So while it may not be necessarily fresh in my mind, I will try my best to describe my thought process.</p>
+<h2 id="project-description">Project Description</h2>
+<p>For this project we needed to create a typing speed test app. The project requirements were as follows:</p>
+<ul>
+<li>A timer to measure the test</li>
+<li>A text-entry box to check if a user types the phrase correctly</li>
+<li>A notification for typing progress</li>
+<li>A top score table to register high scores</li>
+</ul>
+<h2 id="timer">Timer</h2>
+<p>I tried several methods to create a timer, but the one that ended up working was <code>Date.now()</code> function. If you run the <code>Date.now()</code> function you will get the current time in standard format. By taking the difference between two occurrences of this command you can get the range that has occurred in milliseconds. This can be further processed to get the standard minute:second:millisecond format. A mistake I made at first was to run this function too often. This caused the browser to freeze, I changed the interval and the timer worked while accepting other user input at the same time code for the timer is below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">startTimer</span>() {
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">running</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">true</span>) {
+    <span style="color:#a6e22e">checkText</span>();
+  }
+  <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">finished</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">true</span>) {
+    <span style="color:#66d9ef">return</span>;
+  }
+  <span style="color:#66d9ef">else</span> {
+    <span style="color:#a6e22e">running</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+    <span style="color:#a6e22e">start</span> <span style="color:#f92672">=</span> Date.<span style="color:#a6e22e">now</span>();
+    <span style="color:#a6e22e">interval</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">setInterval</span>(<span style="color:#a6e22e">stopWatch</span>, <span style="color:#ae81ff">1</span>);
+  }
+}
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">stopWatch</span>() {
+	<span style="color:#a6e22e">total</span> <span style="color:#f92672">=</span> Date.<span style="color:#a6e22e">now</span>() <span style="color:#f92672">-</span> <span style="color:#a6e22e">start</span>;
+	<span style="color:#a6e22e">min</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">floor</span>(<span style="color:#a6e22e">total</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">60000</span>);
+	<span style="color:#a6e22e">sec</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">floor</span>((<span style="color:#a6e22e">total</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">60000</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000</span>);
+	<span style="color:#a6e22e">mil</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">floor</span>(((<span style="color:#a6e22e">total</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">60000</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">1000</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>);
+	<span style="color:#a6e22e">setValue</span>();
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">format</span>(<span style="color:#a6e22e">total</span>) {
+	<span style="color:#a6e22e">min</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">padZero</span>(Math.<span style="color:#a6e22e">floor</span>(<span style="color:#a6e22e">total</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">60000</span>));
+	<span style="color:#a6e22e">sec</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">padZero</span>(Math.<span style="color:#a6e22e">floor</span>((<span style="color:#a6e22e">total</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">60000</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000</span>));
+	<span style="color:#a6e22e">mil</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">padZero</span>(Math.<span style="color:#a6e22e">floor</span>(((<span style="color:#a6e22e">total</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">60000</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">1000</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>));
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">min</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sec</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">mil</span>;
+}
+</code></pre></div>
+<h2 id="text-box">Text Box</h2>
+<h3 id="event-listeners">Event Listeners</h3>
+<p>The text box required event listeners to track user progress. Event listeners as the name implies are tools in JavaScript that can detect certain page conditions to trigger certain events. I needed to listen for the user starting the test and the user resetting the test. For this I used the <code>keyup</code> and <code>click</code> events respectively. The keyup will detect when the user finishes their first keystroke, and the click will simply listen for left clicks.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">testArea</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;keyup&#39;</span>, <span style="color:#a6e22e">startTimer</span>);
+<span style="color:#a6e22e">resetButton</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#a6e22e">resetAll</span>);
+</code></pre></div>
+<h3 id="error-notification">Error Notification</h3>
+<p>Next I needed to check the user input to see if the answer was correct. To check it all I needed to do was get the fields contents, and change some CSS based on the value of those contents. I managed to do that with the function below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">checkText</span>() {
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;test-area&#34;</span>).<span style="color:#a6e22e">value</span>;
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">sample</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;sample&#34;</span>).<span style="color:#a6e22e">innerHTML</span>;
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sample</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">response</span>) {
+    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;test-wrapper&#34;</span>).<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">border</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;10px solid yellow&#34;</span>;
+    window.<span style="color:#a6e22e">clearInterval</span>(<span style="color:#a6e22e">interval</span>);
+    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;words&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Words per Minute: &#34;</span> <span style="color:#f92672">+</span> Math.<span style="color:#a6e22e">floor</span>(<span style="color:#ae81ff">540000</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">total</span>);
+    <span style="color:#a6e22e">running</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+    <span style="color:#a6e22e">finished</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+    <span style="color:#a6e22e">scoreCheck</span>();
+  }
+  <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sample</span>.<span style="color:#a6e22e">substring</span>(<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">length</span>) <span style="color:#f92672">===</span> <span style="color:#a6e22e">response</span>) {
+    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;test-wrapper&#34;</span>).<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">border</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;10px solid grey&#34;</span>;
+  }
+  <span style="color:#66d9ef">else</span> {
+    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;test-wrapper&#34;</span>).<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">border</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;10px solid red&#34;</span>;
+    <span style="color:#a6e22e">errors</span><span style="color:#f92672">++</span>;
+    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;errors&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Errors: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">errors</span>;
+  }
+}
+</code></pre></div>
+<h2 id="top-score">Top Score</h2>
+<p>To create the high score system I decided it would be best to store the values in an array:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bigScore</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">6061000</span>;
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">topScores</span> <span style="color:#f92672">=</span> [<span style="color:#a6e22e">bigScore</span>, <span style="color:#a6e22e">bigScore</span>, <span style="color:#a6e22e">bigScore</span>, <span style="color:#a6e22e">bigScore</span>, <span style="color:#a6e22e">bigScore</span>, <span style="color:#a6e22e">bigScore</span>, <span style="color:#a6e22e">bigScore</span>, <span style="color:#a6e22e">bigScore</span>, <span style="color:#a6e22e">bigScore</span>, <span style="color:#a6e22e">bigScore</span>];
+</code></pre></div>
+<p>This constant represents the highest possible score. Therefor any new score will register as a high score. To add a new score I push a new value into the array sort it and finally pop the worst time.</p>
+<h3 id="the-costly-mistake">The Costly Mistake</h3>
+<p>I was certain I wanted to use a sort function to get the order. I thought this would simplify the process but the opposite was true. What I didn&rsquo;t know about the standard sort method, is that is sorts alphabetically. This may seem obvious to someone well versed in JavaScript but to me a relative novice it was very foreign. In hindsight this makes a lot of sense, since JavaScript variables are untyped. If I were to choose a default sorting method for an array I would have picked alphabetically as well. With that adjusted and many hours of troubleshooting it worked as intended. The code for sorting and setting the table elements is listed below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">scoreCheck</span>() {
+	<span style="color:#a6e22e">topScores</span>.<span style="color:#a6e22e">push</span>(parseInt(<span style="color:#a6e22e">total</span>));
+	<span style="color:#a6e22e">topScores</span>.<span style="color:#a6e22e">sort</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>)
+		{
+			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">b</span>;
+		});
+	<span style="color:#a6e22e">topScores</span>.<span style="color:#a6e22e">pop</span>();
+
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">bigScore</span>) {
+		document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;spot1&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">format</span>(<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">0</span>]);
+	}
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">bigScore</span>) {
+		document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;spot2&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">format</span>(<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">1</span>]);
+	}
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">bigScore</span>) {
+		document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;spot3&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">format</span>(<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">2</span>]);
+	}
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">bigScore</span>) {
+		document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;spot4&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">format</span>(<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">3</span>]);
+	}
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">bigScore</span>) {
+		document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;spot5&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">format</span>(<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">4</span>]);
+	}
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">bigScore</span>) {
+		document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;spot6&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">format</span>(<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">5</span>]);
+	}
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">bigScore</span>) {
+		document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;spot7&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">format</span>(<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">6</span>]);
+	}
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">bigScore</span>) {
+		document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;spot8&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">format</span>(<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">7</span>]);
+	}
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">bigScore</span>) {
+		document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;spot9&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">format</span>(<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">8</span>]);
+	}
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">bigScore</span>) {
+		document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;spot10&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">format</span>(<span style="color:#a6e22e">topScores</span>[<span style="color:#ae81ff">9</span>]);
+	}
+}
+</code></pre></div>
+<h2 id="conclusion">Conclusion</h2>
+<p>This project took some time to do last semester but I did learn some very useful information regarding event listeners. I was also able to also repurpose the timer code for a future project in the same curriculum. Although it was frustrating, I did find the entire process rather fun. After all, the troubleshooting process was a major factor in determining CIT as my major. I hope this blog offered a glimpse into my thought process and coming next blog I should have a recent development to write about regarding the final phase of the group project.</p>
+
+    </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>Unless otherwise noted, the content of this site is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a>.</p>
+    </blockquote>
+</div>
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/RobertFleming448" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/robert-fleming-16b4051b9/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/3d-models/">3d-Models</a>
+            </span>
+            
+            <span>
+                <a href="/tags/affinity/">Affinity</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ansible/">Ansible</a>
+            </span>
+            
+            <span>
+                <a href="/tags/apache/">Apache</a>
+            </span>
+            
+            <span>
+                <a href="/tags/aws/">AWS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-480/">CIT-480</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-481/">CIT-481</a>
+            </span>
+            
+            <span>
+                <a href="/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/tags/freebsd/">FreeBSD</a>
+            </span>
+            
+            <span>
+                <a href="/tags/git/">git</a>
+            </span>
+            
+            <span>
+                <a href="/tags/github/">GitHub</a>
+            </span>
+            
+            <span>
+                <a href="/tags/graphics-engines/">Graphics-Engines</a>
+            </span>
+            
+            <span>
+                <a href="/tags/group-project/">Group-Project</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/hugo/">Hugo</a>
+            </span>
+            
+            <span>
+                <a href="/tags/java/">Java</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/jekyll/">Jekyll</a>
+            </span>
+            
+            <span>
+                <a href="/tags/networking/">Networking</a>
+            </span>
+            
+            <span>
+                <a href="/tags/nginx/">Nginx</a>
+            </span>
+            
+            <span>
+                <a href="/tags/packet-filter/">Packet Filter</a>
+            </span>
+            
+            <span>
+                <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/portsnap/">Portsnap</a>
+            </span>
+            
+            <span>
+                <a href="/tags/server/">Server</a>
+            </span>
+            
+            <span>
+                <a href="/tags/smb/">SMB</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ssh/">SSH</a>
+            </span>
+            
+            <span>
+                <a href="/tags/terraform/">Terraform</a>
+            </span>
+            
+            <span>
+                <a href="/tags/tls/">TLS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/troubleshooting/">Troubleshooting</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ufw/">UFW</a>
+            </span>
+            
+            <span>
+                <a href="/tags/unix/">Unix</a>
+            </span>
+            
+        </div>
+    </div>
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#project-description">Project Description</a></li>
+    <li><a href="#timer">Timer</a></li>
+    <li><a href="#text-box">Text Box</a>
+      <ul>
+        <li><a href="#event-listeners">Event Listeners</a></li>
+        <li><a href="#error-notification">Error Notification</a></li>
+      </ul>
+    </li>
+    <li><a href="#top-score">Top Score</a>
+      <ul>
+        <li><a href="#the-costly-mistake">The Costly Mistake</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/RobertFleming448" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/robert-fleming-16b4051b9/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/3d-models/">3d-Models</a>
+            </span>
+            
+            <span>
+                <a href="/tags/affinity/">Affinity</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ansible/">Ansible</a>
+            </span>
+            
+            <span>
+                <a href="/tags/apache/">Apache</a>
+            </span>
+            
+            <span>
+                <a href="/tags/aws/">AWS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-480/">CIT-480</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cit-481/">CIT-481</a>
+            </span>
+            
+            <span>
+                <a href="/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/tags/freebsd/">FreeBSD</a>
+            </span>
+            
+            <span>
+                <a href="/tags/git/">git</a>
+            </span>
+            
+            <span>
+                <a href="/tags/github/">GitHub</a>
+            </span>
+            
+            <span>
+                <a href="/tags/graphics-engines/">Graphics-Engines</a>
+            </span>
+            
+            <span>
+                <a href="/tags/group-project/">Group-Project</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/hugo/">Hugo</a>
+            </span>
+            
+            <span>
+                <a href="/tags/java/">Java</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/jekyll/">Jekyll</a>
+            </span>
+            
+            <span>
+                <a href="/tags/networking/">Networking</a>
+            </span>
+            
+            <span>
+                <a href="/tags/nginx/">Nginx</a>
+            </span>
+            
+            <span>
+                <a href="/tags/packet-filter/">Packet Filter</a>
+            </span>
+            
+            <span>
+                <a href="/tags/php/">PHP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/portsnap/">Portsnap</a>
+            </span>
+            
+            <span>
+                <a href="/tags/server/">Server</a>
+            </span>
+            
+            <span>
+                <a href="/tags/smb/">SMB</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ssh/">SSH</a>
+            </span>
+            
+            <span>
+                <a href="/tags/terraform/">Terraform</a>
+            </span>
+            
+            <span>
+                <a href="/tags/tls/">TLS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/troubleshooting/">Troubleshooting</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ufw/">UFW</a>
+            </span>
+            
+            <span>
+                <a href="/tags/unix/">Unix</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#project-description">Project Description</a></li>
+    <li><a href="#timer">Timer</a></li>
+    <li><a href="#text-box">Text Box</a>
+      <ul>
+        <li><a href="#event-listeners">Event Listeners</a></li>
+        <li><a href="#error-notification">Error Notification</a></li>
+      </ul>
+    </li>
+    <li><a href="#top-score">Top Score</a>
+      <ul>
+        <li><a href="#the-costly-mistake">The Costly Mistake</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2020-2021
+                <a href="https://robertfleming448.github.io">Robert Fleming</a>
+                 | <a href="https://github.com/RobertFleming448/CIT_Blogs">Source code</a> 
+                | Powered by <a href="https://github.com/dsrkafuu/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.0/lazysizes.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>
