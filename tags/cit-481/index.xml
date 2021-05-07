@@ -6,7 +6,17 @@
     <description>Recent content in CIT-481 on Robert Fleming&#39;s CIT Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 28 Apr 2021 22:36:45 -0700</lastBuildDate><atom:link href="https://robertfleming448.github.io/tags/cit-481/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 May 2021 19:02:40 -0700</lastBuildDate><atom:link href="https://robertfleming448.github.io/tags/cit-481/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CIT 481 blog 10</title>
+      <link>https://robertfleming448.github.io/post/481blog10/</link>
+      <pubDate>Thu, 06 May 2021 19:02:40 -0700</pubDate>
+      
+      <guid>https://robertfleming448.github.io/post/481blog10/</guid>
+      <description>Introduction For my final blog I have ironically came back to the start of my CIT college career. As it would turn out, my final lab for COMP 424 is very closely related to a task I completed in my very first CIT class as well as many times for personal use. The lab however had some slight modifications that made the process not exactly one to one.
+Lab Requirements For this lab we were required to setup the OpenSSH on our FreeBSD guest environment, and connect to the machine from the host environment after some configuration. These required configurations were:</description>
+    </item>
+    
     <item>
       <title>CIT 481 blog 9</title>
       <link>https://robertfleming448.github.io/post/481blog9/</link>

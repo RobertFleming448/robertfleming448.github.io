@@ -16,7 +16,7 @@
 
 
 
-<title>Jekyll - Robert Fleming&#39;s CIT Blog</title>
+<title>CIT 481 blog 10 - Robert Fleming&#39;s CIT Blog</title>
 
 
 <meta name="author" content="Robert Fleming" />
@@ -25,13 +25,18 @@
 <meta name="description" content="A minimal Hugo theme with nice theme color." />
 
 
+<meta name="keywords" content="CIT-481, FreeBSD, SSH, PacketFilter" />
 
-<meta property="og:title" content="Jekyll" />
-<meta name="twitter:title" content="Jekyll" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://robertfleming448.github.io/tags/jekyll/" /><meta property="og:image" content="https://robertfleming448.github.io/img/og.png" />
+
+<meta property="og:title" content="CIT 481 blog 10" />
+<meta name="twitter:title" content="CIT 481 blog 10" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://robertfleming448.github.io/post/481blog10/" /><meta property="og:description" content="Introduction For my final blog I have ironically came back to the start of my CIT college career. As it would turn out, my final lab for COMP 424 is very closely related to a task I completed in my very first CIT class as well as many times for personal use. The lab however had some slight modifications that made the process not exactly one to one.
+Lab Requirements For this lab we were required to setup the OpenSSH on our FreeBSD guest environment, and connect to the machine from the host environment after some configuration. These required configurations were:" />
+<meta name="twitter:description" content="Introduction For my final blog I have ironically came back to the start of my CIT college career. As it would turn out, my final lab for COMP 424 is very closely related to a task I completed in my very first CIT class as well as many times for personal use. The lab however had some slight modifications that made the process not exactly one to one.
+Lab Requirements For this lab we were required to setup the OpenSSH on our FreeBSD guest environment, and connect to the machine from the host environment after some configuration. These required configurations were:" /><meta property="og:image" content="https://robertfleming448.github.io/img/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://robertfleming448.github.io/img/og.png" /><meta property="og:updated_time" content="2021-02-17T23:43:13-08:00" />
+<meta name="twitter:image" content="https://robertfleming448.github.io/img/og.png" /><meta property="article:published_time" content="2021-05-06T19:02:40-07:00" /><meta property="article:modified_time" content="2021-05-06T19:02:40-07:00" />
 
 
 <style>
@@ -86,33 +91,60 @@
             
             <div class="col-12 col-md-9 float-left content">
                 
-
-<div class="page-info">
-    <span>Posts with the tag Jekyll: </span>
-</div>
-
-
-
-<div class="post">
+<article>
+    
     <h2 class="post-item post-title">
-        <a href="https://robertfleming448.github.io/post/480blog1/">CIT 480 blog 1</a>
+        <a href="https://robertfleming448.github.io/post/481blog10/">CIT 481 blog 10</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;791 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-480">CIT-480</a>&nbsp;<a href="/tags/git">git</a>&nbsp;<a href="/tags/jekyll">Jekyll</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-05-06</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1030 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/cit-481">CIT-481</a>&nbsp;<a href="/tags/freebsd">FreeBSD</a>&nbsp;<a href="/tags/ssh">SSH</a>&nbsp;<a href="/tags/packetfilter">PacketFilter</a>&nbsp;</span>
 
     </div>
-    <div class="post-item post-summary markdown-body">
-        Introduction Given as this is my first officially numbered blog, I will now make the contents of this blog pertaining to my endeavors of class material. As a result, for this blog I will be primarily focusing on my experience setting up Git on my machine as well as Jekyll with its supporting modules.
-Git The first step was configuring Git on my home computer. I have used Git before for work-related source code management, but I have never used it on my personal computer. So, while I was familiar with the standard git bash commands git add, git commit, git push etc.
+    
+    <div class="post-content markdown-body">
+        <h2 id="introduction">Introduction</h2>
+<p>For my final blog I have ironically came back to the start of my CIT college career. As it would turn out, my final lab for COMP 424 is very closely related to a task I completed in my very first CIT class as well as many times for personal use. The lab however had some slight modifications that made the process not exactly one to one.</p>
+<h2 id="lab-requirements">Lab Requirements</h2>
+<p>For this lab we were required to setup the OpenSSH on our FreeBSD guest environment, and connect to the machine from the host environment after some configuration. These required configurations were:</p>
+<ul>
+<li>Set SSHD as a startup service</li>
+<li>Change the SSH port to be 2222 instead of the default 22</li>
+<li>Require RSA identity authentication</li>
+<li>Disable Password authentication</li>
+</ul>
+<p>Once these configurations were made, we would then need to facilitate a key exchange and use the <code>scp</code> command to transfer a text file from the host to the guest OS.</p>
+<h2 id="starting-the-ssh-server">Starting the SSH Server</h2>
+<p>Lucky for us, OpenSSH comes preinstalled on FreeBSD. This is certainly a relief as yet another Kernel build to fetch dependent devices would have been a major hassle. To start OpenSSH I simply had to input the command <code>/etc/rc.d/sshd start</code>. To make this a service that runs on system startup, I went to my <code>/etc/rc.conf</code> file and added the line <code>sshd_enable=&quot;YES&quot;</code>. With this enabled, I should be able to reach the machine even when it has gone through a power cycle.</p>
+<h2 id="sshd-configurations">SSHD Configurations</h2>
+<p>There were several things that needed to be altered in the <code>/etc/ssh/sshd_config</code> file to get the configuration the professor detailed. This config file was rather straight-forward and only a few lines needed to be uncommented or have its value changed.</p>
+<h3 id="ssh-port-change">SSH Port Change</h3>
+<p>This was the easiest and most straight-forward configuration. An option in the file labeled Port was commented out. The default value is set to 22, so in order to change this I uncommented the line and altered the value 22 to 2222. The resulting line was: <code>Port 2222</code></p>
+<h3 id="packet-filter-update">Packet Filter Update</h3>
+<p>Although I already had a rule set for SSH on port 22 I still needed to make a rule to allow 2222 traffic. To do that I went to my <code>/etc/pf.conf</code> file and added 2 lines: <code>pass in proto tcp to port 2222</code> and <code>pass out proto tcp to port 2222</code> After that I restarted packet filter with <code>service pf restart</code>. I then tested SSH&rsquo;ing for the first time on my host machine using password authentication and it worked as intended.</p>
+<h3 id="authentication-configurations">Authentication Configurations</h3>
+<p>Next I needed to ensure the only way to get access to the server was to have the proper RSA identity file. I went into the config file and I located the option <code>PubkeyAuthentication</code> I uncommented the line and ensured the value was yes. When I tested this from my host machine&rsquo;s bash terminal however, it would let me SSH with only password authentication.</p>
+<p>I dug a bit deeper and found <code>PasswordAuthentication</code>. I thought this must be the culprit so I uncommented and set it to no. However when I checked with the same value it still would allow an SSH connection with proper identity.</p>
+<p>After some online research I discovered a field labeled PAM authentication. According to those sources, if PAM authentication is enabled it supersedes some other authentication choices. To fix this unintended auth method, I uncommented the option and set it to no: <code>ChallengeResponseAuthentication no</code>. This had the intended response and I could no longer SSH at all. That may seem bad, but it was actually what I was looking for.</p>
+<h2 id="public-key-transfer">Public Key Transfer</h2>
+<p>Now that only RSA key connections would be accepted, I needed to generate a new pair. Although modern versions of Windows 10 PowerShell have built in SSH support, I am far more comfortable with the Syntax of bash shell. For that reason I did the following steps using <code>Git Bash</code> for Windows.</p>
+<p>First I needed to generate a key pair for my SSH client. To do that, I ran the command <code>ssh-keygen</code> from within my git bash terminal. This offered me some options for location and password protection. I chose the default directory and no password to simplify my life. Once the keypair was generated, I travelled to the directory, and copied the RSA public key into a USB Flash Storage Device. This was my main method of transferring data between the guest and host OS&rsquo;s as I didn&rsquo;t want to bother with a shared folder setup.</p>
+<p>First I needed to go to my non-root account&rsquo;s home folder and create the required files. I created the <code>.ssh/</code> directory and created an <code>authorized_keys</code> file. Once the USB drive was mounted, I <code>CAT</code>&lsquo;ed the contents of the public key file into my newly created authorized_keys file.</p>
+<h2 id="testing-the-connection">Testing the connection</h2>
+<p>Although in the past I had confirmed the connection using password authentication, now I needed to ensure my public key authentication worked as intended. I used the command <code>ssh &lt;user&gt;@&lt;IP address&gt; -p 2222</code> to ensure the port being used was the preconfigured port. The connection was a success, and I was never prompted for password. Next I used <code>scp -P 2222 /source/file/path/ &lt;user&gt;@&lt;IP address&gt;:/destination/file/path/</code> To send a simple one line text document over. I was able to confirm the file was transmitted successfully.</p>
+<h2 id="conclusion-and-final-thoughts">Conclusion and Final Thoughts</h2>
+<p>This lab was quite honestly very easy for me. But when I look back four years, I think about the brand new college freshmen struggling to understand these concepts. Although at times I feel like I still am that struggling freshmen, assignments like these show me that not only have I made progress, but that maybe what I do is not so easy for other people. Since this was a COMP SCI class I noticed some students were struggling, and if that is any indication of the people I may work with in the future I&rsquo;m sure I will always find a job.</p>
+<p>This blog series has been fun, but as my college career comes to close so must this. Perhaps one day this blog will be revived or even shown off for an interview, but for now this is Robert Fleming signing off. <em>Thank you for reading.</em></p>
+
     </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>Unless otherwise noted, the content of this site is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a>.</p>
+    </blockquote>
 </div>
-
-
-
-
-
-
-
 
 
 
@@ -283,9 +315,24 @@ Git The first step was configuring Git on my home computer. I have used Git befo
             
         </div>
     </div>
-    
-    
-    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#lab-requirements">Lab Requirements</a></li>
+    <li><a href="#starting-the-ssh-server">Starting the SSH Server</a></li>
+    <li><a href="#sshd-configurations">SSHD Configurations</a>
+      <ul>
+        <li><a href="#ssh-port-change">SSH Port Change</a></li>
+        <li><a href="#packet-filter-update">Packet Filter Update</a></li>
+        <li><a href="#authentication-configurations">Authentication Configurations</a></li>
+      </ul>
+    </li>
+    <li><a href="#public-key-transfer">Public Key Transfer</a></li>
+    <li><a href="#testing-the-connection">Testing the connection</a></li>
+    <li><a href="#conclusion-and-final-thoughts">Conclusion and Final Thoughts</a></li>
+  </ul>
+</nav></div>
 </aside>
         </div>
         <div class="btn">
@@ -465,6 +512,29 @@ Git The first step was configuring Git on my home computer. I have used Git befo
             </span>
             
         </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#lab-requirements">Lab Requirements</a></li>
+    <li><a href="#starting-the-ssh-server">Starting the SSH Server</a></li>
+    <li><a href="#sshd-configurations">SSHD Configurations</a>
+      <ul>
+        <li><a href="#ssh-port-change">SSH Port Change</a></li>
+        <li><a href="#packet-filter-update">Packet Filter Update</a></li>
+        <li><a href="#authentication-configurations">Authentication Configurations</a></li>
+      </ul>
+    </li>
+    <li><a href="#public-key-transfer">Public Key Transfer</a></li>
+    <li><a href="#testing-the-connection">Testing the connection</a></li>
+    <li><a href="#conclusion-and-final-thoughts">Conclusion and Final Thoughts</a></li>
+  </ul>
+</nav>
     </div>
     
     
